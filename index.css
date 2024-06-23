@@ -1,1 +1,14 @@
-
+.word{
+    box-sizing:border-box;
+    display:grid;
+    width:300px;
+    height:150px;
+    border:2px solid #00FF7F;
+    border-radius:25px;
+    margin:0 auto;
+    padding:23px;
+    grid-template-columns:repeat(2, 1fr);
+    grid-template-rows:3fr 2fr;
+    grid-column-gap:0px;
+    grid-row-gap:0px;
+}
