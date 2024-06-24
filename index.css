@@ -12,7 +12,7 @@ input{
     display:block;
     width:200px;
     margin:0 auto;
-    padding-bottom:10px;
+    padding-bottom:5px;
     border-radius:0;
     outline:none;
     border:none;
@@ -21,7 +21,7 @@ input{
     color:inherit;
     font-family:'Outfit';
     font-weight:400;
-    font-size:16px;
+    font-size:1rem;
 }
 .word{
     box-sizing:border-box;
@@ -31,9 +31,28 @@ input{
     border:2px solid #00FF7F;
     border-radius:25px;
     margin:0 auto;
+    margin-top:50px;
     padding:23px;
     grid-template-columns:repeat(2, 1fr);
     grid-template-rows:3fr 2fr;
     grid-column-gap:0px;
     grid-row-gap:0px;
+}
+.word>*:nth-child(1){
+    font-size:1.5rem;
+    text-decoration:underline;
+    text-decoration-color:#00FF7F;
+    text-decoration-thickness:5px;
+}
+.word>*:nth-child(2){
+    font-size:0.8rem;
+    
+}
+.word>*:nth-child(3){
+    font-size:1rem;
+}
+.word>*:nth-child(4){
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    font-size:0.8rem;
 }
