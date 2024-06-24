@@ -1,3 +1,19 @@
+body{
+    margin:0;
+    padding-top:200px;
+    background-color:#282828;
+    color:#FAFAFA;
+}
+input{
+    width:200px;
+    margin:0 auto;
+    padding-bottom:10px;
+    outline:none;
+    border:none;
+    border-bottom:2px solid #00FF7F;
+    background-color:inherit;
+    color:inherit;
+}
 .word{
     box-sizing:border-box;
     display:grid;
