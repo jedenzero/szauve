@@ -5,14 +5,17 @@ body{
     color:#FAFAFA;
 }
 input{
+    display:block;
     width:200px;
     margin:0 auto;
     padding-bottom:10px;
+    border-radius:0;
     outline:none;
     border:none;
     border-bottom:2px solid #00FF7F;
     background-color:inherit;
     color:inherit;
+    font-size:16px;
 }
 .word{
     box-sizing:border-box;
