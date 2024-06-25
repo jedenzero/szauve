@@ -45,7 +45,7 @@ function show(word){
             if(i!=0){
                 output+=`<span style="color:#00FF7F;">+</span>`;
             }
-            output+=`<span>${words[words.findIndex(row=>row[0]===origin[id])]}</span>`;
+            output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])]}</span>`;
         } 
     }
     output+=`</div>
