@@ -27,7 +27,7 @@ async function getByCode(code){
 function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
-    var targets=[...words.filter(row=>row[1].startsWith(target)||row[2].startsWith(target)),...words.filter(row=>(!row[1].startsWith(target)&&row[1].includes(target))||(!row[2].startsWith(target)&&row[2].includes(target))];
+    var targets=[...words.filter(row=>row[1].startsWith(target)||row[2].startsWith(target)),...words.filter(row=>(!row[1].startsWith(target)&&row[1].includes(target))||(!row[2].startsWith(target)&&row[2].includes(target)))];
     targets.forEach(row=>{
         show(row);
     });
