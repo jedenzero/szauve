@@ -3,7 +3,7 @@ var codes = [];
 var words = [];
 
 async function fetchData(){
-    const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:D?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:H?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data=await response.json();
     if(lang){
         codes=data.values;
@@ -27,21 +27,32 @@ async function getByCode(code){
 function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
-    var targets=[...words.filter(row=>row[1].startsWith(target)),...words.filter(row=>!row[1].startsWith(target)&&row[1].includes(target))];
+    var targets=[...words.filter(row=>row[1].startsWith(target)||row[2].startsWith(target)),...words.filter(row=>(!row[1].startsWith(target)&&row[1].includes(target)))||(!row[2].startsWith(target)&&row[2].includes(target))];
     targets.forEach(row=>{
         show(row);
     });
 }
 
 function show(word){
-    document.querySelector('#output').innerHTML+=`
+    let output=`
     <div class='word'>
     <div>${word[1]}</div>
-    <div>${word[2]}</div>
-    <div>어원</div>
-    <div>기타 속성</div>
-    </div>
-    `;
+    <div><div class='part'>${word[3]}</div><span>${word[2]}</span></div>
+    <div>`;
+    if(row[6]){
+        origin=row[6].split(', ');
+        for(let i=0;i<origin.length-1;i++){
+            if(i!=0){
+                output+=`<span style="color:#00FF7F;">+</span>`;
+            }
+            output+=`<span>${words[words.findIndex(row=>row[0]===origin[id])]}</span>`;
+        } 
+    }
+    output+=`</div>
+    <div>`;
+    output+=`</div>
+    </div>`;
+    document.querySelector('#output').innerHTML+=output;
 }
 
 fetchData();
