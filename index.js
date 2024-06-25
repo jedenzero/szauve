@@ -39,8 +39,8 @@ function show(word){
     <div>${word[1]}</div>
     <div><div class='part'>${word[3]}</div><span>${word[2]}</span></div>
     <div>`;
-    if(row[6]){
-        origin=row[6].split(', ');
+    if(word[6]){
+        origin=word[6].split(', ');
         for(let i=0;i<origin.length-1;i++){
             if(i!=0){
                 output+=`<span style="color:#00FF7F;">+</span>`;
