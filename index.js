@@ -43,3 +43,5 @@ function show(word){
     </div>
     `;
 }
+
+fetchData();
