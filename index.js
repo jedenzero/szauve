@@ -27,7 +27,7 @@ async function getByCode(code){
 function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
-    var targets=[...words.filter(row=>row[1].startsWith(target)||row[2].startsWith(target)),...words.filter(row=>(!row[1].startsWith(target)&&row[1].includes(target)))||(!row[2].startsWith(target)&&row[2].includes(target))];
+    var targets=[...words.filter(row=>row[1].startsWith(target)||row[2].startsWith(target)),...words.filter(row=>(!row[1].startsWith(target)&&row[1].includes(target))||(!row[2].startsWith(target)&&row[2].includes(target))];
     targets.forEach(row=>{
         show(row);
     });
@@ -40,6 +40,7 @@ function show(word){
     <div><div class='part'>${word[3]}</div><span>${word[2]}</span></div>
     <div>`;
     if(word[6]){
+        output+=`<span style="color:#C8C8C8;">&lt;</span>`
         origin=word[6].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
