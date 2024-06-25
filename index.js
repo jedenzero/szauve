@@ -41,11 +41,11 @@ function show(word){
     <div>`;
     if(word[6]){
         origin=word[6].split(', ');
-        for(let i=0;i<origin.length-1;i++){
+        for(let i=0;i<origin.length;i++){
             if(i!=0){
                 output+=`<span style="color:#00FF7F;">+</span>`;
             }
-            output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])]}</span>`;
+            output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
         } 
     }
     output+=`</div>
