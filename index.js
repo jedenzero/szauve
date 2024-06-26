@@ -37,7 +37,7 @@ function show(word){
     let output=`
     <div class='word'>
     <div>${word[1]}</div>
-    <div><div class='part'>${word[3]}</div><span>${word[2]}</span></div>
+    <div><div class='part'>${word[3]}</div><div>${word[2]}</div></div>
     <div>`;
     if(word[6]){
         output+=`<span style="color:#C8C8C8;">&lt;</span>`
