@@ -51,6 +51,11 @@ function show(word){
     }
     output+=`</div>
     <div>`;
+    if(word[4]){
+        word[4].split(', ').slice(0,2).forEach(el=>{
+            output+=`<b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span>`;
+        });
+    }
     output+=`</div>
     </div>`;
     document.querySelector('#output').innerHTML+=output;
