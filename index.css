@@ -56,3 +56,11 @@ input{
     grid-template-columns:repeat(2,1fr);
     font-size:0.8rem;
 }
+.part{
+    height:20px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:10px;
+    background-color:#00FF7F1A;
+    color:#00FF7F;
+}
