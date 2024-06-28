@@ -43,6 +43,8 @@ input{
     grid-template-rows:3fr 2fr;
     grid-column-gap:0px;
     grid-row-gap:0px;
+    transition-property:width,height,padding,border-radius;
+    transition-duration:1s;
 }
 .word>*:nth-child(1){
     font-size:1.5rem;
@@ -61,6 +63,13 @@ input{
     grid-template-columns:repeat(2,1fr);
     font-size:0.8rem;
 }
+.word>*:nth-child(5){
+    grid-column:1/3;
+    height:0;
+    font-size:0.8rem;
+    transition-property:height;
+    transition-duration:1s;
+}
 .part{
     display:inline-block;
     height:20px;
@@ -70,4 +79,18 @@ input{
     border-radius:10px;
     background-color:var(--weak-color);
     color:var(--special-color);
+}
+.word:hover{
+    width:400px;
+    height:300px;
+    padding:48px;
+    border-radius:10px;
+    background-color:var(--special-color);
+    color:var(--background-color);
+}
+.word:hover .part{
+    background-color:var(--background-color);
+}
+.word:hover>*:nth-child(5){
+    height:100px;
 }
