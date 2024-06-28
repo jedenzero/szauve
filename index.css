@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
 
+:root{
+    --background-color:#282828;
+    --normal-color:#FAFAFA;
+    --special-color:#00FF7F;
+    --weak-color:#00FF7F1A;
+}
 body{
     margin:0;
     padding-top:200px;
-    background-color:#282828;
-    color:#FAFAFA;
+    background-color:var(--background-color);
+    color:var(--normal-color);
     font-family:'Outfit';
     font-weight:400;
 }
@@ -16,7 +22,7 @@ input{
     border-radius:0;
     outline:none;
     border:none;
-    border-bottom:2px solid #00FF7F;
+    border-bottom:2px solid var(--special-color);
     background-color:inherit;
     color:inherit;
     font-family:'Outfit';
@@ -28,7 +34,7 @@ input{
     display:grid;
     width:300px;
     height:150px;
-    border:2px solid #00FF7F;
+    border:2px solid var(--special-color);
     border-radius:25px;
     margin:0 auto;
     margin-top:50px;
@@ -41,12 +47,11 @@ input{
 .word>*:nth-child(1){
     font-size:1.5rem;
     text-decoration:underline;
-    text-decoration-color:#00FF7F;
+    text-decoration-color:var(--special-color);
     text-decoration-thickness:5px;
 }
 .word>*:nth-child(2){
     font-size:0.8rem;
-    
 }
 .word>*:nth-child(3){
     font-size:1rem;
@@ -63,6 +68,6 @@ input{
     padding-left:10px;
     padding-right:10px;
     border-radius:10px;
-    background-color:#00FF7F1A;
-    color:#00FF7F;
+    background-color:var(--weak-color);
+    color:var(--special-color);
 }
