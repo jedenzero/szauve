@@ -1,6 +1,7 @@
 const lang = new URLSearchParams(location.search).get('lang');
 var codes = [];
 var words = [];
+var clicked = null;
 
 async function fetchData(){
     const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:D?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
@@ -63,7 +64,22 @@ function show(word){
     }
     output+=`</div>
     </div>`;
-    document.querySelector('#output').innerHTML+=output;
+    
+    const newWord=document.createElement('div');
+    newWord.innerHTML=output;
+    document.querySelector('#output').appendChild(newWord);
+
+    newWord.querySelector('.word').addEventListener('click',function(){
+        if(clicked){
+            clicked.classList.remove('word-clicked');
+        }
+        if(clicked!==newWord){
+            newWord.classList.add('word-clicked');
+            clicked=newWord;
+        }else{
+            clicked=null;
+        }
+    });
 }
 
 fetchData();
