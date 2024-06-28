@@ -40,7 +40,7 @@ function show(word){
     <div><div class='part'>${word[3]}</div><div>${word[2]}</div></div>
     <div>`;
     if(word[6]){
-        output+=`<span style="color:#C8C8C8;">&lt;</span>`
+        output+=`<span>&lt;</span>`
         origin=word[6].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
@@ -55,6 +55,11 @@ function show(word){
         word[4].split(', ').slice(0,2).forEach(el=>{
             output+=`<b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span>`;
         });
+    }
+    output+=`</div>
+    <div>`;
+    if(word[7]){
+        output+=word[7];
     }
     output+=`</div>
     </div>`;
