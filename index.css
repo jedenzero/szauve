@@ -81,7 +81,7 @@ input{
     background-color:var(--weak-color);
     color:var(--special-color);
 }
-.word:hover{
+.word-clicked{
     width:400px;
     height:300px;
     padding:48px;
@@ -89,15 +89,15 @@ input{
     background-color:var(--special-color);
     color:var(--background-color);
 }
-.word:hover .part{
+.word-clicked .part{
     background-color:var(--background-color);
 }
-.word:hover>*:nth-child(5){
+.word-clicked>*:nth-child(5){
     height:100px;
     color:var(--background-color);
 }
 @media(pointer:coarse){
-    .word:hover{
+    .word-clicked{
         width:100%;
         border-radius:0;
     }
