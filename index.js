@@ -36,7 +36,6 @@ function search(){
 
 function show(word){
     let output=`
-    <div class='word'>
     <div>${word[1]}</div>
     <div><div class='part'>${word[3]}</div><div>${word[2]}</div></div>
     <div>`;
@@ -62,14 +61,14 @@ function show(word){
     if(word[7]){
         output+=word[7];
     }
-    output+=`</div>
-    </div>`;
+    output+=`</div>`;
     
     const newWord=document.createElement('div');
     newWord.innerHTML=output;
+    newWord.className='word';
     document.querySelector('#output').appendChild(newWord);
 
-    newWord.querySelector('.word').addEventListener('click',function(){
+    newWord.addEventListener('click',function(){
         if(clicked){
             clicked.classList.remove('word-clicked');
         }
