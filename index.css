@@ -63,7 +63,7 @@ input{
     grid-template-columns:repeat(2,1fr);
     font-size:0.8rem;
 }
-.word-clicked>*:nth-child(4)>*:nth-child(n+5){
+.word>*:nth-child(4)>*:nth-child(n+5){
     display:none;
 }
 .word>*:nth-child(5){
