@@ -8,7 +8,7 @@
 }
 body{
     margin:0;
-    padding-top:200px;
+    padding-top:100px;
     background-color:var(--background-color);
     color:var(--normal-color);
     font-family:'Outfit';
@@ -109,6 +109,11 @@ input{
     display:block;
     height:100px;
     color:var(--background-color);
+}
+#welcome{
+    width:300px;
+    margin:0 auto;
+    margin-bottom:50px;
 }
 @media(pointer:coarse){
     .word-clicked{
