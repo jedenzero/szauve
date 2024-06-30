@@ -18,6 +18,7 @@ async function fetchData(){
 async function getByCode(code){
     for(const row of codes){
         if(row[1]===code){
+            document.querySelector('#welcome').innerHTML=`<h1>${row[3]}</h1><b>${row[2]}</b> 사전입니다.`;
             const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:H?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
             const data=await response.json();
             return data.values;
