@@ -36,39 +36,24 @@ function search(){
 }
 
 function show(word){
-    let output=`
-    <div>${word[1]}</div>
-    <div><div class='part'>${word[3]}</div><div>${word[2]}</div></div>
-    <div>`;
+    let output=`<sup>${word[0]}</sup><span>${word[1]}</span>
+    <div>${word[2]}</div>`;
     if(word[6]){
         output+=`<span>&lt;</span>`
         origin=word[6].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
-                output+=`<span style="color:#00FF7F;">+</span>`;
+                output+=`<span>+</span>`;
             }
             output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
         } 
     }
-    output+=`</div>
-    <div>`;
-    if(word[4]){
-        word[4].split(', ').forEach(el=>{
-            output+=`<b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span>`;
-        });
-    }
-    output+=`</div>
-    <div>`;
-    if(word[7]){
-        output+=word[7];
-    }
-    output+=`</div>`;
     
     const newWord=document.createElement('div');
     newWord.innerHTML=output;
     newWord.className='word';
     document.querySelector('#output').appendChild(newWord);
-
+    /*
     newWord.addEventListener('click',function(){
         if(clicked){
             clicked.classList.remove('word-clicked');
@@ -80,6 +65,7 @@ function show(word){
             clicked=null;
         }
     });
+    */
 }
 
 fetchData();
