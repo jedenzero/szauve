@@ -33,7 +33,6 @@ input{
     font-size:1rem;
 }
 .word{
-    box-sizing:border-box;
     width:100vw;
     height:30vw;
     padding-top:10vw;
