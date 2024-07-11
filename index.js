@@ -36,7 +36,7 @@ function search(){
 }
 
 function show(word){
-    let output=`<sup>${word[0]}</sup><span>${word[1]}</span>
+    let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span>
     <div>${word[2]}</div>`;
     if(word[6]){
         output+=`<span>&lt;</span>`
@@ -46,14 +46,23 @@ function show(word){
                 output+=`<span>+</span>`;
             }
             output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
-        } 
+        }
     }
+    output+=`</div><div>`;
+    if(word[4]){
+        property=word[4].split(', ');
+        for(let i=0;i<property.length;i++){
+            output+=`<b>${word[4].split(':')[0]}</b><span>${word[4].split(':')[1]}</span>`;
+        }
+    }
+    output+=`</div><div>`;
+    output+=`</div>`;
     
     const newWord=document.createElement('div');
     newWord.innerHTML=output;
     newWord.className='word';
     document.querySelector('#output').appendChild(newWord);
-    /*
+
     newWord.addEventListener('click',function(){
         if(clicked){
             clicked.classList.remove('word-clicked');
@@ -65,7 +74,6 @@ function show(word){
             clicked=null;
         }
     });
-    */
 }
 
 fetchData();
