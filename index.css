@@ -89,7 +89,7 @@ input{
     transition-property:font-size;
     transition-duration:0.8s;
 }
-.word-clicked>*:nth-child(1)>*:nth-child(4){
+.word-clicked>*:nth-child(1)>*:nth-child(n+4){
     display:none;
 }
 .word-clicked>*:nth-child(2){
