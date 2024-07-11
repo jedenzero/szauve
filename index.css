@@ -96,7 +96,7 @@ input{
     height:20%;
 }
 .word-clicked>*:nth-child(3){
-    height:60%;
+    height:40%;
 }
 #welcome{
     width:300px;
