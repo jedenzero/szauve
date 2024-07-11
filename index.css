@@ -38,14 +38,63 @@ input{
     padding-top:10vw;
     text-align:center;
     font-size:4vw;
+    transition-property:padding-top,padding-bottom,font-size;
+    transition-duration:0.8s;
 }
 .word:nth-child(even){
     background-color:var(--special-color);
     color:var(--background-color);
 }
-.word>*:nth-child(2){
+.word>*:nth-child(1){
+    height:100%;
+    transition-property:height;
+    transition-duration:0.8s;
+}
+.word>*:nth-child(1)>*:nth-child(2){
     font-size:8vw;
     font-weight:bold;
+}
+.word>*:nth-child(2){
+    height:0;
+    overflow:hidden;
+    transition-property:height;
+    transition-duration:0.8s;
+}
+.word>*:nth-child(3){
+    height:0;
+    overflow:hidden;
+    transition-property:height;
+    transition-duration:0.8s;
+}
+.word-clicked{
+    width:100vw;
+    height:30vw;
+    padding-top:5vw;
+    padding-bottom:5vw;
+    text-align:center;
+    font-size:3vw;
+}
+.word:nth-child(even){
+    background-color:var(--special-color);
+    color:var(--background-color);
+}
+.word-clicked>*:nth-child(1){
+    height:20%;
+}
+.word-clicked>*:nth-child(1)>*:nth-child(2){
+    font-size:4vw;
+    font-weight:bold;
+    transition-property:font-size;
+    transition-duration:0.8s;
+}
+.word-clicked>*:nth-child(1)>*:nth-child(4){
+    display:none;
+}
+.word-clicked>*:nth-child(2){
+    height:20%;
+}
+.word-clicked>*:nth-child(3){
+    height:60%;
 }
 #welcome{
     width:300px;
