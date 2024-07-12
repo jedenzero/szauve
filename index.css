@@ -89,6 +89,9 @@ input{
     transition-property:font-size;
     transition-duration:0.8s;
 }
+.word-clicked>*:nth-child(1)>*:nth-child(3){
+    display:inline-block;
+}
 .word-clicked>*:nth-child(1)>*:nth-child(n+4){
     display:none;
 }
@@ -96,7 +99,7 @@ input{
     height:20%;
 }
 .word-clicked>*:nth-child(3){
-    height:40%;
+    height:60%;
 }
 #welcome{
     width:300px;
