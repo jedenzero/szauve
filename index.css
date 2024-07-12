@@ -38,8 +38,6 @@ input{
     padding-top:10vw;
     text-align:center;
     font-size:4vw;
-    transition-property:padding-top,padding-bottom,font-size;
-    transition-duration:0.8s;
 }
 .word:nth-child(even){
     background-color:var(--special-color);
@@ -47,26 +45,18 @@ input{
 }
 .word>*:nth-child(1){
     height:100%;
-    transition-property:height;
-    transition-duration:0.8s;
 }
 .word>*:nth-child(1)>*:nth-child(2){
     font-size:8vw;
     font-weight:bold;
-    transition-property:font-size;
-    transition-duration:0.8s;
 }
 .word>*:nth-child(2){
     height:0;
     overflow:hidden;
-    transition-property:height;
-    transition-duration:0.8s;
 }
 .word>*:nth-child(3){
     height:0;
     overflow:hidden;
-    transition-property:height;
-    transition-duration:0.8s;
 }
 .word-clicked{
     width:100vw;
@@ -86,8 +76,6 @@ input{
 .word-clicked>*:nth-child(1)>*:nth-child(2){
     font-size:4vw;
     font-weight:bold;
-    transition-property:font-size;
-    transition-duration:0.8s;
 }
 .word-clicked>*:nth-child(1)>*:nth-child(3){
     display:inline-block;
