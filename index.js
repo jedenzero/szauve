@@ -36,10 +36,10 @@ function search(){
 }
 
 function show(word){
-    let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span>
+    let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>
     <div>${word[2]}</div>`;
     if(word[6]){
-        output+=`<span>&lt;</span>`
+        output+=`<div><b>어원</b>`;
         origin=word[6].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
@@ -47,33 +47,19 @@ function show(word){
             }
             output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
         }
+        output+=`</div>`;
     }
-    output+=`</div><div>`;
     if(word[4]){
         property=word[4].split(', ');
         for(let i=0;i<property.length;i++){
-            output+=`<b>${word[4].split(':')[0]}</b><span>${word[4].split(':')[1]}</span>`;
+            output+=`<div><b>${word[4].split(':')[0]}</b><span>${word[4].split(':')[1]}</span></div>`;
         }
     }
-    output+=`</div><div>`;
-    output+=`</div>`;
     
     const newWord=document.createElement('div');
     newWord.innerHTML=output;
     newWord.className='word';
     document.querySelector('#output').appendChild(newWord);
-
-    newWord.addEventListener('click',function(){
-        if(clicked){
-            clicked.classList.remove('word-clicked');
-        }
-        if(clicked!==newWord){
-            newWord.classList.add('word-clicked');
-            clicked=newWord;
-        }else{
-            clicked=null;
-        }
-    });
 }
 
 fetchData();
