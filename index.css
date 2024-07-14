@@ -1,4 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;700&display=swap');
+@font-face {
+    font-family: 'SUIT';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Light.woff2') format('woff2');
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Bold.woff2') format('woff2');
+    font-weight:bold;
+    font-style:normal;
+}
 
 :root{
     --background-color:#282828;
@@ -13,7 +25,7 @@ body{
     padding-top:100px;
     background-color:var(--background-color);
     color:var(--normal-color);
-    font-family:'Outfit';
+    font-family:'Outfit','SUIT';
     font-weight:400;
 }
 input{
@@ -27,7 +39,7 @@ input{
     border-bottom:2px solid var(--special-color);
     background-color:inherit;
     color:inherit;
-    font-family:'Outfit';
+    font-family:'Outfit','SUIT';
     font-weight:400;
     font-size:1rem;
 }
@@ -48,10 +60,8 @@ input{
     margin-right:10px;
 }
 .info{
-    width:200px;
-    margin:0 auto;
-    padding:20px;
-    border-radius:10px;
+    font-size:0.8rem;
+    opacity:80%;
 }
 #welcome{
     width:300px;
