@@ -52,7 +52,7 @@ function show(word){
     if(word[4]){
         property=word[4].split(', ');
         for(let i=0;i<property.length;i++){
-            output+=`<div><b>${word[4].split(':')[0]}</b><span>${word[4].split(':')[1]}</span></div>`;
+            output+=`<div><b>${word[4].split(',')[i].split(':')[0]}</b><span>${word[4].split(',')[i].split(':')[1]}</span></div>`;
         }
     }
     
