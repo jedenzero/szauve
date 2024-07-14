@@ -37,17 +37,23 @@ input{
     padding:20px;
     font-size:1rem;
 }
-.word>*:nth-child(n+2){
-    margin-top:10px;
-}
 .word>*:nth-child(1)>*:nth-child(2){
     font-size:2rem;
     font-weight:bold;
+}
+.word>*:nth-child(n+2){
+    margin-top:10px;
+}
+.word div b{
+    margin-right:10px;
 }
 #welcome{
     width:300px;
     margin:0 auto;
     margin-bottom:50px;
+}
+blockquote{
+    
 }
 @media(pointer:coarse){
     
