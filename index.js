@@ -45,7 +45,7 @@ function show(word){
         }
     }
     if(word[7]){
-        ouput+=`<div class="info">${word[7]}</div>`;
+        output+=`<div class="info">${word[7]}</div>`;
     }
     if(word[6]){
         output+=`<div><b>어원</b>`;
