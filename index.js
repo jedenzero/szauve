@@ -38,6 +38,15 @@ function search(){
 function show(word){
     let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>
     <div>${word[2]}</div>`;
+    if(word[4]){
+        property=word[4].split(', ');
+        for(let i=0;i<property.length;i++){
+            output+=`<div><b>${word[4].split(',')[i].split(':')[0]}</b><span>${word[4].split(',')[i].split(':')[1]}</span></div>`;
+        }
+    }
+    if(word[7]){
+        ouput+=`<div class="info">${word[7]}</div>`;
+    }
     if(word[6]){
         output+=`<div><b>어원</b>`;
         origin=word[6].split(', ');
@@ -48,12 +57,6 @@ function show(word){
             output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
         }
         output+=`</div>`;
-    }
-    if(word[4]){
-        property=word[4].split(', ');
-        for(let i=0;i<property.length;i++){
-            output+=`<div><b>${word[4].split(',')[i].split(':')[0]}</b><span>${word[4].split(',')[i].split(':')[1]}</span></div>`;
-        }
     }
     
     const newWord=document.createElement('div');
