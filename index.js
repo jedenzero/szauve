@@ -12,7 +12,7 @@ async function fetchData(){
         codes=data.values;
         words=await getByCode(lang);
         for(const row of words){
-            if(test.test(row[1])){
+            if(!test.test(row[1])){
                 for(const el of row[1]){
                     if(!test.test(el)&&!specials.includes(el)){
                         specials.push(el);
