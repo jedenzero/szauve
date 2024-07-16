@@ -3,7 +3,7 @@ var codes = [];
 var words = [];
 var specials = [];
 var clicked = null;
-var test = /^[a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/;
+var test = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]*$/;
 
 async function fetchData(){
     const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:E?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
@@ -48,6 +48,7 @@ async function getByCode(code){
 
 function inputSpecial(letter){
     document.querySelector('input').value+=letter.textContent;
+    document.querySelector('input').focus();
 }
 
 function search(){
