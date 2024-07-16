@@ -45,9 +45,11 @@ async function getByCode(code){
         }
     }
 }
+
 function inputSpecial(letter){
     document.querySelector('input').value+=letter.textContent;
 }
+
 function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
