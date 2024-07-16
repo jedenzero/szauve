@@ -20,8 +20,8 @@ async function fetchData(){
                 }
             }
         }
-        test.sort((a,b)=>a.localeCompare(b));
-        test.forEach(el=>{
+        specials.sort((a,b)=>a.localeCompare(b));
+        specials.forEach(el=>{
             document.querySelector('#special').innerHTML+=`<div onclick="inputSpecial(this);">${el}</div>`
         });
     }
