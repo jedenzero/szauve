@@ -49,6 +49,7 @@ async function getByCode(code){
 function inputSpecial(letter){
     document.querySelector('input').value+=letter.textContent;
     document.querySelector('input').focus();
+    search();
 }
 
 function search(){
