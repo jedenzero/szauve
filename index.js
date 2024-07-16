@@ -1,7 +1,9 @@
 const lang = new URLSearchParams(location.search).get('lang');
 var codes = [];
 var words = [];
+var specials = [];
 var clicked = null;
+var test = /^[a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/;
 
 async function fetchData(){
     const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:E?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
@@ -9,6 +11,19 @@ async function fetchData(){
     if(lang){
         codes=data.values;
         words=await getByCode(lang);
+        for(const row of words){
+            if(test.test(row[1])){
+                for(const el of row[1]){
+                    if(!test.test(el)&&!specials.includes(el)){
+                        specials.push(el);
+                    }
+                }
+            }
+        }
+        test.sort((a,b)=>a.localeCompare(b));
+        test.forEach(el=>{
+            document.querySelector('#special').innerHTML+=`<div onclick="inputSpecial(this);">${el}</div>`
+        });
     }
     else{
         
@@ -30,7 +45,9 @@ async function getByCode(code){
         }
     }
 }
-
+function inputSpecial(letter){
+    document.querySelector('input').value+=letter.textContent;
+}
 function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
