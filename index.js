@@ -39,7 +39,7 @@ async function getByCode(code){
                 document.documentElement.style.setProperty('--special-color', row[4].split(', ')[2]);
             }
             document.querySelector('#welcome').innerHTML=`<h1>${row[3]}</h1><b>${row[2]}</b> 사전입니다.`;
-            const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:H?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+            const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
             const data=await response.json();
             return data.values;
         }
@@ -55,7 +55,16 @@ function inputSpecial(letter){
 function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
-    var targets=[...words.filter(row=>row[1].startsWith(target)||row[2].startsWith(target)),...words.filter(row=>(!row[1].startsWith(target)&&row[1].includes(target))||(!row[2].startsWith(target)&&row[2].includes(target)))];
+    const startsWithTarget = words.filter(row =>
+          row[1].startsWith(target) || row[2].split(' ,').some(el=>el.split(':')[1].startsWith(target)) || row[3].startsWith(target)
+    );
+    
+    const containsTarget = words.filter(row =>
+      !startsWithTarget.includes(row) row[1].includes(target) && (row[1].includes(target) || row[2].split(' ,').some(el=>el.split(':')[1].includes(target)) || row[3].includes(target))
+    );
+    
+    const targets = [...startsWithTarget, ...containsTarget];
+    
     targets.forEach(row=>{
         show(row);
     });
@@ -63,19 +72,19 @@ function search(){
 
 function show(word){
     let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>
-    <div>${word[2]}</div>`;
-    if(word[4]){
-        property=word[4].split(', ');
-        for(let i=0;i<property.length;i++){
-            output+=`<div><b>${word[4].split(',')[i].split(':')[0]}</b><span>${word[4].split(',')[i].split(':')[1]}</span></div>`;
+    <div>${word[3]}</div>`;
+    if(word[6]){
+        properties=word[6].split(', ');
+        for(let i=0;i<properties.length;i++){
+            output+=`<div><b>${properties[i].split(':')[0]}</b><span>${properties[i].split(':')[1]}</span></div>`;
         }
     }
-    if(word[7]){
-        output+=`<div class="info">${word[7]}</div>`;
+    if(word[8]){
+        output+=`<div class="info">${word[8]}</div>`;
     }
-    if(word[6]){
+    if(word[7]){
         output+=`<div><b>어원</b>`;
-        origin=word[6].split(', ');
+        origin=word[7].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
                 output+=`<span>+</span>`;
