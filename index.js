@@ -34,9 +34,10 @@ async function getByCode(code){
     for(const row of codes){
         if(row[1]===code){
             if(row[4]){
-                document.documentElement.style.setProperty('--background-color', row[4].split(', ')[0]);
-                document.documentElement.style.setProperty('--normal-color', row[4].split(', ')[1]);
-                document.documentElement.style.setProperty('--special-color', row[4].split(', ')[2]);
+                colors=row[4].split(', ');
+                document.documentElement.style.setProperty('--background-color', colors[0]);
+                document.documentElement.style.setProperty('--normal-color', colors[1]);
+                document.documentElement.style.setProperty('--special-color', colors[2]);
             }
             document.querySelector('#welcome').innerHTML=`<h1>${row[3]}</h1><b>${row[2]}</b> 사전입니다.`;
             const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
@@ -56,11 +57,11 @@ function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
     const startsWithTarget = words.filter(row =>
-          row[1].startsWith(target) || row[2].split(' ,').some(el=>el.split(':')[1].startsWith(target)) || row[3].startsWith(target)
+          row[1].startsWith(target) || row[2].split(', ').some(el=>el.split(':')[1].startsWith(target)) || row[3].startsWith(target)
     );
     
     const containsTarget = words.filter(row =>
-      !startsWithTarget.includes(row) row[1].includes(target) && (row[1].includes(target) || row[2].split(' ,').some(el=>el.split(':')[1].includes(target)) || row[3].includes(target))
+      !startsWithTarget.includes(row) && (row[1].includes(target) || row[2].split(', ').some(el=>el.split(':')[1].includes(target)) || row[3].includes(target))
     );
     
     const targets = [...startsWithTarget, ...containsTarget];
