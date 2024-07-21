@@ -57,11 +57,11 @@ function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
     const startsWithTarget = words.filter(row =>
-          row[1].startsWith(target) || (row?.[2].split(', ').some(el=>el.split(':')[1].startsWith(target)) || '') || row[3].startsWith(target)
+          row[1].startsWith(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].startsWith(target))) || row[3].startsWith(target)
     );
     
     const containsTarget = words.filter(row =>
-      !startsWithTarget.includes(row) && (row[1].includes(target) || (row?.[2].split(', ').some(el=>el.split(':')[1].includes(target)) || '') || row[3].includes(target))
+      !startsWithTarget.includes(row) && (row[1].includes(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].includes(target))) || row[3].includes(target))
     );
     
     const targets = [...startsWithTarget, ...containsTarget];
@@ -74,6 +74,11 @@ function search(){
 function show(word){
     let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>
     <div>${word[3]}</div>`;
+    if(word[2]){
+        word[2].split(', ').forEach(el=>{
+           output+=`<div><b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span></div>`; 
+        });
+    }
     if(word[6]){
         properties=word[6].split(', ');
         for(let i=0;i<properties.length;i++){
