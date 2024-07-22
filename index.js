@@ -40,7 +40,7 @@ async function getByCode(code){
                 document.documentElement.style.setProperty('--special-color', colors[2]);
             }
             document.querySelector('#welcome').innerHTML=`<h1>${row[3]}</h1><b>${row[2]}</b> 사전입니다.`;
-            const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+            const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data=await response.json();
             return data.values;
         }
@@ -57,7 +57,7 @@ function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
     if(target===''){
-        document.querySelector('#container').style.display='block';
+        document.querySelector('#container').style.display='grid';
         document.querySelector('#output').style.display='none';
     }
     else{
