@@ -29,8 +29,13 @@ body{
     font-weight:400;
 }
 input{
+    box-sizing:border-box;
     display:block;
+    width:100%;
+    height:100%;
     margin:0 auto;
+    padding-left:15px;
+    padding-right:15px;
     border-radius:0;
     outline:none;
     border:none;
@@ -76,8 +81,9 @@ input{
 
 #input-special{
     background-color:var(--background-color);
+    filter:brightness(2);
 }
-#container {
+#container{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 4fr 2fr repeat(2, 3fr);
@@ -86,39 +92,38 @@ input{
     height: 300px;
     margin: auto;
 }
-#container > * {
+#container>*{
     box-sizing: border-box;
     border-radius: 10px;
     padding: 10px;
     background-color:var(--normal-color);
     color:var(--background-color);
 }
-
-#welcome {
-    grid-area: 1 / 1 / 2 / 7;
+#welcome{
+    grid-area:1 / 1 / 2 / 7;
     background-color:var(--special-color);
     color:var(--background-color);
 }
-
 #longgest{
-    grid-area: 2 / 1 / 3 / 3;
+    grid-area:2 / 1 / 3 / 3;
 }
 #most-often{
-    grid-area: 2 / 3 / 3 / 5;
+    grid-area:2 / 3 / 3 / 5;
 }
 #most-productive{
-    grid-area: 2 / 5 / 3 / 7;
+    grid-area:2 / 5 / 3 / 7;
 }
 #word-count{
-    grid-area: 3 / 1 / 4 / 4;
+    grid-area:3 / 1 / 4 / 4;
 }
 #part-count{
-    grid-area: 4 / 1 / 5 / 4;
+    grid-area:4 / 1 / 5 / 4;
 }
 #graph {
-    grid-area: 3 / 4 / 5 / 7;
-    background-color: var(--background-color);
-    color: var(--normal-color);
+    grid-area:3 / 4 / 5 / 7;
+    background-color:var(--background-color);
+    color:var(--normal-color);
+    filter:brightness(2);
 }
 @media(pointer:coarse){
     
