@@ -30,7 +30,8 @@ body{
 }
 input{
     display:block;
-    width:100%;
+    margin:0 auto;
+    border-radius:0;
     outline:none;
     border:none;
     font-family:'Outfit','SUIT';
