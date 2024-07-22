@@ -56,19 +56,28 @@ function inputSpecial(letter){
 function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
-    const startsWithTarget = words.filter(row =>
-          row[1].startsWith(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].startsWith(target))) || row[3].startsWith(target)
-    );
-    
-    const containsTarget = words.filter(row =>
-      !startsWithTarget.includes(row) && (row[1].includes(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].includes(target))) || row[3].includes(target))
-    );
-    
-    const targets = [...startsWithTarget, ...containsTarget];
-    
-    targets.forEach(row=>{
-        show(row);
-    });
+    if(target===''){
+        document.querySelector('#container').style.display='block';
+        document.querySelector('#output').style.display='none';
+    }
+    else{
+        document.querySelector('#container').style.display='none';
+        document.querySelector('#output').style.display='block';
+        
+        const startsWithTarget = words.filter(row =>
+              row[1].startsWith(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].startsWith(target))) || row[3].startsWith(target)
+        );
+        
+        const containsTarget = words.filter(row =>
+          !startsWithTarget.includes(row) && (row[1].includes(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].includes(target))) || row[3].includes(target))
+        );
+        
+        const targets = [...startsWithTarget, ...containsTarget];
+        
+        targets.forEach(row=>{
+            show(row);
+        });
+    }
 }
 
 function show(word){
