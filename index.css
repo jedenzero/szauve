@@ -39,15 +39,22 @@ input{
     border-radius:0;
     outline:none;
     border:none;
+    background-color:#00000000;
     font-family:'Outfit','SUIT';
     font-weight:400;
     font-size:1rem;
 }
 .word{
-    width:250px;
+    box-sizing:border-box;
+    width:300px;
     margin:0 auto;
     padding:20px;
+    border-radius:20px;
+    border:1px solid var(--normal-color);
     font-size:1rem;
+}
+.word:nth-child(n+2){
+    margin-top:20px;
 }
 .word>*:nth-child(1)>*:nth-child(2){
     font-size:2rem;
@@ -67,7 +74,7 @@ input{
     display:grid;
     grid-template-columns:2fr 1fr;
     width:300px;
-    margin:100px auto 10px;
+    margin:100px auto 50px;
     gap:10px;
 }
 #input-box, #input-special{
