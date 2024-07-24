@@ -11,6 +11,7 @@ async function fetchData(){
     if(lang){
         codes=data.values;
         words=await getByCode(lang);
+        // 특수문자 추리기
         for(const row of words){
             if(!test.test(row[1])){
                 for(const el of row[1]){
@@ -24,6 +25,19 @@ async function fetchData(){
         specials.forEach(el=>{
             document.querySelector('#special').innerHTML+=`<div onclick="inputSpecial(this);">${el}</div>`
         });
+        // 단어 수
+        document.querySelector('#words').innerHTML=`<div style="font-size:0.8rem;">단어</div>
+        <div style="text-align:center;">
+        <span style="font-size:1.5rem;font-weight:bold;">${words.length}</span><span style="font-size:0.8rem;">개</span>
+        </div>`;
+        // 가장 긴 단어
+        var long='';
+        for(const row of words){
+            if(row[1].length>long.length){
+                long=row[1];
+            }
+        }
+        document.querySelector('#long').innerHTML=`<div>가장 긴 단어</div><div style="font-weight:bold;">${long}</div>`;
     }
     else{
         
@@ -39,7 +53,7 @@ async function getByCode(code){
                 document.documentElement.style.setProperty('--normal-color', colors[1]);
                 document.documentElement.style.setProperty('--special-color', colors[2]);
             }
-            document.querySelector('#welcome').innerHTML=`<h1>${row[3]}</h1><b>${row[2]}</b> 사전입니다.`;
+            document.querySelector('#welcome').innerHTML=`<span style="font-size:2rem;font-weight:bold;">${row[3]}</span><div><b>${row[2]}</b> 사전입니다.</div>`;
             const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data=await response.json();
             return data.values;
@@ -57,11 +71,13 @@ function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
     if(target===''){
-        document.querySelector('#container').style.display='grid';
+        document.querySelector('#c1').style.display='grid';
+        document.querySelector('#c2').style.display='grid';
         document.querySelector('#output').style.display='none';
     }
     else{
-        document.querySelector('#container').style.display='none';
+        document.querySelector('#c1').style.display='none';
+        document.querySelector('#c2').style.display='none';
         document.querySelector('#output').style.display='block';
         
         const startsWithTarget = words.filter(row =>
