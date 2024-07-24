@@ -12,6 +12,7 @@ async function fetchData(){
         codes=data.values;
         words=await getByCode(lang);
         // 특수문자 추리기
+        /**
         for(const row of words){
             if(!test.test(row[1])){
                 for(const el of row[1]){
@@ -25,6 +26,7 @@ async function fetchData(){
         specials.forEach(el=>{
             document.querySelector('#special').innerHTML+=`<div onclick="inputSpecial(this);">${el}</div>`
         });
+        **/
         // 단어 수
         document.querySelector('#words').innerHTML=`<div style="font-size:0.8rem;">단어</div>
         <div style="text-align:center;">
