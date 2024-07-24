@@ -85,52 +85,47 @@ input{
     background-color:var(--normal-color);
     color:var(--background-color);
 }
-
 #input-special{
     background-color:var(--background-color);
     filter:brightness(2);
 }
-#container{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 4fr 2fr repeat(2, 3fr);
-    gap: 10px;
-    width: 300px;
-    height: 300px;
-    margin: auto;
+#c1,#c2{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-template-rows:4fr 3fr;
+    grid-gap:10px;
+    width:300px;
+    margin:0 auto;
+    margin-bottom:20px;
 }
-#container>*{
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding: 10px;
-    background-color:var(--normal-color);
-    color:var(--background-color);
+#c1{
+    grid-template-rows: 4fr 3fr;
+    height:250px;
 }
-#welcome{
-    grid-area:1 / 1 / 2 / 7;
+#c2{
+    grid-template-rows:repeat(2, 1fr);
+    height:300px;
+}
+#c1,#c2>*{
+    box-sizing:border-box;
+    padding:15px;
+    border-radius:15px;
+    background-color:var(--normal-color));
+    color:#282828;
+}
+#welcome,#long{
+    grid-area:1 / 1 / 2 / 3; 
     background-color:var(--special-color);
-    color:var(--background-color);
 }
-#longgest{
-    grid-area:2 / 1 / 3 / 3;
+#words,#often{
+    grid-area:2 / 1 / 3 / 2;
 }
-#most-often{
-    grid-area:2 / 3 / 3 / 5;
+#parts,#productive{
+    grid-area:2 / 2 / 3 / 3;
 }
-#most-productive{
-    grid-area:2 / 5 / 3 / 7;
-}
-#word-count{
-    grid-area:3 / 1 / 4 / 4;
-}
-#part-count{
-    grid-area:4 / 1 / 5 / 4;
-}
-#graph {
-    grid-area:3 / 4 / 5 / 7;
-    background-color:var(--background-color);
-    color:var(--normal-color);
-    filter:brightness(2);
+#graph{
+    width:300px;
+    margin:0 auto;
 }
 @media(pointer:coarse){
     
