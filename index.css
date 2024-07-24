@@ -122,17 +122,6 @@ input{
 #parts{
     grid-area:2 / 2 / 3 / 3;
 }
-#c2{
-    width:300px;
-    margin:0 auto;
-    margin-bottom:20px;
-}
-#c2>*{
-    height:100px;
-}
-#c2>*:nth-child(n+2){
-    margin-top:2px;
-}
 #graph{
     width:300px;
     height:100px;
