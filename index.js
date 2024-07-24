@@ -30,7 +30,7 @@ async function fetchData(){
         // 단어 수
         document.querySelector('#words').innerHTML=`<div style="font-size:0.8rem;">단어</div>
         <div style="text-align:center;">
-        <span style="font-size:1.5rem;font-weight:bold;">${words.length}</span><span style="font-size:0.8rem;">개</span>
+        <span style="font-size:2rem;font-weight:bold;">${words.length}</span><span style="font-size:0.8rem;">개</span>
         </div>`;
         // 가장 긴 단어
         var long='';
@@ -39,7 +39,8 @@ async function fetchData(){
                 long=row[1];
             }
         }
-        document.querySelector('#long').innerHTML=`<div>가장 긴 단어</div><div style="font-weight:bold;">${long}</div>`;
+        document.querySelector('#long').innerHTML=`<div style="font-size:0.8rem;">가장 긴 단어</div>
+        <div style="font-size:1.2rem;font-weight:bold;">${long}</div>`;
     }
     else{
         
