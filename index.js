@@ -41,12 +41,12 @@ async function fetchData(){
         }
         document.querySelector('#long').innerHTML=`<div>가장 긴 단어</div>
         <div><sup>${long[0]}</sup><span>${long[1]}</span></div>
-        <div>${long[3]}</div>`;
+        <div>${long[3].split(', ')[0]}</div>`;
         // 무작위 단어
         var random=words[Math.floor(words.length*Math.random())];
         document.querySelector('#random').innerHTML=`<div>무작위 단어</div>
         <div><sup>${random[0]}</sup><span>${random[1]}</span></div>
-        <div>${random[3]}</div>`;
+        <div>${random[3].split(', ')[0]}</div>`;
     }
     else{
         
