@@ -33,14 +33,20 @@ async function fetchData(){
         <span style="font-size:2rem;font-weight:bold;">${words.length}</span><span style="font-size:0.8rem;">개</span>
         </div>`;
         // 가장 긴 단어
-        var long='';
+        var long=['',''];
         for(const row of words){
-            if(row[1].length>long.length){
-                long=row[1];
+            if(row[1].length>long[1].length){
+                long=row;
             }
         }
-        document.querySelector('#long').innerHTML=`<div style="font-size:0.8rem;">가장 긴 단어</div>
-        <div style="font-size:1.2rem;font-weight:bold;">${long}</div>`;
+        document.querySelector('#long').innerHTML=`<div>가장 긴 단어</div>
+        <div><sup>${long[0]}</sup><span>${long[1]}</span></div>
+        <div>${long[3]}</div>`;
+        // 무작위 단어
+        var random=words[Math.floor(words.length*Math.random())];
+        document.querySelector('#random').innerHTML=`<div>무작위 단어</div>
+        <div><sup>${random[0]}</sup><span>${random[1]}</span></div>
+        <div>${random[3]}</div>`;
     }
     else{
         
