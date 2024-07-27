@@ -72,7 +72,8 @@ function setGrid(){
             long=row;
         }
     }
-    document.querySelector('#words').innerHTML=`<div style="font-size:0.8rem;">품사</div>
+    // 품사
+    document.querySelector('#parts').innerHTML=`<div style="font-size:0.8rem;">품사</div>
     <div style="text-align:center;">
     <span style="font-size:2rem;font-weight:bold;">${Object.keys(parts).length}</span><span style="font-size:0.8rem;">개</span>
     </div>`;
