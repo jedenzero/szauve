@@ -22,10 +22,7 @@ async function getByCode(code){
     for(const row of codes){
         if(row[1]===code){
             if(row[4]){
-                colors=row[4].split(', ');
-                document.documentElement.style.setProperty('--background-color', colors[0]);
-                document.documentElement.style.setProperty('--normal-color', colors[1]);
-                document.documentElement.style.setProperty('--special-color', colors[2]);
+                document.documentElement.style.setProperty('--special-color', row[4]);
             }
             document.querySelector('#welcome').innerHTML=`<span style="font-size:2rem;font-weight:bold;">${row[3]}</span><div><b>${row[2]}</b> 사전입니다.</div>`;
             const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
