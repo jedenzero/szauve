@@ -130,8 +130,11 @@ input{
     grid-area:2 / 2 / 3 / 3;
 }
 #graph{
+    display:grid;
+    grid-template-columns:1fr;
+    grid-gap:10px;
     width:300px;
-    height:100px;
+    min-height:300px;
     margin:0 auto;
 }
 @media(pointer:coarse){
