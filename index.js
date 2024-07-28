@@ -11,7 +11,7 @@ async function fetchData(){
     const data=await response.json();
     if(lang){
         codes=data.values;
-        getByCode(lang);
+        getByCode();
         setGrid();
     }
     else{
@@ -19,9 +19,9 @@ async function fetchData(){
     }
 }
 
-async function getByCode(code){
+async function getByCode(){
     for(const row of codes){
-        if(row[1]===code){
+        if(row[1]===lang){
             const response1=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data1=await response1.json();
             words=data1.values
@@ -51,7 +51,7 @@ function setGrid(){
     **/
     // 환영인사
     for(const row of codes){
-        if(row[1]===code){
+        if(row[1]===lang){
             if(row[4]){
                 document.documentElement.style.setProperty('--special-color', row[4]);
             }
