@@ -1,6 +1,7 @@
 const lang = new URLSearchParams(location.search).get('lang');
 var codes = [];
 var words = [];
+var examples = [];
 var specials = [];
 var clicked = null;
 var test = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]*$/;
@@ -10,7 +11,7 @@ async function fetchData(){
     const data=await response.json();
     if(lang){
         codes=data.values;
-        words=await getByCode(lang);
+        getByCode(lang);
         setGrid();
     }
     else{
@@ -21,13 +22,12 @@ async function fetchData(){
 async function getByCode(code){
     for(const row of codes){
         if(row[1]===code){
-            if(row[4]){
-                document.documentElement.style.setProperty('--special-color', row[4]);
-            }
-            document.querySelector('#welcome').innerHTML=`<span style="font-size:2rem;font-weight:bold;">${row[3]}</span><div><b>${row[2]}</b> 사전입니다.</div>`;
-            const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
-            const data=await response.json();
-            return data.values;
+            const response1=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
+            const data1=await response1.json();
+            words=data1.values
+            const response2=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]+'-ex'}!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
+            const data2=await response2.json();
+            examples=data2.values
         }
     }
 }
@@ -49,6 +49,15 @@ function setGrid(){
         document.querySelector('#special').innerHTML+=`<div onclick="inputSpecial(this);">${el}</div>`
     });
     **/
+    // 환영인사
+    for(const row of codes){
+        if(row[1]===code){
+            if(row[4]){
+                document.documentElement.style.setProperty('--special-color', row[4]);
+            }
+            document.querySelector('#welcome').innerHTML=`<span style="font-size:2rem;font-weight:bold;">${row[3]}</span><div><b>${row[2]}</b> 사전입니다.</div>`;
+        }
+    }
     // 단어 수
     document.querySelector('#words').innerHTML=`<div style="font-size:0.8rem;">단어</div>
     <div style="text-align:center;">
