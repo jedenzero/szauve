@@ -11,7 +11,7 @@ async function fetchData(){
     const data=await response.json();
     if(lang){
         codes=data.values;
-        getByCode();
+        await getByCode();
         setGrid();
     }
     else{
