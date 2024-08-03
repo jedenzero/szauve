@@ -124,8 +124,7 @@ function setGrid(){
           },
           datalabels: {
             formatter: (value, context) => {
-              const percentage = (value/words.length)*100;
-              return `${context.chart.data.labels[context.dataIndex]}: ${Math.ceil(percentage*10)/10}%`;
+              return `${context.chart.data.labels[context.dataIndex]}: ${Math.ceil(value*10)/10}%`;
             }
           }
         }
