@@ -106,7 +106,7 @@ function setGrid(){
       data: {
         labels: Object.keys(parts),
         datasets: [{
-          data: Object.values(parts).map(el=>el/words.length*100),
+          data: Object.values(parts).map(el=>Math.floor(el/words.length*100)+1),
           backgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--normal-color').trim()),
           hoverBackgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--special-color').trim()),
           borderColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--background-color').trim()),
@@ -121,6 +121,12 @@ function setGrid(){
           },
           tooltip: {
             enabled: true
+          },
+          datalabels: {
+            formatter: (value, context) => {
+              const percentage = (value/words.length)*100;
+              return `${context.chart.data.labels[context.dataIndex]}: ${Math.ceil(percentage*10)/10}%`;
+            }
           }
         }
       }
