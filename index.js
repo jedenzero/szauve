@@ -122,8 +122,9 @@ function setGrid(){
           tooltip: {
             enabled: true,
             callbacks: {
-            label: function(tooltipItem) {
-              return `${tooltipItem.label||''}: ${Math.ceil(tooltipItem.raw*10)/10}%`;
+              label: function(tooltipItem) {
+                return `${tooltipItem.label||''}: ${Math.ceil(tooltipItem.raw*10)/10}%`;
+              }
             }
           }
         }
