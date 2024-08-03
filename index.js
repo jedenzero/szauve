@@ -91,19 +91,25 @@ function setGrid(){
     document.querySelector('#random').innerHTML=`<div>무작위 단어</div>
     <div><sup>${random[0]}</sup><span>${random[1]}</span></div>
     <div>${random[3].split(', ')[0]}</div>`;
+    // 정렬
+    parts = Object.entries(parts)
+    .sort(([, a], [, b]) => b - a)
+    .reduce((acc, [key, value]) => {
+      acc[key] = value;
+      return acc;
+    }, {});
     // 그래프
     document.querySelector('#graph').innerHTML+=`<canvas id="parts-graph"></canvas>`;
     const ctx = document.getElementById('parts-graph').getContext('2d');
-    
     const chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: Object.keys(parts),
         datasets: [{
           data: Object.values(parts).map(el=>el/words.length*100),
-          backgroundColor: Array(Object.keys(parts).length).fill(document.documentElement.style.getPropertyValue('--normal-color')),
-          hoverBackgroundColor: Array(Object.keys(parts).length).fill(document.documentElement.style.getPropertyValue('--special-color')),
-          borderColor: Array(Object.keys(parts).length).fill(document.documentElement.style.getPropertyValue('--background-color')),
+          backgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--normal-color').trim()),
+          hoverBackgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--special-color').trim()),
+          borderColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--background-color').trim()),
           borderWidth: 1
         }]
       },
