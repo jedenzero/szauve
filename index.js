@@ -100,7 +100,7 @@ function setGrid(){
       data: {
         labels: Object.keys(parts),
         datasets: [{
-          data: Object.values(parts).map(el=>el/words.length),
+          data: Object.values(parts).map(el=>el/words.length*100),
           backgroundColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--normal-color')),
           hoverBackgroundColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--special-color')),
           borderColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--background-color')),
@@ -111,7 +111,7 @@ function setGrid(){
         responsive: true,
         plugins: {
           legend: {
-            position: 'top',
+            display: 'false'
           },
           tooltip: {
             enabled: true
