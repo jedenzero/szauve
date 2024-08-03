@@ -92,6 +92,34 @@ function setGrid(){
     <div><sup>${random[0]}</sup><span>${random[1]}</span></div>
     <div>${random[3].split(', ')[0]}</div>`;
     // 그래프
+    document.querySelector('#graph').innerHTML+=`<canvas id="parts-graph"></canvas>`;
+    const ctx = document.getElementById('parts-graph').getContext('2d');
+    
+    const chart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: Object.keys(parts),
+        datasets: [{
+          data: Object.values(parts).map(el=>el/words.length),
+          backgroundColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--normal-color')),
+          hoverBackgroundColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--special-color')),
+          borderColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--background-color')),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          tooltip: {
+            enabled: true
+          }
+        }
+      }
+    });
+
 }
 
 function inputSpecial(letter){
