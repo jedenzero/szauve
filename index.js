@@ -120,16 +120,14 @@ function setGrid(){
             display: false
           },
           tooltip: {
-            enabled: true
-          },
-          datalabels: {
-            formatter: (value, context) => {
-              return `${context.chart.data.labels[context.dataIndex]}: ${Math.ceil(value*10)/10}%`;
+            enabled: true,
+            callbacks: {
+            label: function(tooltipItem) {
+              return `${tooltipItem.label||''}: ${Math.ceil(tooltipItem.raw*10)/10}%`;
             }
           }
         }
-      },
-      plugins: [ChartDataLabels]
+      }
     });
 
 }
