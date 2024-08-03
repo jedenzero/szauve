@@ -101,9 +101,9 @@ function setGrid(){
         labels: Object.keys(parts),
         datasets: [{
           data: Object.values(parts).map(el=>el/words.length*100),
-          backgroundColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--normal-color')),
-          hoverBackgroundColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--special-color')),
-          borderColor: Array(parts.length).fill(document.documentElement.style.getPropertyValue('--background-color')),
+          backgroundColor: Array(Object.keys(parts).length).fill(document.documentElement.style.getPropertyValue('--normal-color')),
+          hoverBackgroundColor: Array(Object.keys(parts).length).fill(document.documentElement.style.getPropertyValue('--special-color')),
+          borderColor: Array(Object.keys(parts).length).fill(document.documentElement.style.getPropertyValue('--background-color')),
           borderWidth: 1
         }]
       },
@@ -111,7 +111,7 @@ function setGrid(){
         responsive: true,
         plugins: {
           legend: {
-            display: 'false'
+            display: false
           },
           tooltip: {
             enabled: true
