@@ -123,7 +123,7 @@ function setGrid(){
             enabled: true,
             callbacks: {
               label: function(tooltipItem) {
-                return `${tooltipItem.label||''}: ${Math.ceil(tooltipItem.raw*10)/10}%`;
+                return `${Math.ceil(tooltipItem.raw*10)/10}%`;
               }
             }
           }
