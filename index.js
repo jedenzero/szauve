@@ -128,7 +128,8 @@ function setGrid(){
             }
           }
         }
-      }
+      },
+      plugins: [ChartDataLabels]
     });
 
 }
