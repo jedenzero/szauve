@@ -87,12 +87,12 @@ input{
 }
 #input{
     display:grid;
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:4fr 1fr 1fr;
     width:300px;
     margin:100px auto 50px;
     gap:10px;
 }
-#input-box, #input-special{
+#input-box, #input-special, #input-filter{
     height:30px;
     border-radius:15px;
 }
@@ -100,9 +100,8 @@ input{
     background-color:var(--text-color);
     color:var(--heavy-color);
 }
-#input-special{
-    background-color:var(--heavy-color);
-    filter:brightness(2);
+#input-special, #input-filter{
+    background-color:var(--medium-color);
 }
 #c1,#c2{
     display:grid;
