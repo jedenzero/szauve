@@ -53,7 +53,7 @@ function setGrid(){
     for(const row of codes){
         if(row[1]===lang){
             if(row[4]){
-                document.documentElement.style.setProperty('--special-color', row[4]);
+                document.documentElement.style.setProperty('--theme-color', row[4]);
             }
             document.querySelector('#welcome').innerHTML=`<span style="font-size:2rem;font-weight:bold;">${row[3]}</span><div><b>${row[2]}</b> 사전입니다.</div>`;
         }
@@ -107,9 +107,9 @@ function setGrid(){
         labels: Object.keys(parts),
         datasets: [{
           data: Object.values(parts).map(el=>el/words.length*100),
-          backgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--normal-color').trim()),
-          hoverBackgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--special-color').trim()),
-          borderColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--background-color').trim()),
+          backgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--semi-light-color').trim()),
+          hoverBackgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--theme-color').trim()),
+          borderColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--heavy-color').trim()),
           borderWidth: 1
         }]
       },
