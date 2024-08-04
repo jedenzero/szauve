@@ -157,6 +157,27 @@ input{
     border-radius:20px;
     background-color:var(--medium-color);
 }
+#filter>*:nth-child(n+2){
+    margin-top:10px;
+}
+.filter-title{
+    font-weight:bold;
+    font-size:1rem;
+}
+.filter-item{
+    display:inline-block;
+    height:18px;
+    margin-right:5px;
+    margin-bottom:5px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:9px;
+    box-shadow:0 0 0 0.5px var(--text-color) inset;
+}
+.selected{
+    box-shadow:0 0 0 0.5px var(--theme-color) inset;
+    color:var(--theme-color);
+}
 @media(pointer:coarse){
     
 }
