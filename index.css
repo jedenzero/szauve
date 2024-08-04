@@ -147,6 +147,16 @@ input{
     min-height:300px;
     margin:0 auto;
 }
+#filter{
+    display:none;
+    position:fixed;
+    top:200px;
+    right:50px;
+    width:200px;
+    height:300px;
+    border-radius:20px;
+    background-color:var(--medium-color);
+}
 @media(pointer:coarse){
     
 }
