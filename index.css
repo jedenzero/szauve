@@ -101,6 +101,9 @@ input{
     color:var(--heavy-color);
 }
 #input-special, #input-filter{
+    display:flex;
+    justify-content:center;
+    align-items:center;
     background-color:var(--medium-color);
 }
 #c1,#c2{
