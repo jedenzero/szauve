@@ -124,11 +124,11 @@ input{
     padding:15px;
     border-radius:15px;
     background-color:var(--medium-color);
-    color:var(--heavy-color);
 }
 #welcome{
     grid-area:1 / 1 / 2 / 3; 
     background-color:var(--theme-color);
+    color:var(--heavy-color);
 }
 #words{
     grid-area:2 / 1 / 3 / 2;
