@@ -10,8 +10,8 @@
   <body>
 	<div id="input">
 	    <div id="input-box"><input spellcheck="false" oninput="search();"></div>
-	    <div id="input-special" onclick="openSpecial();"><ion-icon name="text-outline"></ion-icon></div>
-	    <div id="input-filter" onclick="openFilter();"><ion-icon name="filter-outline"></ion-icon></div>
+	    <div id="input-special" onclick=""><ion-icon name="text-outline"></ion-icon></div>
+	    <div id="input-filter" onclick="document.querySelector('#filter').display='block';"><ion-icon name="filter-outline"></ion-icon></div>
 	</div>
 	<div id="c1">
 	    <div id="welcome"></div>
@@ -26,7 +26,12 @@
 	</div>
 	<div id="graph"></div>
 	<div id="output"></div>
-  	<div id="filter"></div>
+  	<div id="filter">
+		<div style="text-align:right;font-size:1rem;">
+			<ion-icon name="close-outline" onclick="document.querySelector('#filter').display='none';"></ion-icon>
+		</div>
+		<div><span>예문 검색</span><div class="toggle-box" onclick="onOff(this);example();"><div class="toggle-circle"></div></div></div>
+	</div>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
