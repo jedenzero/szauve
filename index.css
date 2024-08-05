@@ -91,7 +91,6 @@ input{
   width:40px;
   height:20px;
   padding-top:4px;
-  padding-left:4px;
   border-radius:15px;
   border:1px solid var(--semi-light-color);
   background-color:var(--semi-heavy-color);
@@ -99,6 +98,7 @@ input{
 .toggle-circle{
   width:10px;
   height:10px;
+  margin-left:4px;
   border-radius:10px;
   background-color:var(--light-color);
   transition-property:margin-left;
@@ -117,7 +117,7 @@ input{
     padding-left:9px;
     padding-right:9px;
     border-radius:9px;
-    border:1px solid var(--text-color);
+    border:0.5px solid var(--text-color);
 }
 .selected{
   color:var(--theme-color);
