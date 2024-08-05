@@ -178,6 +178,31 @@ input{
     box-shadow:0 0 0 0.5px var(--theme-color) inset;
     color:var(--theme-color);
 }
+.toggle-box{
+  box-sizing:border-box;
+  width:40px;
+  height:20px;
+  padding-top:4px;
+  padding-left:4px;
+  border-radius:15px;
+  border:1px solid var(--semi-light-color);
+  background-color:var(--semi-heavy-color);
+  transition-property:padding-left;
+  transition-duration:0.5s;
+}
+.toggle-circle{
+  width:10px;
+  height:10px;
+  border-radius:10px;
+  background-color:var(--light-color);
+}
+.selected{
+  padding-left:24px;
+  border-color:var(--theme-color);
+}
+.selected .toggle-circle{
+  background-color:var(--theme-color);
+}
 @media(pointer:coarse){
     
 }
