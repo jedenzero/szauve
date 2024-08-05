@@ -7,7 +7,7 @@
 }
 @font-face {
     font-family: 'SUIT';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Bold.woff2') format('woff2');
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-SemiBold.woff2') format('woff2');
     font-weight:bold;
     font-style:normal;
 }
@@ -84,6 +84,17 @@ input{
 .info{
     font-size:0.8rem;
     opacity:80%;
+}
+.special-item{
+    display:inline-block;
+    width:30px;
+    height:25px;
+    border-radius:5px;
+    border:1px solid var(--text-color);
+    color:var(--text-color);
+    text-align:center;
+    vertical-align:middle;
+    font-weight:bold;
 }
 .toggle-box{
   box-sizing:border-box;
@@ -188,6 +199,21 @@ input{
     width:300px;
     min-height:300px;
     margin:0 auto;
+}
+#special{
+    box-sizing:border-box;
+    display:none;
+    grid-template-columns:repeat(4,1fr);
+    position:fixed;
+    top:200px;
+    left:50px;
+    width:200px;
+    height:300px;
+    padding:15px;
+    border-radius:20px;
+    border: 1px solid var(--semi-light-color);
+    background-color:var(--medium-color);
+    font-size:0.8rem;
 }
 #filter{
     box-sizing:border-box;
