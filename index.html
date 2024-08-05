@@ -10,7 +10,7 @@
   <body>
 	<div id="input">
 	    <div id="input-box"><input spellcheck="false" oninput="search();"></div>
-	    <div id="input-special" onclick=""><ion-icon name="text-outline"></ion-icon></div>
+	    <div id="input-special" onclick="document.querySelector('#special').style.display='grid';"><ion-icon name="text-outline"></ion-icon></div>
 	    <div id="input-filter" onclick="document.querySelector('#filter').style.display='block';"><ion-icon name="filter-outline"></ion-icon></div>
 	</div>
 	<div id="c1">
@@ -26,6 +26,8 @@
 	</div>
 	<div id="graph"></div>
 	<div id="output"></div>
+	<div id="special">
+	</div>
   	<div id="filter">
 		<div style="text-align:right;font-size:1rem;">
 			<ion-icon name="close-outline" onclick="document.querySelector('#filter').style.display='none';"></ion-icon>
