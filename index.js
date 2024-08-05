@@ -1,6 +1,7 @@
 const lang = new URLSearchParams(location.search).get('lang');
 var codes = [];
 var words = [];
+var filtered = [];
 var examples = [];
 var specials = [];
 var clicked = null;
@@ -24,7 +25,7 @@ async function getByCode(){
         if(row[1]===lang){
             const response1=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data1=await response1.json();
-            words=data1.values
+            words=filtered=data1.values
             const response2=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]+'-ex'}!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data2=await response2.json();
             examples=data2.values
@@ -130,13 +131,39 @@ function setGrid(){
         }
       }
     });
-
+    // 필터
+    document.querySelector('#filter').innerHTML+=`<div class="filter-title">품사</div>`;
+    document.querySelector('#filter').innerHTML+=`<div>`+Object.keys(parts).reduce((accumulator,currentValue)=>
+        accumulator+`<div id="품사-${currentValue}" class="filter-item" onclick="onOff(this);filter(this);">${currentValue}</div>`
+    )+`</div>`;
 }
 
 function inputSpecial(letter){
     document.querySelector('input').value+=letter.textContent;
     document.querySelector('input').focus();
     search();
+}
+
+function filter(el){
+    if(filtered==words){
+        filtered=[];
+    }
+    if(el.id.split('-')[0]=='품사'){
+        let tem=words.filter(row=>row[4]==el.id.split('-')[1]);
+        if(el.classList.contains('selected')){
+            filtered=words.filter(row=>filtered.includes(row)||tem.includes(row))
+        }
+        else{
+            filtered=words.filter(row=>filtered.includes(row)&&!tem.includes(row))
+        }
+    }
+    if(filtered==[]){
+        filtered=words;
+    }
+}
+
+function onOff(el){
+    el.classList.toggle('selected');
 }
 
 function search(){
@@ -154,11 +181,11 @@ function search(){
         document.querySelector('#graph').style.display='none';
         document.querySelector('#output').style.display='block';
         
-        const startsWithTarget = words.filter(row =>
+        const startsWithTarget = filtered.filter(row =>
               row[1].startsWith(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].startsWith(target))) || row[3].startsWith(target)
         );
         
-        const containsTarget = words.filter(row =>
+        const containsTarget = filtered.filter(row =>
           !startsWithTarget.includes(row) && (row[1].includes(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].includes(target))) || row[3].includes(target))
         );
         
