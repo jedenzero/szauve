@@ -187,7 +187,7 @@ function search(){
             });
             filtered=examples;
             
-            filtered.filter(ex=>ex[1].split(', ').some(id=>words[id]==target)||ex[2].includes(target)).forEach(ex=>{
+            filtered.filter(ex=>ex[1].split(', ').some(id=>words.find(row=>row[0]==id)[2]==target)||ex[2].includes(target)).forEach(ex=>{
                 showExample(ex);
             });
         }
