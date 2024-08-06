@@ -87,7 +87,6 @@ input{
 }
 .special-item{
     display:inline-block;
-    width:30px;
     height:25px;
     border-radius:5px;
     border:1px solid var(--text-color);
@@ -203,7 +202,6 @@ input{
 #special{
     box-sizing:border-box;
     display:none;
-    grid-template-columns:repeat(4,1fr);
     position:fixed;
     top:200px;
     left:50px;
@@ -214,6 +212,14 @@ input{
     border: 1px solid var(--semi-light-color);
     background-color:var(--medium-color);
     font-size:0.8rem;
+}
+#special>*:nth-child(n+2){
+    margin-top:10px;
+}
+#special-box{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
 }
 #filter{
     box-sizing:border-box;
