@@ -133,7 +133,7 @@ function setGrid(){
     document.querySelector('#filter').innerHTML+=`<div class="filter-title">품사</div>`;
     document.querySelector('#filter').innerHTML+=`<div>`+Object.keys(parts).reduce((accumulator,currentValue)=>
         accumulator+`<div id="품사-${currentValue}" class="filter-item" onclick="onOff(this);filter(this);">${currentValue}</div>`,
-        `<div id="품사-${Object.keys(parts)[0]}" class="filter-item" onclick="onOff(this);filter(this);">${Object.keys(parts)[0]}</div>`
+        ``
     )+`</div>`;
 }
 
