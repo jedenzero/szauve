@@ -248,7 +248,7 @@ function showExample(ex){
     let output=`<div>${ex[0]}</div>`;
 
     if(ex[1]){
-        ex[1].split(', ').forEach(el=>{
+        ex[1].split('/').forEach(el=>{
             output+=`<div>${el.split(':')[1]}</div>`;
         });
     }
