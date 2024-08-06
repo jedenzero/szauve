@@ -25,10 +25,10 @@ async function getByCode(){
         if(row[1]===lang){
             const response1=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data1=await response1.json();
-            words=filtered=data1.values
-            const response2=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]+'-ex'}!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
+            words=filtered=data1.values;
+            const response2=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]+'-ex'}!A:D?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data2=await response2.json();
-            examples=data2.values
+            examples=data2.values;
         }
     }
 }
@@ -187,7 +187,7 @@ function search(){
             });
             filtered=examples;
             
-            filtered.filter(ex=>ex[0].includes(target)||ex[2].includes(target)).forEach(ex=>{
+            filtered.filter(ex=>ex[0].includes(target)||ex[1].includes(target)||ex[3].includes(target)).forEach(ex=>{
                 showExample(ex);
             });
         }
@@ -245,8 +245,11 @@ function showWord(word){
 }
 
 function showExample(ex){
-    let output=`<div>${ex[0]}</div>
-    <div>${ex[2]}</div>`;
+    let output=`<div>${ex[0]}</div>`;
+    ex[1].split(', ').forEach(el=>{
+        output+=`<div>${el.split(':')[1]}</div>`;
+    });
+    output+=`<div>${ex[2]}</div>`
     
     const newExample=document.createElement('div');
     newExample.innerHTML=output;
