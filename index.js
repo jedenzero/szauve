@@ -246,10 +246,13 @@ function showWord(word){
 
 function showExample(ex){
     let output=`<div>${ex[0]}</div>`;
-    ex[1].split(', ').forEach(el=>{
-        output+=`<div>${el.split(':')[1]}</div>`;
-    });
-    output+=`<div>${ex[2]}</div>`
+
+    if(ex[1]){
+        ex[1].split(', ').forEach(el=>{
+            output+=`<div>${el.split(':')[1]}</div>`;
+        });
+    }
+    output+=`<div>${ex[3]}</div>`
     
     const newExample=document.createElement('div');
     newExample.innerHTML=output;
