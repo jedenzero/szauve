@@ -143,10 +143,6 @@ function special(letter){
     search();
 }
 
-function example(){
-    
-}
-
 function filter(el){
     if(filtered==words){
         filtered=[];
@@ -184,24 +180,35 @@ function search(){
         document.querySelector('#c2').style.display='none';
         document.querySelector('#graph').style.display='none';
         document.querySelector('#output').style.display='block';
-        
-        const startsWithTarget = filtered.filter(row =>
-              row[1].startsWith(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].startsWith(target))) || row[3].startsWith(target)
-        );
-        
-        const containsTarget = filtered.filter(row =>
-          !startsWithTarget.includes(row) && (row[1].includes(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].includes(target))) || row[3].includes(target))
-        );
-        
-        const targets = [...startsWithTarget, ...containsTarget];
-        
-        targets.forEach(row=>{
-            show(row);
-        });
+
+        if(document.querySelector('#example').classList.contain('selected')){
+            document.querySelectorAll('.filter-item').forEach(el=>{
+                el.classList.remove('selected');
+            });
+            
+            examples.filter(ex=>ex.split(', ').some(id=>words[id]==target)||ex[2].includes(target)).forEach(ex=>{
+                showExample(ex);
+            });
+        }
+        else{
+            const startsWithTarget = filtered.filter(row =>
+                  row[1].startsWith(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].startsWith(target))) || row[3].startsWith(target)
+            );
+            
+            const containsTarget = filtered.filter(row =>
+              !startsWithTarget.includes(row) && (row[1].includes(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].includes(target))) || row[3].includes(target))
+            );
+            
+            const targets = [...startsWithTarget, ...containsTarget];
+            
+            targets.forEach(row=>{
+                showWord(row);
+            });
+        }
     }
 }
 
-function show(word){
+function showWord(word){
     let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>
     <div>${word[3]}</div>`;
     if(word[2]){
@@ -234,6 +241,16 @@ function show(word){
     newWord.innerHTML=output;
     newWord.className='word';
     document.querySelector('#output').appendChild(newWord);
+}
+
+function showWExample(ex){
+    let output=`<div>${ex[0]}</div>
+    <div>${ex[2]}</div>`;
+    
+    const newExample=document.createElement('div');
+    newExample.innerHTML=output;
+    newExample.className='example';
+    document.querySelector('#output').appendChild(newExample);
 }
 
 fetchData();
