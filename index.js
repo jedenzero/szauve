@@ -244,7 +244,7 @@ function showWord(word){
     document.querySelector('#output').appendChild(newWord);
 }
 
-function showWExample(ex){
+function showExample(ex){
     let output=`<div>${ex[0]}</div>
     <div>${ex[2]}</div>`;
     
