@@ -181,7 +181,7 @@ function search(){
         document.querySelector('#graph').style.display='none';
         document.querySelector('#output').style.display='block';
 
-        if(document.querySelector('#example').classList.contain('selected')){
+        if(document.querySelector('#example').classList.contains('selected')){
             document.querySelectorAll('.filter-item').forEach(el=>{
                 el.classList.remove('selected');
             });
