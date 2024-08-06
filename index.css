@@ -81,6 +81,19 @@ input{
 .word div b{
     margin-right:10px;
 }
+.example{
+    box-sizing:border-box;
+    width:300px;
+    margin:0 auto;
+    padding:20px;
+    border-radius:20px;
+    border:1px solid var(--semi-light-color);
+    background-color:var(--semi-heavy-color);
+    font-size:1rem;
+}
+.example>*:nth-child(1){
+    font-size:1.2rem;
+}
 .info{
     font-size:0.8rem;
     opacity:80%;
