@@ -94,7 +94,7 @@ input{
 .example>*:nth-child(1){
     font-size:1.2rem;
 }
-.example>*:nth-child(1){
+.example>*:nth-child(2){
     color:var(--light-color);
     font-size:0.8rem;
 }
