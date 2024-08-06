@@ -34,22 +34,6 @@ async function getByCode(){
 }
 
 function setGrid(){
-    // 특수문자 추리기
-    /**
-    for(const row of words){
-        if(!test.test(row[1])){
-            for(const el of row[1]){
-                if(!test.test(el)&&!specials.includes(el)){
-                    specials.push(el);
-                }
-            }
-        }
-    }
-    specials.sort((a,b)=>a.localeCompare(b));
-    specials.forEach(el=>{
-        document.querySelector('#special').innerHTML+=`<div onclick="inputSpecial(this);">${el}</div>`
-    });
-    **/
     // 환영인사
     for(const row of codes){
         if(row[1]===lang){
@@ -131,6 +115,20 @@ function setGrid(){
         }
       }
     });
+    // 특수문자 추리기
+    for(const row of words){
+        if(!test.test(row[1])){
+            for(const el of row[1]){
+                if(!test.test(el)&&!specials.includes(el)){
+                    specials.push(el);
+                }
+            }
+        }
+    }
+    specials.sort((a,b)=>a.localeCompare(b));
+    specials.forEach(el=>{
+        document.querySelector('#special-box').innerHTML+=`<div class="special-item" onclick="special(this);">${el}</div>`
+    });
     // 필터
     document.querySelector('#filter').innerHTML+=`<div class="filter-title">품사</div>`;
     document.querySelector('#filter').innerHTML+=`<div>`+Object.keys(parts).reduce((accumulator,currentValue)=>
@@ -139,10 +137,14 @@ function setGrid(){
     )+`</div>`;
 }
 
-function inputSpecial(letter){
+function special(letter){
     document.querySelector('input').value+=letter.textContent;
     document.querySelector('input').focus();
     search();
+}
+
+function example(){
+    
 }
 
 function filter(el){
