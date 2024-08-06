@@ -185,8 +185,9 @@ function search(){
             document.querySelectorAll('.filter-item').forEach(el=>{
                 el.classList.remove('selected');
             });
+            filtered=examples;
             
-            examples.filter(ex=>ex.split(', ').some(id=>words[id]==target)||ex[2].includes(target)).forEach(ex=>{
+            filtered.filter(ex=>ex[1].split(', ').some(id=>words[id]==target)||ex[2].includes(target)).forEach(ex=>{
                 showExample(ex);
             });
         }
