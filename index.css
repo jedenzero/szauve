@@ -92,7 +92,6 @@ input{
     border:1px solid var(--text-color);
     color:var(--text-color);
     text-align:center;
-    vertical-align:middle;
     font-weight:bold;
 }
 .toggle-box{
@@ -211,7 +210,6 @@ input{
     border-radius:20px;
     border: 1px solid var(--semi-light-color);
     background-color:var(--medium-color);
-    font-size:0.8rem;
 }
 #special>*:nth-child(n+2){
     margin-top:10px;
