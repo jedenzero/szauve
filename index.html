@@ -37,7 +37,7 @@
 			<ion-icon name="close-outline" onclick="document.querySelector('#filter').style.display='none';"></ion-icon>
 		</div>
 		<div style="display:flex;justify-content:space-between;">
-			<span>예문 검색</span><div id="example" class="toggle-box" onclick="onOff(this);search();if(!this.classList.contains('selected')){filtered=words;}">
+			<span>예문 검색</span><div id="example" class="toggle-box" onclick="onOff(this);if(!this.classList.contains('selected')){filtered=words;}search();">
 				<div class="toggle-circle"></div>
 			</div>
 		</div>
