@@ -187,7 +187,7 @@ function search(){
             });
             filtered=examples;
             
-            filtered.filter(ex=>ex[0].includes(target)||ex[1].includes(target)||ex[3].includes(target)).forEach(ex=>{
+            filtered.filter(ex=>ex[0].toLowerCase().includes(target.toLowerCase())||ex[1].toLowerCase().includes(target.toLowerCase())||ex[3].includes(target)).forEach(ex=>{
                 showExample(ex);
             });
         }
