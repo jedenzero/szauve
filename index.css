@@ -91,6 +91,9 @@ input{
     background-color:var(--semi-heavy-color);
     font-size:1rem;
 }
+.example:nth-child(n+2){
+    margin-top:20px;
+}
 .example>*:nth-child(1){
     font-size:1.2rem;
 }
