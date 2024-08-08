@@ -102,8 +102,8 @@ input{
     font-size:0.8rem;
 }
 .info{
+    color:var(--light-color);
     font-size:0.8rem;
-    opacity:80%;
 }
 .special-item{
     display:inline-block;
