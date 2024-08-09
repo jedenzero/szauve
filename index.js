@@ -192,15 +192,18 @@ function search(){
             });
         }
         else{
+            const equalsTarget = filtered.filter(row =>
+                (row[2] && row[2].split(', ').some(el=>el.split(':')[1]==target)) || row[3].split(', ').some(el=>el==target)
+            );
             const startsWithTarget = filtered.filter(row =>
-                  row[1].startsWith(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].startsWith(target))) || row[3].startsWith(target)
+                !equalsTarget.includes(row) && (row[1].startsWith(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].startsWith(target))) || row[3].split(', ').some(el=>el.startsWith(target)))
             );
             
             const containsTarget = filtered.filter(row =>
-              !startsWithTarget.includes(row) && (row[1].includes(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].includes(target))) || row[3].includes(target))
+                !equalsTarget.includes(row) && !startsWithTarget.includes(row) && (row[1].includes(target) || (row[2] && row[2].split(', ').some(el=>el.split(':')[1].includes(target))) || row[3].includes(target))
             );
             
-            const targets = [...startsWithTarget, ...containsTarget];
+            const targets = [...equalsTarget, ...startsWithTarget, ...containsTarget];
             
             targets.forEach(row=>{
                 showWord(row);
