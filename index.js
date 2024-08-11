@@ -217,8 +217,7 @@ function search(){
 }
 
 function showWord(word){
-    let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>
-    <div>${word[3]}</div>`;
+    let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>`;
     if(rules){
         let spelling=word[1];
         let pronunciation='';
@@ -237,6 +236,7 @@ function showWord(word){
         }
         output+=`<div class="pronunciation"><b>발음</b><span>${pronunciation}</span></div>`;
     }
+    output+=`<div>${word[3]}</div>`;
     if(word[2]){
         word[2].split(', ').forEach(el=>{
            output+=`<div><b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span></div>`; 
