@@ -226,7 +226,7 @@ function showWord(word){
             for(const rule of rules){
                 const ruleReg=new RegExp(`^${rule[0]}`);
                 if(ruleReg.test(spelling)){
-                    spelling.replace(ruleReg,'');
+                    spelling=spelling.replace(ruleReg,'');
                     pronunciation+=rule[1];
                     break;
                 }
