@@ -1,8 +1,9 @@
 const lang = new URLSearchParams(location.search).get('lang');
 var codes = [];
 var words = [];
-var filtered = [];
 var examples = [];
+var rules = [];
+var filtered = [];
 var specials = [];
 var clicked = null;
 var test = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]*$/;
@@ -29,6 +30,9 @@ async function getByCode(){
             const response2=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]+'-ex'}!A:D?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data2=await response2.json();
             examples=data2.values;
+            const response3=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]+'-pr'}!A:B?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
+            const data3=await response3.json();
+            rules=data3.values;
         }
     }
 }
@@ -215,6 +219,21 @@ function search(){
 function showWord(word){
     let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>
     <div>${word[3]}</div>`;
+    if(rules){
+        let spelling=word[1];
+        let pronunciation='';
+        while(spelling!=''){
+            for(const rule of rules){
+                const ruleReg=new RegExp(`^${rule[0]}`);
+                if(ruleReg.test(spelling)){
+                    spelling.replace(ruleReg,'');
+                    pronunciation+=rule[1];
+                    break;
+                }
+            }
+        }
+        output+=`<div class="pronunciation"><b>발음</b><span>${pronunciation}</span></div>`;
+    }
     if(word[2]){
         word[2].split(', ').forEach(el=>{
            output+=`<div><b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span></div>`; 
