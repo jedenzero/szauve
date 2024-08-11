@@ -234,7 +234,7 @@ function showWord(word){
                 }
             }
         }
-        output+=`<div class="pronunciation"><ion-icon name="volume-high-outline" style="margin-right:10px;font-size:1rem;"></ion-icon><span>/${pronunciation}/</span></div>`;
+        output+=`<div class="pronunciation">/${pronunciation}/</div>`;
     }
     output+=`<div>${word[3]}</div>`;
     if(word[2]){
