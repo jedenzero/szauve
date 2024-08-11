@@ -81,6 +81,15 @@ input{
 .word div b{
     margin-right:10px;
 }
+.pronunciation{
+    margin-top:0 !important;
+    color:var(--light-color);
+    font-size:0.8rem;
+}
+.info{
+    color:var(--light-color);
+    font-size:0.8rem;
+}
 .example{
     box-sizing:border-box;
     width:300px;
@@ -98,10 +107,6 @@ input{
     font-size:1.2rem;
 }
 .example>*:last-child{
-    color:var(--light-color);
-    font-size:0.8rem;
-}
-.info{
     color:var(--light-color);
     font-size:0.8rem;
 }
