@@ -230,6 +230,9 @@ function showWord(word){
                     pronunciation+=rule[1];
                     break;
                 }
+                if(rule==rules[rules.length-1]){
+                    spelling=spelling.slice(1);
+                }
             }
         }
         output+=`<div class="pronunciation"><b>발음</b><span>${pronunciation}</span></div>`;
