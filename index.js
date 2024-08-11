@@ -234,7 +234,7 @@ function showWord(word){
                 }
             }
         }
-        output+=`<div class="pronunciation"><b>발음</b><span>${pronunciation}</span></div>`;
+        output+=`<div class="pronunciation"><ion-icon name="volume-high-outline" style="margin-left:10px;"></ion-icon><span>/${pronunciation}/</span></div>`;
     }
     output+=`<div>${word[3]}</div>`;
     if(word[2]){
