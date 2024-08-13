@@ -17,7 +17,13 @@ async function fetchData(){
         setGrid();
     }
     else{
-        
+        document.querySelector('#input').style.display='none';
+        document.querySelector('#c1').style.display='none';
+        document.querySelector('#c2').style.display='none';
+        document.querySelector('#graph').style.display='none';
+        langs.forEach(el=>{
+            document.querySelector('#output').innerHTML+=`<a href="?lang=${el[1]}"><div class="lang"><b>${el[2]}</b></div></a>`;
+        });
     }
 }
 
