@@ -26,7 +26,7 @@
 }
 body{
     margin:0;
-    padding-top:100px;
+    padding-top:200px;
     background-color:var(--heavy-color);
     color:var(--text-color);
     font-family:'Inter','SUIT','Segoe UI';
@@ -110,6 +110,20 @@ input{
     color:var(--light-color);
     font-size:0.8rem;
 }
+.lang{
+    box-sizing:border-box;
+    display:block;
+    width:300px;
+    margin:0 auto;
+    padding:20px;
+    border-radius:20px;
+    border:1px solid var(--semi-light-color);
+    background-color:var(--semi-heavy-color);
+    font-size:1rem;
+}
+.lang:nth-child(n+2){
+    margin-top:20px;
+}
 .special-item{
     display:inline-block;
     height:25px;
@@ -164,7 +178,7 @@ input{
     display:grid;
     grid-template-columns:4fr 1fr 1fr;
     width:300px;
-    margin:100px auto 50px;
+    margin:0 auto 50px;
     gap:10px;
 }
 #input-box, #input-special, #input-filter{
