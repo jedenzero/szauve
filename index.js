@@ -11,8 +11,8 @@ var test = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]*
 async function fetchData(){
     const response=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:E?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data=await response.json();
+    codes=data.values;
     if(lang){
-        codes=data.values;
         await getByCode();
         setGrid();
     }
@@ -21,7 +21,7 @@ async function fetchData(){
         document.querySelector('#c1').style.display='none';
         document.querySelector('#c2').style.display='none';
         document.querySelector('#graph').style.display='none';
-        langs.forEach(el=>{
+        codes.forEach(el=>{
             document.querySelector('#output').innerHTML+=`<a href="?lang=${el[1]}"><div class="lang"><b>${el[2]}</b></div></a>`;
         });
     }
