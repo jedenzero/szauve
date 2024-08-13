@@ -110,7 +110,8 @@ input{
     color:var(--light-color);
     font-size:0.8rem;
 }
-.lang{
+a:has(.lang){
+    text-decoration:none;
     box-sizing:border-box;
     display:block;
     width:300px;
@@ -119,9 +120,10 @@ input{
     border-radius:20px;
     border:1px solid var(--semi-light-color);
     background-color:var(--semi-heavy-color);
+    color:var(--text-color);
     font-size:1rem;
 }
-.lang:nth-child(n+2){
+a:has(.lang):nth-child(n+2){
     margin-top:20px;
 }
 .special-item{
