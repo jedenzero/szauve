@@ -48,14 +48,12 @@ async function setData(){
                         const originWord = el.split('(')[0];
                         const originLang = el.split('(')[1].slice(0,-1);
                         if(codes.some(lang=>lang[1]==originLang)){
-                            if(originLangs[originLang]){
-                               originWords[el]=[originLangs[originLang].find(word=>word[0]==originWord)[1],codes.find(lang=>lang[1]==originLang)[2]];
-                            }
-                            else{
+                            if(!originLangs[originLang]){
                                 const response4=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${codes.find(lang=>lang[1]==originLang)[0]}/values/${originLang}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
                                 const data4=await response4.json();
                                 originLangs[originLang]=data4.values;
                             }
+                            originWords[el]=[originLangs[originLang].find(word=>word[0]==originWord)[1],codes.find(lang=>lang[1]==originLang)[2]];
                         }
                         else{
                             originWords[el]=[originWord,originLang];
