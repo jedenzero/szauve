@@ -3,6 +3,7 @@ var codes = [];
 var words = [];
 var examples = [];
 var rules = [];
+var originWords = {};
 var filtered = [];
 var specials = [];
 var clicked = null;
@@ -13,7 +14,7 @@ async function fetchData(){
     const data=await response.json();
     codes=data.values;
     if(lang){
-        await getByCode();
+        await setData();
         setGrid();
     }
     else{
@@ -27,7 +28,7 @@ async function fetchData(){
     }
 }
 
-async function getByCode(){
+async function setData(){
     for(const row of codes){
         if(row[1]===lang){
             const response1=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
@@ -39,6 +40,30 @@ async function getByCode(){
             const response3=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${row[0]}/values/${row[1]+'-pr'}!A:B?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
             const data3=await response3.json();
             rules=data3.values;
+            const originLangs = {};
+            words.forEach(row=>{
+                if(row[7]&&row[7].includes('(')){
+                row[7].split(', ').forEach(el=>{
+                    if(el.includes('(')){
+                        const originWord = el.split('(')[0];
+                        const originLang = el.split('(')[1].slice(0,-1)];
+                        if(codes.includes(originLang)){
+                            if(originLangs[originLang]){
+                               originWords[el]=[originLangs[originLang].find(word=>word[0]==originWord)[1],codes.find(lang=>lang[1]==originLang)[2]];
+                            }
+                            else{
+                                const response4=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${codes.find(lang=>lang[1]==originLang)[0]}/values/${originLang}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`);
+                                const data4=await response4.json();
+                                originLangs[originLang]=data4.values;
+                            }
+                        }
+                        else{
+                            originWords[el]=[originWord,originLang];
+                        }
+                    }
+                });
+                }
+            });
         }
     }
 }
@@ -264,7 +289,12 @@ function showWord(word){
             if(i!=0){
                 output+=`<span>+</span>`;
             }
-            output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
+            if(origin[i].includes('(')){
+                output+=`<span>${originWords[origin[i]]}</span>`;
+            }
+            else{
+                output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
+            }
         }
         output+=`</div>`;
     }
