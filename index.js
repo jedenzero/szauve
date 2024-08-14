@@ -46,7 +46,7 @@ async function setData(){
                 row[7].split(', ').forEach(el=>{
                     if(el.includes('(')){
                         const originWord = el.split('(')[0];
-                        const originLang = el.split('(')[1].slice(0,-1)];
+                        const originLang = el.split('(')[1].slice(0,-1);
                         if(codes.includes(originLang)){
                             if(originLangs[originLang]){
                                originWords[el]=[originLangs[originLang].find(word=>word[0]==originWord)[1],codes.find(lang=>lang[1]==originLang)[2]];
@@ -290,7 +290,7 @@ function showWord(word){
                 output+=`<span>+</span>`;
             }
             if(origin[i].includes('(')){
-                output+=`<span>${originWords[origin[i]]}</span>`;
+                output+=`<span>${originWords[origin[i]][0]}</span>`;
             }
             else{
                 output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
