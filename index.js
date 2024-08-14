@@ -47,7 +47,7 @@ async function setData(){
                     if(el.includes('(')){
                         const originWord = el.split('(')[0];
                         const originLang = el.split('(')[1].slice(0,-1);
-                        if(codes.includes(originLang)){
+                        if(codes.some(lang=>lang[1]==originLang)){
                             if(originLangs[originLang]){
                                originWords[el]=[originLangs[originLang].find(word=>word[0]==originWord)[1],codes.find(lang=>lang[1]==originLang)[2]];
                             }
