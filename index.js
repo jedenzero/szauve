@@ -41,9 +41,9 @@ async function setData(){
             const data3=await response3.json();
             rules=data3.values;
             const originLangs = {};
-            words.forEach(row=>{
+            for(const row of words){
                 if(row[7]&&row[7].includes('(')){
-                row[7].split(', ').forEach(el=>{
+                for(const el of row[7].split(', ')){
                     if(el.includes('(')){
                         const originWord = el.split('(')[0];
                         const originLang = el.split('(')[1].slice(0,-1);
@@ -61,9 +61,9 @@ async function setData(){
                             originWords[el]=[originWord,originLang];
                         }
                     }
-                });
                 }
-            });
+                }
+            }
         }
     }
 }
