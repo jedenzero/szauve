@@ -140,7 +140,7 @@ function setGrid(){
         const chart = new Chart(ctx, {
           type: prop=='품사'?'doughnut':'bar',
           data: {
-            labels: Object.keys(parts),
+            labels: Object.keys(properties[prop]),
             datasets: [{
               data: Object.values(properties[prop]).map(el=>el/sum*100),
               backgroundColor: Array(Object.keys(properties[prop]).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--gray-2').trim()),
