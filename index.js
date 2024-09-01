@@ -243,7 +243,7 @@ function search(){
 }
 
 function showWord(word){
-    let output=`<div><sup>${word[0]}</sup><span class="title">${word[1]}</span></div>`;
+    let output=`<div class="margin-1"><sup>${word[0]}</sup><span class="title">${word[1]}</span></div>`;
     if(rules){
         let spelling=word[1];
         let pronunciation='';
@@ -260,9 +260,9 @@ function showWord(word){
                 }
             }
         }
-        output+=`<div class="small">/${pronunciation}/</div>`;
+        output+=`<div class="small margin-1">/${pronunciation}/</div>`;
     }
-    output+=`<div>${word[3]}</div>`;
+    output+=`<div class="margin-1">${word[3]}</div>`;
     if(word[2]){
         word[2].split(', ').forEach(el=>{
            output+=`<div class="double"><b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span></div>`; 
@@ -270,9 +270,11 @@ function showWord(word){
     }
     if(word[6]){
         properties=word[6].split(', ');
+        output+=`<div class="box-inner emphasized margin-1">`;
         for(let i=0;i<properties.length;i++){
             output+=`<div class="double"><b>${properties[i].split(':')[0]}</b><span>${properties[i].split(':')[1]}</span></div>`;
         }
+        output+=`</div>`;
     }
     if(word[8]){
         output+=`<div>${word[8]}</div>`;
@@ -282,7 +284,7 @@ function showWord(word){
         origin=word[7].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
-                output+=`<span>+</span>`;
+                output+=`<span style="color:var(--theme);">+</span>`;
             }
             if(origin[i].includes('(')){
                 output+=`<span>${originWords[origin[i]][0]}</span>`;
@@ -301,11 +303,11 @@ function showWord(word){
 }
 
 function showExample(ex){
-    let output=`<div>${ex[0]}</div>`;
+    let output=`<div class="margin-1">${ex[0]}</div>`;
 
     if(ex[1]){
         ex[1].split('/').forEach(el=>{
-            output+=`<div>${el.split(':')[1]}</div>`;
+            output+=`<div class="margin-1">${el.split(':')[1]}</div>`;
         });
     }
     output+=`<div>${ex[3]}</div>`
