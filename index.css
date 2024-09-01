@@ -118,6 +118,12 @@ body{
     border-radius:20px;
 }
 
+.box-inner{
+    box-sizing:border-box;
+    padding:10px;
+    border-radius:10px;
+}
+
 .badge{
     display:inline-block;
     height:20px;
