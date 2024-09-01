@@ -112,7 +112,7 @@ body{
     border-radius:20px;
 }
 
-.variable{
+.box-variable{
     box-sizing:border-box;
     width:300px;
     padding:15px;
@@ -133,6 +133,12 @@ body{
 
 .center{
     text-align:center;
+}
+
+.exact-center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .right{
