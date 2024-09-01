@@ -8,32 +8,32 @@
     <link rel="stylesheet" href="./index.css">
   </head>
   <body>
-    <div class="margin-4">
-	  <div id="input" class="margin-1"><input spellcheck="false" oninput="search();"></div>
-      <div class="right">
-	    <ion-icon name="text-outline" onclick="document.querySelector('#special').style.display='block';"></ion-icon>
-	    <ion-icon name="filter-outline" onclick="document.querySelector('#filter').style.display='block';"></ion-icon>
-      </div>
-    </div>
-    <div id="container">
+		<div class="container">
+	    <div class="margin-4">
+		    <div id="input" class="margin-1"><input spellcheck="false" oninput="search();"></div>
+		    <div class="right">
+		    	<ion-icon name="text-outline" onclick="document.querySelector('#special').style.display='block';"></ion-icon>
+		    	<ion-icon name="filter-outline" onclick="document.querySelector('#filter').style.display='block';"></ion-icon>
+	      </div>
+	    </div>
       <div id="welcome" class="box-21 emphasized"></div>
-      <div class="double">
+      <div class="double margin-4">
 	    <div id="words" class="box-32 default"></div>
 	    <div id="parts" class="box-32 default"></div>
       </div>
-      <div class="big margin-10">가장 긴 단어</div>
-	  <div id="long" class="box-21 semi-emphasized margin-40"></div>
-      <div class="big margin-10">무작위 단어</div>
-	  <div id="random" class="box-21 semi-emphasized margin-40"></div>
-	  <div id="graph"></div>
-	  <div id="output"></div>
+      <div class="big margin-1">가장 긴 단어</div>
+			<div id="long" class="box-21 semi-emphasized margin-4"></div>
+      <div class="big margin-1">무작위 단어</div>
+	  	<div id="random" class="box-21 semi-emphasized margin-4"></div>
+	  	<div id="graph"></div>
+	  	<div id="output"></div>
     </div>
-	<div id="special">
+		<div id="special">
 		<div style="text-align:right;font-size:1rem;">
 			<ion-icon name="close-outline" onclick="document.querySelector('#special').style.display='none';"></ion-icon>
 		</div>
 		<div id="special-box"></div>
-	</div>
+		</div>
   	<div id="filter">
 		<div style="text-align:right;font-size:1rem;">
 			<ion-icon name="close-outline" onclick="document.querySelector('#filter').style.display='none';"></ion-icon>
