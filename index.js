@@ -69,9 +69,9 @@ function setGrid(){
     for(const row of codes){
         if(row[1]===lang){
             if(row[4]){
-                document.documentElement.style.setProperty('--theme-color', row[4]);
+                document.documentElement.style.setProperty('--theme', row[4]);
             }
-            document.querySelector('#welcome').innerHTML=`<span style="font-size:2rem;font-weight:bold;">${row[3]}</span><div><b>${row[2]}</b> 사전입니다.</div>`;
+            document.querySelector('#welcome').innerHTML=`<div class="big">${row[3]}</div><div><b>${row[2]}</b> 사전입니다.</div>`;
         }
     }
     // 단어 수
@@ -243,7 +243,7 @@ function search(){
 }
 
 function showWord(word){
-    let output=`<div><sup>${word[0]}</sup><span>${word[1]}</span></div>`;
+    let output=`<div><sup>${word[0]}</sup><span class="title">${word[1]}</span></div>`;
     if(rules){
         let spelling=word[1];
         let pronunciation='';
@@ -260,7 +260,7 @@ function showWord(word){
                 }
             }
         }
-        output+=`<div class="pronunciation">/${pronunciation}/</div>`;
+        output+=`<div class="small">/${pronunciation}/</div>`;
     }
     output+=`<div>${word[3]}</div>`;
     if(word[2]){
@@ -275,7 +275,7 @@ function showWord(word){
         }
     }
     if(word[8]){
-        output+=`<div class="info">${word[8]}</div>`;
+        output+=`<div>${word[8]}</div>`;
     }
     if(word[7]){
         output+=`<div><b>어원</b>`;
@@ -296,7 +296,7 @@ function showWord(word){
     
     const newWord=document.createElement('div');
     newWord.innerHTML=output;
-    newWord.className='box-variable default';
+    newWord.className='box-variable default margin-2';
     document.querySelector('#output').appendChild(newWord);
 }
 
@@ -312,7 +312,7 @@ function showExample(ex){
     
     const newExample=document.createElement('div');
     newExample.innerHTML=output;
-    newExample.className='box-variable default';
+    newExample.className='box-variable default margin-2';
     document.querySelector('#output').appendChild(newExample);
 }
 
