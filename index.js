@@ -277,10 +277,10 @@ function showWord(word){
         output+=`</div>`;
     }
     if(word[8]){
-        output+=`<div>${word[8]}</div>`;
+        output+=`<div class="box-inner semi-emphasized small margin-1">${word[8]}</div>`;
     }
     if(word[7]){
-        output+=`<div class="double"><b>어원</b><span>`;
+        output+=`<div class="box-inner default margin-1"><span style="margin-left:10px;">&lt;</span>`;
         origin=word[7].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
@@ -293,7 +293,7 @@ function showWord(word){
                 output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
             }
         }
-        output+=`</span></div>`;
+        output+=`</div>`;
     }
     
     const newWord=document.createElement('div');
