@@ -101,13 +101,13 @@ function setGrid(){
     </div>`;
     //가장 긴 단어
     document.querySelector('#long').innerHTML=`<div>
-    <div class="title center">${long[1]}</div>
+    <div class="title">${long[1]}</div>
     <div>${long[3].split(', ')[0]}</div>
     </div>`;
     // 무작위 단어
     var random=words[Math.floor(words.length*Math.random())];
     document.querySelector('#random').innerHTML=`<div>
-    <div class="title center">${random[1]}</div>
+    <div class="title">${random[1]}</div>
     <div>${random[3].split(', ')[0]}</div>
     </div>`;
     // 정렬
