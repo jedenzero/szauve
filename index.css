@@ -155,6 +155,7 @@ body{
 
 .title{
     font-size:var(--title);
+    font-weight:bold;
 }
 
 .emphasized{
