@@ -94,9 +94,10 @@ function setGrid(){
             long=row;
         }
         // 분류
-        if(row[6]){
-            for(const el of row[6].split(', ')){
+        if(row[5]){
+            for(const el of row[5].split(', ')){
                 if(!Object.keys(properties).includes(el.split(':')[0])){
+                    properties[el.split(':')[0]]={};
                     properties[el.split(':')[0]][el.split(':')[1]]=1;
                 }
                 else{
@@ -122,7 +123,7 @@ function setGrid(){
     <div>${random[3].split(', ')[0]}</div>
     </div>`;
     // 정렬
-    for(const prop of Object.keys(properties)){
+    for(let prop of Object.keys(properties)){
         prop = Object.entries(properties[prop])
         .sort(([, a], [, b]) => b - a)
         .reduce((acc, [key, value]) => {
@@ -132,14 +133,16 @@ function setGrid(){
     }
     // 그래프
     for(const prop of Object.keys(properties)){
-        document.querySelector('#graph').innerHTML+=`<div class="${prop=='품사'?'box-11 default':'box-31 default'}"><canvas id="${prop}-graph"></canvas>`;
+        document.querySelector('#graph').innerHTML+=`<div class="big margin-1">${prop}별 비율</div>
+        <div class="${prop=='품사'?'box-11 default margin-4':'box-31 default margin-4'}"><canvas id="${prop}-graph"></canvas>`;
+        const sum = Object.values(properties[prop]).reduce((acc,amount)=>acc+amount,0);
         const ctx = document.getElementById(`${prop}-graph`).getContext('2d');
         const chart = new Chart(ctx, {
-          type: prop=='품사'?'doughnut':'line',
+          type: prop=='품사'?'doughnut':'bar',
           data: {
             labels: Object.keys(parts),
             datasets: [{
-              data: Object.values(properties[prop]).map(el=>el/words.length*100),
+              data: Object.values(properties[prop]).map(el=>el/sum*100),
               backgroundColor: Array(Object.keys(properties[prop]).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--gray-2').trim()),
               hoverBackgroundColor: Array(Object.keys(properties[prop]).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--theme').trim()),
               borderColor: Array(Object.keys(properties[prop]).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--gray-0').trim()),
