@@ -79,25 +79,36 @@ function setGrid(){
     <div class="center">
     <span class="title">${words.length}</span><span class="small">개</span>
     </div>`;
-    var parts={};
+    var properties={품사:{}};
     var long=['',''];
     for(const row of words){
         //품사
-        if(!Object.keys(parts).includes(row[4])){
-            parts[row[4]]=1;
+        if(!Object.keys(properties['품사']).includes(row[4])){
+            properties['품사'][row[4]]=1;
         }
         else{
-            parts[row[4]]++;
+            properties['품사'][row[4]]++;
         }
         // 가장 긴 단어
         if(row[1].length>long[1].length){
             long=row;
         }
+        // 분류
+        if(row[6]){
+            for(const el of row[6].split(', ')){
+                if(!Object.keys(properties).includes(el.split(':')[0])){
+                    properties[el.split(':')[0]][el.split(':')[1]]=1;
+                }
+                else{
+                    properties[el.split(':')[0]][el.split(':')[1]]++;
+                }
+            }
+        }
     }
     // 품사
     document.querySelector('#parts').innerHTML=`<div class="small">품사</div>
     <div style="text-align:center;">
-    <span class="title">${Object.keys(parts).length}</span><span class="small">개</span>
+    <span class="title">${Object.keys(properties['품사']).length}</span><span class="small">개</span>
     </div>`;
     //가장 긴 단어
     document.querySelector('#long').innerHTML=`<div>
@@ -111,44 +122,48 @@ function setGrid(){
     <div>${random[3].split(', ')[0]}</div>
     </div>`;
     // 정렬
-    parts = Object.entries(parts)
-    .sort(([, a], [, b]) => b - a)
-    .reduce((acc, [key, value]) => {
-      acc[key] = value;
-      return acc;
-    }, {});
+    for(const prop of Object.keys(properties)){
+        prop = Object.entries(properties[prop])
+        .sort(([, a], [, b]) => b - a)
+        .reduce((acc, [key, value]) => {
+          acc[key] = value;
+          return acc;
+        }, {});
+    }
     // 그래프
-    document.querySelector('#graph').innerHTML+=`<canvas id="parts-graph"></canvas>`;
-    const ctx = document.getElementById('parts-graph').getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: Object.keys(parts),
-        datasets: [{
-          data: Object.values(parts).map(el=>el/words.length*100),
-          backgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--semi-light-color').trim()),
-          hoverBackgroundColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--theme-color').trim()),
-          borderColor: Array(Object.keys(parts).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--heavy-color').trim()),
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false
+    for(const prop of Object.keys(properties)){
+        document.querySelector('#graph').innerHTML+=`<div class="${prop=='품사'?'box-11 default':'box-31 default'}"><canvas id="${prop}-graph"></canvas>`;
+        const ctx = document.getElementById(`${prop}-graph`).getContext('2d');
+        const chart = new Chart(ctx, {
+          type: prop=='품사'?'doughnut':'line',
+          data: {
+            labels: Object.keys(parts),
+            datasets: [{
+              data: Object.values(properties[prop]).map(el=>el/words.length*100),
+              backgroundColor: Array(Object.keys(properties[prop]).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--gray-2').trim()),
+              hoverBackgroundColor: Array(Object.keys(properties[prop]).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--theme').trim()),
+              borderColor: Array(Object.keys(properties[prop]).length).fill(getComputedStyle(document.documentElement).getPropertyValue('--gray-0').trim()),
+              borderWidth: 1
+            }]
           },
-          tooltip: {
-            enabled: true,
-            callbacks: {
-              label: function(tooltipItem) {
-                return `${Math.ceil(tooltipItem.raw*10)/10}%`;
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  label: function(tooltipItem) {
+                    return `${Math.ceil(tooltipItem.raw*10)/10}%`;
+                  }
+                }
               }
             }
           }
-        }
-      }
-    });
+        });
+    }
     // 특수문자 추리기
     for(const row of words){
         if(!test.test(row[1])){
@@ -280,7 +295,7 @@ function showWord(word){
         output+=`<div class="box-inner semi-emphasized small margin-1">${word[8]}</div>`;
     }
     if(word[7]){
-        output+=`<div class="box-inner default margin-1"><span style="margin-left:10px;">&lt;</span>`;
+        output+=`<div class="box-inner default center margin-1"><span>&lt;</span>`;
         origin=word[7].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
