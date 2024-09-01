@@ -19,9 +19,7 @@ async function fetchData(){
     }
     else{
         document.querySelector('#input').style.display='none';
-        document.querySelector('#c1').style.display='none';
-        document.querySelector('#c2').style.display='none';
-        document.querySelector('#graph').style.display='none';
+        document.querySelector('#default').style.display='none';
         codes.forEach(el=>{
             document.querySelector('#output').innerHTML+=`<a href="?lang=${el[1]}"><div class="lang"><b>${el[2]}</b></div></a>`;
         });
@@ -77,9 +75,9 @@ function setGrid(){
         }
     }
     // 단어 수
-    document.querySelector('#words').innerHTML=`<div style="font-size:0.8rem;">단어</div>
-    <div style="text-align:center;">
-    <span style="font-size:2rem;font-weight:bold;">${words.length}</span><span style="font-size:0.8rem;">개</span>
+    document.querySelector('#words').innerHTML=`<div class="small">단어</div>
+    <div class="center">
+    <span class="title">${words.length}</span><span class="small">개</span>
     </div>`;
     var parts={};
     var long=['',''];
@@ -97,18 +95,21 @@ function setGrid(){
         }
     }
     // 품사
-    document.querySelector('#parts').innerHTML=`<div style="font-size:0.8rem;">품사</div>
+    document.querySelector('#parts').innerHTML=`<div class="small">품사</div>
     <div style="text-align:center;">
-    <span style="font-size:2rem;font-weight:bold;">${Object.keys(parts).length}</span><span style="font-size:0.8rem;">개</span>
+    <span class="title">${Object.keys(parts).length}</span><span class="small">개</span>
     </div>`;
-    document.querySelector('#long').innerHTML=`<div>가장 긴 단어</div>
-    <div><sup>${long[0]}</sup><span>${long[1]}</span></div>
-    <div>${long[3].split(', ')[0]}</div>`;
+    //가장 긴 단어
+    document.querySelector('#long').innerHTML=`<div>
+    <div class="title center">${long[1]}</div>
+    <div>${long[3].split(', ')[0]}</div>
+    </div>`;
     // 무작위 단어
     var random=words[Math.floor(words.length*Math.random())];
-    document.querySelector('#random').innerHTML=`<div>무작위 단어</div>
-    <div><sup>${random[0]}</sup><span>${random[1]}</span></div>
-    <div>${random[3].split(', ')[0]}</div>`;
+    document.querySelector('#random').innerHTML=`<div>
+    <div class="title center">${random[1]}</div>
+    <div>${random[3].split(', ')[0]}</div>
+    </div>`;
     // 정렬
     parts = Object.entries(parts)
     .sort(([, a], [, b]) => b - a)
@@ -203,15 +204,11 @@ function search(){
     document.querySelector('#output').innerHTML='';
     const target=document.querySelector('input').value;
     if(target===''){
-        document.querySelector('#c1').style.display='grid';
-        document.querySelector('#c2').style.display='grid';
-        document.querySelector('#graph').style.display='grid';
+        document.querySelector('#default').style.display='block';
         document.querySelector('#output').style.display='none';
     }
     else{
-        document.querySelector('#c1').style.display='none';
-        document.querySelector('#c2').style.display='none';
-        document.querySelector('#graph').style.display='none';
+        document.querySelector('#default').style.display='none';
         document.querySelector('#output').style.display='block';
 
         if(document.querySelector('#example').classList.contains('selected')){
@@ -299,7 +296,7 @@ function showWord(word){
     
     const newWord=document.createElement('div');
     newWord.innerHTML=output;
-    newWord.className='word';
+    newWord.className='box-variable default';
     document.querySelector('#output').appendChild(newWord);
 }
 
@@ -315,7 +312,7 @@ function showExample(ex){
     
     const newExample=document.createElement('div');
     newExample.innerHTML=output;
-    newExample.className='example';
+    newExample.className='box-variable default';
     document.querySelector('#output').appendChild(newExample);
 }
 
