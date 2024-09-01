@@ -21,7 +21,7 @@ async function fetchData(){
         document.querySelector('#input').style.display='none';
         document.querySelector('#default').style.display='none';
         codes.forEach(el=>{
-            document.querySelector('#output').innerHTML+=`<a href="?lang=${el[1]}"><div class="lang"><b>${el[2]}</b></div></a>`;
+            document.querySelector('#output').innerHTML+=`<a href="?lang=${el[1]}"><div class="box-31 default"><b>${el[2]}</b></div></a>`;
         });
     }
 }
@@ -71,7 +71,7 @@ function setGrid(){
             if(row[4]){
                 document.documentElement.style.setProperty('--theme', row[4]);
             }
-            document.querySelector('#welcome').innerHTML=`<div class="big">${row[3]}</div><div><b>${row[2]}</b> 사전입니다.</div>`;
+            document.querySelector('#welcome').innerHTML=`<div class="title">${row[3]}</div><div><b>${row[2]}</b> 사전입니다.</div>`;
         }
     }
     // 단어 수
@@ -265,20 +265,20 @@ function showWord(word){
     output+=`<div>${word[3]}</div>`;
     if(word[2]){
         word[2].split(', ').forEach(el=>{
-           output+=`<div><b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span></div>`; 
+           output+=`<div class="double"><b>${el.split(':')[0]}</b><span>${el.split(':')[1]}</span></div>`; 
         });
     }
     if(word[6]){
         properties=word[6].split(', ');
         for(let i=0;i<properties.length;i++){
-            output+=`<div><b>${properties[i].split(':')[0]}</b><span>${properties[i].split(':')[1]}</span></div>`;
+            output+=`<div class="double"><b>${properties[i].split(':')[0]}</b><span>${properties[i].split(':')[1]}</span></div>`;
         }
     }
     if(word[8]){
         output+=`<div>${word[8]}</div>`;
     }
     if(word[7]){
-        output+=`<div><b>어원</b>`;
+        output+=`<div class="double"><b>어원</b><span>`;
         origin=word[7].split(', ');
         for(let i=0;i<origin.length;i++){
             if(i!=0){
@@ -291,7 +291,7 @@ function showWord(word){
                 output+=`<span>${words[words.findIndex(row=>row[0]===origin[i])][1]}</span>`;
             }
         }
-        output+=`</div>`;
+        output+=`</span></div>`;
     }
     
     const newWord=document.createElement('div');
