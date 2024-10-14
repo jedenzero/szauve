@@ -30,7 +30,7 @@ function search(target){
 	result.innerHTML = '';
 	if(target.length>=0){
 	    const results = words.filter(row => row[1].includes(target) || row[2].includes(target));
-	    results.sort((a, b) => getPoint(a, b, target));
+	    results.sort((a, b) => a.startsWith(target) - b.startsWith(target) + a.localeCompare(b) - 1 || a.localeCompare(b) || a.length < b.length);
 			results.forEach(w => {
 	        result.innerHTML += `<div>
 	        <h2>${w[1]}</h2>
@@ -51,10 +51,6 @@ async function getWords(){
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
-}
-
-function getPoint(a, b, target){
-    return 2(a[1].startsWith(target) - b[1].startsWith(target)) + 2(a[2].startsWith(target) - b[2].startsWith(target)) + (a[1].length > b[1].length) + (a[2].length > b[2].length);
 }
 
 start();
