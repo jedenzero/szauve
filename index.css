@@ -88,6 +88,7 @@ blockquote{
 }
 
 #input{
+    display:block;
     box-sizing:border-box;
     width:200px;
     height:20px;
