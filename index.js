@@ -1,32 +1,35 @@
 const link = new URL(window.location.href);
 const lang = link.searchParams.get('lang');
 const word = link.searchParams.get('word');
-const langs = getLangs();
-const words = [];
-
+let langs;
+let words = [];
+  
 const list = document.querySelector('#list');
 const input = document.querySelector('#input');
 const result = document.querySelector('#result');
-                                     
-if(!lang){
-    langs.forEach(l => {
-        list.innerHTML += `<div><a href="/?lang=${l[0]}">${l[1]}</a></div>`;
-    });
-}
-else{
-    words = getWords();
-    if(word){
-       search(word); 
-    }
-}
 
+async function start(){
+  langs = await getLangs();
+                                       
+  if(!lang){
+      langs.forEach(l => {
+          list.innerHTML += `<div><a href="/?lang=${l[0]}">${l[1]}</a></div>`;
+      });
+  }
+  else{
+      words = await getWords();
+      if(word){
+         search(word); 
+      }
+  }
+}
 function search(target){
     const results = words.filter(row => row[1].includes(target) || row[2].includes(target));
     results.sort((a, b) => getPoint(a, b, target));
     results.forEach(w => {
         result.innerHTML += `<div>
         <h2>${w[1]}</h2>
-        <div>뜻 : w[2]</div>
+        <div>뜻 : ${w[2]}</div>
         </div>`;
     });
 }
@@ -47,3 +50,5 @@ async function getWords(){
 function getPoint(a, b, target){
     return a[1].startsWith(target) + a[2].startsWith(target) + (a[1].length > b[1].length) + (a[2].length > b[2].length) - 2;
 }
+
+start();
