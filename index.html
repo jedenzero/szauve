@@ -1,54 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8">
-	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <title>szauve</title>
-    <link rel="stylesheet" href="./index.css">
-  </head>
-  <body>
-		<div class="container">
-	    <div class="margin-4">
-		    <div id="input" class="margin-1"><input spellcheck="false" oninput="search();"></div>
-		    <div class="right">
-		    	<ion-icon name="text-outline" onclick="document.querySelector('#special').style.display='block';"></ion-icon>
-		    	<ion-icon name="filter-outline" onclick="document.querySelector('#filter').style.display='block';"></ion-icon>
-	      </div>
-	    </div>
-			<div id="default">
-	      <div id="welcome" class="box-21 emphasized"></div>
-	      <div class="double margin-4">
-		    <div id="words" class="box-32 default"></div>
-		    <div id="parts" class="box-32 default"></div>
-	      </div>
-	      <div class="big margin-1">가장 긴 단어</div>
-				<div id="long" class="box-21 semi-emphasized exact-center margin-4"></div>
-	      <div class="big margin-1">무작위 단어</div>
-		  	<div id="random" class="box-21 semi-emphasized exact-center margin-4"></div>
-		  	<div id="graph"></div>
-			</div>
-	  	<div id="output"></div>
-    </div>
-		<div id="special">
-		<div style="text-align:right;font-size:1rem;">
-			<ion-icon name="close-outline" onclick="document.querySelector('#special').style.display='none';"></ion-icon>
-		</div>
-		<div id="special-box"></div>
-		</div>
-  	<div id="filter">
-		<div style="text-align:right;font-size:1rem;">
-			<ion-icon name="close-outline" onclick="document.querySelector('#filter').style.display='none';"></ion-icon>
-		</div>
-		<div style="display:flex;justify-content:space-between;">
-			<span>예문 검색</span><div id="example" class="toggle-box" onclick="onOff(this);if(!this.classList.contains('selected')){filtered=words;}search();">
-				<div class="toggle-circle"></div>
-			</div>
-		</div>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>📖szauve</title>
+	<link rel="stylesheet" href="./index.css">
+</head>
+<body>
+	<div id="container">
+		<div id="list"></div>
+		<input id="input"></input>
+		<div id="result"></div>
 	</div>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="./index.js"></script>
-  </body>
+	<script src="./index.js"></script>
+</body>
 </html>
