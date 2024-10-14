@@ -17,13 +17,13 @@ async function start(){
       });
   }
   else{
-      input.display = 'block';
+      input.style.display = 'block';
       words = await getWords();
       if(word){
-				input.value = word;
+		input.value = word;
         search(word);
       }
-			input.oninput = () => search(input.value);
+	  input.oninput = () => search(input.value);
   }
 }
 function search(target){
