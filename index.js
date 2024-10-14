@@ -27,15 +27,17 @@ async function start(){
   }
 }
 function search(target){
-    const results = words.filter(row => row[1].includes(target) || row[2].includes(target));
-    results.sort((a, b) => getPoint(a, b, target));
-    result.innerHTML = '';
-		results.forEach(w => {
-        result.innerHTML += `<div>
-        <h2>${w[1]}</h2>
-        <div>뜻 : ${w[2]}</div>
-        </div>`;
-    });
+	result.innerHTML = '';
+	if(target.length>=0){
+	    const results = words.filter(row => row[1].includes(target) || row[2].includes(target));
+	    results.sort((a, b) => getPoint(a, b, target));
+			results.forEach(w => {
+	        result.innerHTML += `<div>
+	        <h2>${w[1]}</h2>
+	        <div>뜻 : ${w[2]}</div>
+	        </div>`;
+	    });
+	}
 }
 
 async function getLangs(){
