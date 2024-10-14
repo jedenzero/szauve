@@ -30,7 +30,8 @@ function search(target){
 	result.innerHTML = '';
 	if(target.length>=0){
 	    const results = words.filter(row => row[1].includes(target) || row[2].includes(target));
-	    results.sort((a, b) => a.startsWith(target) - b.startsWith(target) + a.localeCompare(b) - 1 || a.localeCompare(b) || a.length < b.length);
+      const num = words[2].includes(target) + 1;
+      results.sort((a, b) => getSort(a, b, num));
 			results.forEach(w => {
 	        result.innerHTML += `<div>
 	        <h2>${w[1]}</h2>
@@ -53,4 +54,7 @@ async function getWords(){
     return data.values;
 }
 
+function getSort(a, b, num){
+  return a[num].startsWith(target) - b[num].startsWith(target) + a[num].localeCompare(b[num]) - 1 || a[num].localeCompare(b[num]) || a[num].length < b[num].length;
+}
 start();
