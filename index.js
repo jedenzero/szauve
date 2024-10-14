@@ -54,7 +54,7 @@ async function getWords(){
 }
 
 function getPoint(a, b, target){
-    return a[1].startsWith(target)*3 + a[2].startsWith(target)*3 + (a[1].length > b[1].length) + (a[2].length > b[2].length) - 2;
+    return 2(a[1].startsWith(target) - b[1].startsWith(target)) + 2(a[2].startsWith(target) - b[2].startsWith(target)) + (a[1].length > b[1].length) + (a[2].length > b[2].length);
 }
 
 start();
