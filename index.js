@@ -13,20 +13,24 @@ async function start(){
                                        
   if(!lang){
       langs.forEach(l => {
-          list.innerHTML += `<div><a href="/?lang=${l[0]}">${l[1]}</a></div>`;
+          list.innerHTML += `<div><a href="?lang=${l[0]}">${l[1]}</a></div>`;
       });
   }
   else{
+      input.display = 'block';
       words = await getWords();
       if(word){
-         search(word); 
+				input.value = word;
+        search(word);
       }
+			input.oninput = () => search(input.value);
   }
 }
 function search(target){
     const results = words.filter(row => row[1].includes(target) || row[2].includes(target));
     results.sort((a, b) => getPoint(a, b, target));
-    results.forEach(w => {
+    result.innerHTML = '';
+		results.forEach(w => {
         result.innerHTML += `<div>
         <h2>${w[1]}</h2>
         <div>뜻 : ${w[2]}</div>
@@ -41,8 +45,8 @@ async function getLangs(){
 }
 
 async function getWords(){
-    const langLink = langs.find(l => l[0]==lang)[2];
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${langLink}/values/codes!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const l = langs.find(l => l[0]==lang);
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
