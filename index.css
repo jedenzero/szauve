@@ -44,8 +44,8 @@ a{
     color:var(--point);
 }
 
-p{
-    margin:0;
+div{
+    margin-bottom:10px;
 }
 
 table{
@@ -93,7 +93,9 @@ blockquote{
     width:200px;
     height:20px;
     margin:0 auto;
+    margin-bottom:20px;
     padding:0 25px;
+    border-radius:0;
     border:1px solid var(--strong);
     outline:none;
     background-color:#00000000;
