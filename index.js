@@ -33,14 +33,21 @@ function search(target){
 	result.innerHTML = '';
   	t = target;
 	if(t.length > 0){
-	    const results = words.filter(row => row[1].includes(t) || row[2].includes(t));
-      	const num = results[0]?.[2].includes(t) + 1;
+	    const results = words.filter(row => row[1].includes(t) || row[3].includes(t) || row?.[6].includes(t));
+      	let num = 1;
+		for(const n of [1, 3, 6]){
+			if(words[0]?.[n].includes(t)){
+				num = n;
+				break;
+			}
+		}
       	results.sort((a, b) => getSort(a, b, num));
 		results.slice(0,20).forEach(w => {
-	        result.innerHTML += `<div>
-	        <h2>${w[1]}</h2>
-	        <div>뜻 : ${w[2]}</div>
-	        </div>`;
+	        result.innerHTML += `<h2>${w[1]}</h2>`;
+			if(w[6]){
+				result.innerHTML += `<h3>${w[6]}</h3>`;
+			}
+	        result.innerHTML += `<div>${w[3]}</div>`;
 	    });
 	}
 }
@@ -53,7 +60,7 @@ async function getLangs(){
 
 async function getWords(){
     const l = langs.find(l => l[0]==lang);
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:H?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
