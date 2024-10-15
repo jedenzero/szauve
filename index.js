@@ -31,12 +31,12 @@ async function start(){
 
 function search(target){
 	result.innerHTML = '';
-  t = target;
+  	t = target;
 	if(t.length > 0){
 	    const results = words.filter(row => row[1].includes(t) || row[2].includes(t));
-      const num = results[0][2].includes(t) + 1;
-      results.sort((a, b) => getSort(a, b, num));
-			results.forEach(w => {
+      	const num = results[0]?.[2].includes(t) + 1;
+      	results.sort((a, b) => getSort(a, b, num));
+		results.slice(0,20).forEach(w => {
 	        result.innerHTML += `<div>
 	        <h2>${w[1]}</h2>
 	        <div>뜻 : ${w[2]}</div>
@@ -59,7 +59,12 @@ async function getWords(){
 }
 
 function getSort(a, b, num){
-  return a[num].startsWith(t) - b[num].startsWith(t) + a[num].localeCompare(b[num]) - 1 || a[num].localeCompare(b[num]) || a[num].length < b[num].length;
+	if (a[num].startsWith(t) != b[num].startsWith(t)){
+		return a[num].startsWith(t) ? -1 : 1;
+	}
+	else{
+		return a[num].localeCompare(b[num]);
+	}
 }
 
 start();
