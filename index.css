@@ -6,6 +6,10 @@
     color:var(--bg);
 }
 
+::--webkit-scrollbar{
+    display:none;
+}
+
 :root{
     --bg:#FAFAFA;
     --line:#E0E0E0;
@@ -90,18 +94,23 @@ blockquote{
 #input{
     display:none;
     box-sizing:border-box;
-    width:200px;
-    height:20px;
+    width:300px;
+    height:50px;
     margin:0 auto;
     margin-bottom:20px;
     padding:0 25px;
     border-radius:0;
-    border:1px solid var(--strong);
+    border:none;
+    border-bottom:2px solid var(--point);
     outline:none;
     background-color:#00000000;
-    color:var(--strong);
+    color:var(--weak);
     font-family:'Inter','Pretendard';
-    font-size:16px;
+    font-size:24px;
+}
+
+#input::placeholder{
+    color:var(--line);
 }
 
 #container{
