@@ -8,6 +8,8 @@ const list = document.querySelector('#list');
 const input = document.querySelector('#input');
 const result = document.querySelector('#result');
 
+let t = '';
+
 async function start(){
   langs = await getLangs();
                                        
@@ -26,11 +28,13 @@ async function start(){
 	  input.oninput = () => search(input.value);
   }
 }
+
 function search(target){
 	result.innerHTML = '';
-	if(target.length>=0){
-	    const results = words.filter(row => row[1].includes(target) || row[2].includes(target));
-      const num = words[2].includes(target) + 1;
+  t = target;
+	if(t.length > 0){
+	    const results = words.filter(row => row[1].includes(t) || row[2].includes(t));
+      const num = results[0][2].includes(t) + 1;
       results.sort((a, b) => getSort(a, b, num));
 			results.forEach(w => {
 	        result.innerHTML += `<div>
@@ -55,6 +59,7 @@ async function getWords(){
 }
 
 function getSort(a, b, num){
-  return a[num].startsWith(target) - b[num].startsWith(target) + a[num].localeCompare(b[num]) - 1 || a[num].localeCompare(b[num]) || a[num].length < b[num].length;
+  return a[num].startsWith(t) - b[num].startsWith(t) + a[num].localeCompare(b[num]) - 1 || a[num].localeCompare(b[num]) || a[num].length < b[num].length;
 }
+
 start();
