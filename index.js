@@ -36,7 +36,7 @@ function search(target){
 	    const results = words.filter(row => row[1].includes(t) || row[3].includes(t) || row?.[6].includes(t));
       	let num = 1;
 		for(const n of [1, 3, 6]){
-			if(words[0]?.[n].includes(t)){
+			if(results[0]?.[n].includes(t)){
 				num = n;
 				break;
 			}
