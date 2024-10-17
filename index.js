@@ -33,7 +33,7 @@ function search(target){
 	result.innerHTML = '';
   	t = target;
 	if(t.length > 0){
-	    const results = words.filter(row => row[1].includes(t) || row[3].includes(t) || row?.[6].includes(t));
+	    const results = words.filter(row => row[1].includes(t) || row[3].includes(t) || (row[6] && row[6].includes(t)));
       	let num = 1;
 		for(const n of [1, 3, 6]){
 			if(results[0]?.[n].includes(t)){
