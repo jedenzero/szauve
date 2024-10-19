@@ -1,18 +1,18 @@
-const link = new URL(window.location.href);
+let link = new URL(window.location.href);
 const lang = link.searchParams.get('lang');
 const word = link.searchParams.get('word');
 let langs;
 let words = [];
   
 const list = document.querySelector('#list');
+const title = document.querySelector('#title');
 const input = document.querySelector('#input');
 const result = document.querySelector('#result');
 
 let t = '';
 
 async function start(){
-  langs = await getLangs();
-                                       
+  langs = await getLangs();                                       
   if(!lang){
       langs.forEach(l => {
           list.innerHTML += `<div><a href="?lang=${l[0]}">${l[1]}</a></div>`;
@@ -20,6 +20,8 @@ async function start(){
   }
   else{
       input.style.display = 'block';
+	  title.style.display = 'block';
+	  title.innerHTML = `<b>${lang}</b> <span>사전</span>`;
       words = await getWords();
       if(word){
 		input.value = word;
@@ -30,6 +32,9 @@ async function start(){
 }
 
 function search(target){
+	link = link.searchParams.set('word', target);
+	history.pushState({}, '', link);
+	
 	result.innerHTML = '';
   	t = target;
 	if(t.length > 0){
@@ -44,10 +49,9 @@ function search(target){
       	results.sort((a, b) => getSort(a, b, num));
 		results.slice(0,20).forEach(w => {
 	        result.innerHTML += `<h2>${w[1]}</h2>`;
-			if(w[6]){
-				result.innerHTML += `<h3>${w[6]}</h3>`;
-			}
+			result.innerHTML += w[6] ? `<h3>${w[6]}</h3>` : ``;
 	        result.innerHTML += `<div>${w[3]}</div>`;
+			result.innerHTML += w[5] ? `<div class="description">${w[5]}</div>` : ``;
 	    });
 	}
 }
