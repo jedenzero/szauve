@@ -20,7 +20,7 @@ async function start(){
       });
   }
   else{
-	  l = langs.find(l => l[0]==lang);
+	  l = langs.find(l => l[0]==lang)[1];
 	  
       input.style.display = 'block';
 	  title.style.display = 'block';
