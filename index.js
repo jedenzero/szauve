@@ -20,11 +20,11 @@ async function start(){
       });
   }
   else{
-	  l = langs.find(l => l[0]==lang)[1];
+	  l = langs.find(l => l[0]==lang);
 	  
       input.style.display = 'block';
 	  title.style.display = 'block';
-	  title.innerHTML = `<b>${l}</b> <span>사전</span>`;
+	  title.innerHTML = `<b>${l[1]}</b> <span>사전</span>`;
       words = await getWords();
       if(word){
 		input.value = word;
