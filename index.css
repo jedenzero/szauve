@@ -87,12 +87,26 @@ blockquote{
     color:var(--weak);
 }
 
+.description{
+    max-width:300px;
+    width:max-content;
+    padding:10px;
+    border-top:2px solid var(--line);
+    border-bottom:2px solid var(--line);
+}
+
 #list{
     margin-top:100px;
 }
 
 #list a{
     color:var(--strong);
+}
+
+#title{
+    margin-bottom:40px;
+    font-size:32px;
+    text-align:center;
 }
 
 #input{
