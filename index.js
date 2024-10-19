@@ -2,6 +2,7 @@ let link = new URL(window.location.href);
 const lang = link.searchParams.get('lang');
 const word = link.searchParams.get('word');
 let langs;
+let l;
 let words = [];
   
 const list = document.querySelector('#list');
@@ -19,9 +20,11 @@ async function start(){
       });
   }
   else{
+	  l = langs.find(l => l[0]==lang);
+	  
       input.style.display = 'block';
 	  title.style.display = 'block';
-	  title.innerHTML = `<b>${lang}</b> <span>사전</span>`;
+	  title.innerHTML = `<b>${l}</b> <span>사전</span>`;
       words = await getWords();
       if(word){
 		input.value = word;
@@ -32,7 +35,7 @@ async function start(){
 }
 
 function search(target){
-	link = link.searchParams.set('word', target);
+	link.searchParams.set('word', target);
 	history.pushState({}, '', link);
 	
 	result.innerHTML = '';
@@ -63,7 +66,6 @@ async function getLangs(){
 }
 
 async function getWords(){
-    const l = langs.find(l => l[0]==lang);
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:H?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
