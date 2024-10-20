@@ -52,8 +52,12 @@ function search(target){
 		results.slice(0,20).forEach(w => {
 	        result.innerHTML += `<h2>${w[1]}</h2>`;
 			result.innerHTML += w[6] ? `<h3>${w[6]}</h3>` : ``;
+			result.innerHTML += w[2] ? `<div class="etymology" data="${w[2]}"> </div>` : ``;
 	        result.innerHTML += `<div>${w[3]}</div>`;
 			result.innerHTML += w[5] ? `<div class="description">${w[5]}</div>` : ``;
+	    });
+		document.querySelectorAll('.etymology').forEach(e => {
+	        e.innerHTML = `<span class="etymology-marker">&gt;</span> <span>${getEtymology(e.data)}</span>`;
 	    });
 	}
 }
@@ -77,6 +81,15 @@ function getSort(a, b, num){
 	else{
 		return a[num].localeCompare(b[num]);
 	}
+}
+
+function getEtymology(s){
+	let result = '';
+	s.split(', ').forEach(id=>{
+		result += id.includes('(') ? id : words.find(w => w[0] == id)[1];
+		result += ' + ';
+	});
+	return result.slice(0, -3);
 }
 
 start();
