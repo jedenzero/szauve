@@ -57,7 +57,7 @@ function search(target){
 			result.innerHTML += w[5] ? `<div class="description">${w[5]}</div>` : ``;
 	    });
 		document.querySelectorAll('.etymology').forEach(e => {
-	        e.innerHTML = `<span class="etymology-marker">&gt;</span> <span>${getEtymology(e.data)}</span>`;
+	        e.innerHTML = `<span class="etymology-marker">&gt;</span> <span>${getEtymology(e.getAttribute('data'))}</span>`;
 	    });
 	}
 }
