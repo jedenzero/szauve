@@ -58,7 +58,7 @@ function search(target){
 			result.innerHTML += w[5] ? `<div class="description">${w[5]}</div>` : ``;
 			result.innerHTML += `<div class="margin"></div>`;
 	    });
-		document.querySelectorAll('.category-box').forEach(e => {
+		document.querySelectorAll('.category').forEach(e => {
 	        e.innerHTML = getCategory(e.getAttribute('data'));
 	    });
 		document.querySelectorAll('.etymology').forEach(e => {
