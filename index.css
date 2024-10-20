@@ -87,6 +87,14 @@ blockquote{
     color:var(--weak);
 }
 
+.etymology{
+    font-style:italic;
+}
+
+.etymology-marker{
+    color:var(--point);
+}
+
 .description{
     max-width:300px;
     width:max-content;
@@ -136,9 +144,4 @@ blockquote{
 #container{
     width:max(50%,300px);
     margin:0 auto;
-}
-
-@media(max-width:500px){
-    grid-template-columns:1fr;
-    row-gap:20px;
 }
