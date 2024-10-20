@@ -91,7 +91,7 @@ function getSort(a, b, num){
 function getCategory(s){
 	let result = '';
 	s.split(', ').forEach(el => {
-		result += `<div class="category-item">${el}</div>`;
+		result += `<div class="category-item">${el.split(':')[1]}</div>`;
 	});
 	return result;
 }
