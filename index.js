@@ -50,11 +50,16 @@ function search(target){
 		}
       	results.sort((a, b) => getSort(a, b, num));
 		results.slice(0,20).forEach(w => {
+			result.innerHTML += w[8] ? `<div class="category" data="${w[8]}"> </div>` : ``;
 	        result.innerHTML += `<h2>${w[1]}</h2>`;
 			result.innerHTML += w[6] ? `<h3>${w[6]}</h3>` : ``;
 			result.innerHTML += w[2] ? `<div class="etymology" data="${w[2]}"> </div>` : ``;
 	        result.innerHTML += `<div>${w[3]}</div>`;
 			result.innerHTML += w[5] ? `<div class="description">${w[5]}</div>` : ``;
+			result.innerHTML += `<div class="margin"></div>`;
+	    });
+		document.querySelectorAll('.category-box').forEach(e => {
+	        e.innerHTML = getCategory(e.getAttribute('data'));
 	    });
 		document.querySelectorAll('.etymology').forEach(e => {
 	        e.innerHTML = `<span class="etymology-marker">&lt;</span> <span>${getEtymology(e.getAttribute('data'))}</span>`;
@@ -83,9 +88,17 @@ function getSort(a, b, num){
 	}
 }
 
+function getCategory(s){
+	let result = '';
+	s.split(', ').forEach(el => {
+		result += `<div class="category-item">${el}</div>`;
+	});
+	return result;
+}
+
 function getEtymology(s){
 	let result = '';
-	s.split(', ').forEach(id=>{
+	s.split(', ').forEach(id => {
 		result += id.includes('(') ? id : words.find(w => w[0] == id)[1];
 		result += ' + ';
 	});
