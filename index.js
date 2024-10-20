@@ -74,7 +74,7 @@ async function getLangs(){
 }
 
 async function getWords(){
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:H?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
