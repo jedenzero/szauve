@@ -4,7 +4,10 @@ const word = link.searchParams.get('word');
 let langs;
 let l;
 let words = [];
-  
+
+const setting = document.querySelector('#setting');
+const filter = document.querySelector('#filter');
+const theme = document.querySelector('#theme');
 const list = document.querySelector('#list');
 const title = document.querySelector('#title');
 const input = document.querySelector('#input');
@@ -29,6 +32,8 @@ async function start(){
 		input.value = word;
         search(word);
       }
+    setting.onclick = () => setting.classList.toggle('expanded');
+    theme.onclick = () => theme.classList.toggle('darkened');
 	  input.oninput = () => search(input.value);
   }
 }
