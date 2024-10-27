@@ -114,6 +114,51 @@ blockquote{
     border-bottom:2px solid var(--line);
 }
 
+#setting{
+    position:fixed;
+    top:0;
+    right:0;
+    width:50px;
+    height:50px;
+    background-color:var(--strong);
+    color:var(--bg);
+    outline:1px solid var(--weak);
+}
+
+#filter{
+    position:fixed;
+    top:0;
+    right:0;
+    width:50px;
+    height:50px;
+    background-color:var(--bg);
+    color:var(--weak);
+    outline:1px solid var(--line);
+    transition-property:top;
+    transition-duration:1s;
+}
+
+#filter.expanded{
+    top:50px;
+}
+
+#theme{
+    position:fixed;
+    top:0;
+    right:0;
+    width:50px;
+    height:50px;
+    background-color:var(--bg);
+    color:var(--weak);
+    outline:1px solid var(--line);
+    transition-property:top;
+    transition-duration:1s;
+}
+
+#filter.expanded{
+    top:100px;
+}
+
 #list{
     margin-top:50px;
 }
