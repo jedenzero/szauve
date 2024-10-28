@@ -8,6 +8,7 @@ let words = [];
 const setting = document.querySelector('#setting');
 const filter = document.querySelector('#filter');
 const theme = document.querySelector('#theme');
+const container = document.querySelector('#container');
 const list = document.querySelector('#list');
 const title = document.querySelector('#title');
 const input = document.querySelector('#input');
@@ -33,7 +34,7 @@ async function start(){
         search(word);
       }
     setting.onclick = () => setting.classList.toggle('expanded');
-    theme.onclick = () => theme.classList.toggle('darkened');
+    theme.onclick = () => {theme.classList.toggle('darkened');container.classList.toggle('dark');}
 	  input.oninput = () => search(input.value);
   }
 }
