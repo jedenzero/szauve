@@ -32,6 +32,7 @@ body{
 h2,h3{
     margin-top:0;
     margin-bottom:10px;
+    color:var(--strong);
     font-weight:600;
 }
 
@@ -192,10 +193,6 @@ blockquote{
     left:0;
 }
 
-#container{
-    margin-top:50px;
-}
-
 #list a{
     color:var(--strong);
 }
@@ -233,4 +230,5 @@ blockquote{
 #container{
     width:max(50%,300px);
     margin:0 auto;
+    margin-top:50px;
 }
