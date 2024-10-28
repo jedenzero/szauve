@@ -83,6 +83,14 @@ blockquote{
     color:var(--weak);
 }
 
+.dark{
+    --bg:#3C3C3C;
+    --line:#505050;
+    --strong:#F0F0F0;
+    --weak:#F0F0F0;
+    --point:#50A0F0;
+}
+
 .margin{
     height:30px;
     margin-bottom:0;
