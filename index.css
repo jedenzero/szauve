@@ -129,7 +129,7 @@ blockquote{
     right:0;
 }
 
-#setting,#filter,#theme,#light,#dark{
+#setting,#filter,#theme,#light,#dark,.filter-cat{
     display:flex;
     justify-content:center;
     align-items:center;
@@ -156,6 +156,35 @@ blockquote{
 
 .expanded~#filter{
     top:50px;
+}
+
+#filter-modal{
+    position:fixed;
+    right:-150px;
+    width:180px;
+    height:130px;
+    padding:10px;
+    background-color:var(--bg);
+    color:var(--weak);
+    outline:1px solid var(--line);
+    transition-property:top;
+    transition-duration:0.8s;
+}
+
+.filter-cat{
+    background-color:var(--bg);
+}
+
+.filter-cat.selected{
+    background-color:var(--strong);
+}
+
+.filter-item.selected{
+    color:var(--point);
+}
+
+.expanded+#filter-modal{
+    right:50px;
 }
 
 #theme{
