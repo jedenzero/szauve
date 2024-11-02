@@ -154,12 +154,13 @@ blockquote{
     transition-duration:0.8s;
 }
 
-.expanded~#filter{
+#setting.expanded~#filter{
     top:50px;
 }
 
 #filter-modal{
     position:fixed;
+    top:0;
     right:-150px;
     width:180px;
     height:130px;
@@ -167,8 +168,12 @@ blockquote{
     background-color:var(--bg);
     color:var(--weak);
     outline:1px solid var(--line);
-    transition-property:top;
+    transition-property:right;
     transition-duration:0.8s;
+}
+
+#filter.expanded+#filter-modal{
+    right:50px;
 }
 
 .filter-cat{
@@ -183,10 +188,6 @@ blockquote{
     color:var(--point);
 }
 
-.expanded+#filter-modal{
-    right:50px;
-}
-
 #theme{
     overflow:hidden;
     background-color:var(--bg);
@@ -196,7 +197,7 @@ blockquote{
     transition-duration:0.8s;
 }
 
-.expanded~#theme{
+#setting.expanded~#theme{
     top:100px;
 }
 
