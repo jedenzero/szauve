@@ -166,7 +166,7 @@ blockquote{
 #filter-modal{
     position:fixed;
     top:0;
-    right:-150px;
+    right:-200px;
     width:180px;
     height:130px;
     padding:10px;
@@ -175,6 +175,10 @@ blockquote{
     outline:1px solid var(--line);
     transition-property:right;
     transition-duration:0.8s;
+}
+
+#setting.expanded~#filter-modal{
+    right:-150px;
 }
 
 #filter.expanded+#filter-modal{
