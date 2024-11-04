@@ -181,7 +181,7 @@ blockquote{
     right:-150px;
 }
 
-#filter.expanded+#filter-modal{
+#setting.expanded~#filter.expanded+#filter-modal{
     right:50px;
 }
 
