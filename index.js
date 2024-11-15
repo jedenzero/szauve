@@ -4,6 +4,7 @@ const word = link.searchParams.get('word');
 let langs;
 let l;
 let words = [];
+let filtered = [];
 
 const root = document.querySelector(':root');
 const setting = document.querySelector('#setting');
@@ -28,7 +29,7 @@ async function start(){
 	  title.style.display = 'block';
       input.style.display = 'block';
 	  title.innerHTML = `<b>${l[1]}</b> <span>사전</span>`;
-      words = await getWords();
+      filtered = words = await getWords();
       if(word){
 		input.value = word;
         search(word);
@@ -46,7 +47,7 @@ function search(target){
 	result.innerHTML = '';
   	t = target;
 	if(t.length > 0){
-	    const results = words.filter(row => row[1].includes(t) || row[3].includes(t) || (row[6] && row[6].includes(t)));
+	    const results = filtered.filter(row => row[1].includes(t) || row[3].includes(t) || (row[6] && row[6].includes(t)));
       	let num = 1;
 		for(const n of [1, 3, 6]){
 			if(results[0]?.[n].includes(t)){
@@ -86,7 +87,7 @@ async function getWords(){
 }
 
 function getSort(a, b, num){
-	if (a[num].startsWith(t) != b[num].startsWith(t)){
+	if (a[num].split(', ').some(el=>el.startsWith(t)) != b[num].split(', ').some(el=>el.startsWith(t))){
 		return a[num].startsWith(t) ? -1 : 1;
 	}
 	else{
@@ -109,6 +110,34 @@ function getEtymology(s){
 		result += ' + ';
 	});
 	return result.slice(0, -3);
+}
+
+function setFilterModal(){
+  
+}
+
+function setFilter(s, num){
+  s_arr = s.split(':');
+  filtered = filtered == words ? [] : filtered;
+  
+  if(s_arr[0] == '품사'){
+    if(num){
+      filtered = words.filter(row => row[4] == s_arr[1] || filtered.includes(row));
+    }
+    else{
+      filtered = words.filter(row => row[4] != s_arr[1] && filtered.includes(row));
+    }
+  }
+  else{
+    if(num){
+      filtered = words.filter(row => row[8].split(', ').includes(s_arr) || filtered.includes(row));
+    }
+    else{
+      filtered = words.filter(row => !row[8].split(', ').includes(s_arr) && filtered.includes(row));
+    }
+  }
+  
+  filtered = filtered == [] ? words : filtered;
 }
 
 start();
