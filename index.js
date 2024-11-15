@@ -27,13 +27,14 @@ async function start(){
   else{
 	  l = langs.find(l => l[0]==lang);
 	  title.style.display = 'block';
-      input.style.display = 'block';
+    input.style.display = 'block';
 	  title.innerHTML = `<b>${l[1]}</b> <span>사전</span>`;
-      filtered = words = await getWords();
-      if(word){
+    filtered = words = await getWords();
+    if(word){
 		input.value = word;
-        search(word);
-      }
+      search(word);
+    }
+    setFilterModal();
     setting.onclick = () => setting.classList.toggle('expanded');
     theme.onclick = () => {theme.classList.toggle('darkened');root.classList.toggle('dark');}
 	  input.oninput = () => search(input.value);
@@ -88,7 +89,7 @@ async function getWords(){
 
 function getSort(a, b, num){
 	if (a[num].split(', ').some(el => el.startsWith(t)) != b[num].split(', ').some(el => el.startsWith(t))){
-		return a[num].some(el => el.startsWith(t)) ? -1 : 1;
+		return a[num].split(', ').some(el => el.startsWith(t)) ? -1 : 1;
 	}
 	else{
 		return a[num].localeCompare(b[num]);
