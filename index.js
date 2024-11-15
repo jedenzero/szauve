@@ -87,8 +87,8 @@ async function getWords(){
 }
 
 function getSort(a, b, num){
-	if (a[num].split(', ').some(el=>el.startsWith(t)) != b[num].split(', ').some(el=>el.startsWith(t))){
-		return a[num].startsWith(t) ? -1 : 1;
+	if (a[num].split(', ').some(el => el.startsWith(t)) != b[num].split(', ').some(el => el.startsWith(t))){
+		return a[num].some(el => el.startsWith(t)) ? -1 : 1;
 	}
 	else{
 		return a[num].localeCompare(b[num]);
