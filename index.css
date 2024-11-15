@@ -108,8 +108,9 @@ blockquote{
     margin-right:10px;
     padding-left:10px;
     padding-right:10px;
-    background-color:var(--point);
+    background-color:var(--weak);
     color:var(--bg);
+    font-size:14px;
 }
 
 .etymology{
