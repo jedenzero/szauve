@@ -107,7 +107,7 @@ function getCategory(s){
 function getEtymology(s){
 	let result = '';
 	s.split(', ').forEach(id => {
-		result += id.includes('(') ? id : words.find(w => w[0] == id)[1];
+		result += Number(id) ? words.find(w => w[0] == id)[1] : id;
 		result += ' + ';
 	});
 	return result.slice(0, -3);
