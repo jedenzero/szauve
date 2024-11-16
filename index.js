@@ -27,17 +27,18 @@ async function start(){
   else{
 	  l = langs.find(l => l[0]==lang);
 	  title.style.display = 'block';
-    input.style.display = 'block';
+	  input.style.display = 'block';
 	  title.innerHTML = `<b>${l[1]}</b> <span>사전</span>`;
-    filtered = words = await getWords();
+	  filtered = words = await getWords();
     if(word){
 		input.value = word;
       search(word);
     }
-    setFilterModal();
     setting.onclick = () => setting.classList.toggle('expanded');
+	  filter.onclick = () => filter.classList.toggle('expanded');
     theme.onclick = () => {theme.classList.toggle('darkened');root.classList.toggle('dark');}
 	  input.oninput = () => search(input.value);
+	  setFilterModal();
   }
 }
 
@@ -119,7 +120,6 @@ function setFilterModal(){
 
 function setFilter(s, num){
   s_arr = s.split(':');
-  filtered = filtered == words ? [] : filtered;
   
   if(s_arr[0] == '품사'){
     if(num){
@@ -131,14 +131,14 @@ function setFilter(s, num){
   }
   else{
     if(num){
-      filtered = words.filter(row => row[8].split(', ').includes(s_arr) || filtered.includes(row));
+      filtered = words.filter(row => (row[8] && row[8].split(', ').includes(s)) || filtered.includes(row));
     }
     else{
-      filtered = words.filter(row => !row[8].split(', ').includes(s_arr) && filtered.includes(row));
+      filtered = words.filter(row => (!row[8] || !row[8].split(', ').includes(s)) && filtered.includes(row));
     }
   }
-  
-  filtered = filtered == [] ? words : filtered;
+  console.log(filtered)
+  filtered = filtered.length == 0 ? words : filtered;
 }
 
 start();
