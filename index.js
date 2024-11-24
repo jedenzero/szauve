@@ -99,9 +99,7 @@ function getSort(a, b, num){
   		return a[num].startsWith(t) ? -1 : 1;
   	}
 	}
-  if{
-		return a[num].localeCompare(b[num]);
-	}
+  return a[num].localeCompare(b[num]);
 }
 
 function getCategory(s){
