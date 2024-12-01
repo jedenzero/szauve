@@ -41,7 +41,7 @@ body{
     margin:0;
     background-color:var(--bg);
     color:var(--weak);
-    font-family:'Inter','Pretendard','Noto Sans','Kpwd', 'Noto Sans TC','Noto Sans Arabic','Noto Sans Egyptian Hieroglyphs','Noto Serif Tangut';
+    font-family:'Inter','Pretendard','Noto Sans','Noto Sans TC','Noto Sans Arabic','Kpwd','Noto Sans Egyptian Hieroglyphs','Noto Serif Tangut';
     font-weight:400;
     font-size:15px;
     word-break:keep-all;
