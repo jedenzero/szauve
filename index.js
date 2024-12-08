@@ -52,22 +52,22 @@ function search(target){
 	result.innerHTML = '';
   	t = target;
 	if(t.length > 0){
-	    const results = filtered.filter(row => row[1].includes(t) || row[3].includes(t) || (row[6] && row[6].includes(t)));
-      	let num = 1;
-		for(const n of [1, 3, 6]){
-			if(results[0]?.[n].includes(t)){
+	    const results = filtered.filter(row => row[roles.indexOf('단어')].includes(t) || row[roles.indexOf('뜻')].includes(t) || (roles.includes('보조 표기') && row?.[roles.indexOf('단어')].includes(t)));
+      	let num = roles.indexOf('단어');
+		for(const n of [roles.indexOf('단어'), roles.indexOf('뜻'), roles.indexOf('보조 표기')]){
+			if(n && results[0]?.[n].includes(t)){
 				num = n;
 				break;
 			}
 		}
       	results.sort((a, b) => getSort(a, b, num));
 		results.slice(0,20).forEach(w => {
-			result.innerHTML += w[8] ? `<div class="category" data="${w[8]}"> </div>` : ``;
-	        result.innerHTML += `<h2>${w[1]}</h2>`;
-			result.innerHTML += w[6] ? `<h3>${w[6]}</h3>` : ``;
-			result.innerHTML += w[2] ? `<div class="etymology" data="${w[2]}"> </div>` : ``;
-	        result.innerHTML += `<div>${w[3]}</div>`;
-			result.innerHTML += w[5] ? `<div class="description">${w[5]}</div>` : ``;
+			result.innerHTML += w[roles.indexOf('분류')] ? `<div class="category" data="${w[roles.indexOf('분류')]}"> </div>` : ``;
+	        result.innerHTML += `<h2>${w[roles.indexOf('단어')]}</h2>`;
+			result.innerHTML += w[roles.indexOf('보조 표기')] ? `<h3>${w[roles.indexOf('보조 표기')]}</h3>` : ``;
+			result.innerHTML += w[roles.indexOf('어원')] ? `<div class="etymology" data="${w[roles.indexOf('어원')]}"> </div>` : ``;
+	        result.innerHTML += `<div>${w[roles.indexOf('뜻')]}</div>`;
+			result.innerHTML += w[roles.indexOf('설명')] ? `<div class="description">${w[roles.indexOf('설명')]}</div>` : ``;
 			result.innerHTML += `<div class="margin"></div>`;
 	    });
 		document.querySelectorAll('.category').forEach(e => {
@@ -95,7 +95,7 @@ async function getWords(){
 
 // 배열
 function getSort(a, b, num){
-  if(num == 3){
+  if(roles[num] == '뜻'){
     if (a[num].split(', ').some(el => el.startsWith(t)) != b[num].split(', ').some(el => el.startsWith(t))){
   		return a[num].split(', ').some(el => el.startsWith(t)) ? -1 : 1;
   	}
@@ -121,7 +121,7 @@ function getCategory(s){
 function getEtymology(s){
 	let result = '';
 	s.split(', ').forEach(id => {
-		result += Number(id) ? words.find(w => w[0] == id)[1] : id;
+		result += Number(id) ? words.find(w => w[roles.indexOf('ID')] == id)[roles.indexOf('단어')] : id;
 		result += ' + ';
 	});
 	return result.slice(0, -3);
