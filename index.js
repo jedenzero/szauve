@@ -27,11 +27,12 @@ async function start(){
       });
   }
   else{
-	  langA = langs.find(langA => langA[0]==lang);
+	  langA = langs.find(l => l[0]==lang);
 	  title.style.display = 'block';
 	  input.style.display = 'block';
 	  title.innerHTML = `<b>${langA[1]}</b> <span>사전</span>`;
 	  filtered = words = await getWords();
+    roles = words.shift();
     if(word){
 		input.value = word;
       search(word);
@@ -88,7 +89,7 @@ async function getLangs(){
 
 // words 배열을 가져옴
 async function getWords(){
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${langA[2]}/values/${langA[0]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
