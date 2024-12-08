@@ -2,8 +2,9 @@ let link = new URL(window.location.href);
 const lang = link.searchParams.get('lang');
 const word = link.searchParams.get('word');
 let langs;
-let l;
+let langA;
 let words = [];
+let roles = [];
 let filtered = [];
 
 const root = document.querySelector(':root');
@@ -20,15 +21,16 @@ let t = '';
 async function start(){
   langs = await getLangs();                                       
   if(!lang){
+  // 언어 목록 출력
       langs.forEach(l => {
           list.innerHTML += `<div><a href="?lang=${l[0]}">${l[1]}</a></div>`;
       });
   }
   else{
-	  l = langs.find(l => l[0]==lang);
+	  langA = langs.find(langA => langA[0]==lang);
 	  title.style.display = 'block';
 	  input.style.display = 'block';
-	  title.innerHTML = `<b>${l[1]}</b> <span>사전</span>`;
+	  title.innerHTML = `<b>${langA[1]}</b> <span>사전</span>`;
 	  filtered = words = await getWords();
     if(word){
 		input.value = word;
@@ -42,6 +44,7 @@ async function start(){
   }
 }
 
+// 검색 결과 출력
 function search(target){
 	link.searchParams.set('word', target);
 	history.pushState({}, '', link);
@@ -76,18 +79,21 @@ function search(target){
 	}
 }
 
+// langs 배열을 가져옴
 async function getLangs(){
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
 
+// words 배열을 가져옴
 async function getWords(){
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${l[2]}/values/${l[0]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
 
+// 배열
 function getSort(a, b, num){
   if(num == 3){
     if (a[num].split(', ').some(el => el.startsWith(t)) != b[num].split(', ').some(el => el.startsWith(t))){
@@ -99,9 +105,10 @@ function getSort(a, b, num){
   		return a[num].startsWith(t) ? -1 : 1;
   	}
 	}
-  return a[num].localeCompare(b[num]);
+  return -1;
 }
 
+// 분류의 HTML 코드
 function getCategory(s){
 	let result = '';
 	s.split(', ').forEach(el => {
@@ -110,6 +117,7 @@ function getCategory(s){
 	return result;
 }
 
+// 어원의 HTML 코드
 function getEtymology(s){
 	let result = '';
 	s.split(', ').forEach(id => {
@@ -123,6 +131,7 @@ function setFilterModal(){
   
 }
 
+// 필터링
 function setFilter(s, num){
   s_arr = s.split(':');
   
