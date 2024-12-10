@@ -106,7 +106,7 @@ function getSort(a, b, num){
   		return a[num].startsWith(t) ? -1 : 1;
   	}
 	}
-  return -1;
+  return 1;
 }
 
 // 분류의 HTML 코드
