@@ -10,6 +10,7 @@ let filtered = [];
 const root = document.querySelector(':root');
 const setting = document.querySelector('#setting');
 const filter = document.querySelector('#filter');
+const filter_modal = document.querySelector('#filter-modal');
 const theme = document.querySelector('#theme');
 const list = document.querySelector('#list');
 const title = document.querySelector('#title');
@@ -21,6 +22,10 @@ let t = '';
 async function start(){
   langs = await getLangs();                                       
   if(!lang){
+    setting.style.display = 'none';
+    filter.style.display = 'none';
+    filter_modal.style.display = 'none';
+    theme.style.display = 'none';
   // 언어 목록 출력
       langs.forEach(l => {
           list.innerHTML += `<div><a href="?lang=${l[0]}">${l[1]}</a></div>`;
@@ -28,7 +33,7 @@ async function start(){
   }
   else{
 	  langA = langs.find(l => l[0]==lang);
-	  title.style.display = 'block';
+    title.style.display = 'block';
 	  input.style.display = 'block';
 	  title.innerHTML = `<b>${langA[1]}</b> <span>사전</span>`;
 	  filtered = words = await getWords();
