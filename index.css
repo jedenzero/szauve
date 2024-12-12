@@ -135,9 +135,19 @@ blockquote{
     color:var(--point);
 }
 
+.part{
+    margin-right:10px;
+    padding-left:10px;
+    padding-right:10px;
+    color:var(--point);
+    outline:1px solid var(--point);
+    border-radius:10px;
+}
+
 .description{
     max-width:300px;
     width:max-content;
+    margin-top:20px;
     padding:10px;
     border-top:2px solid var(--line);
     border-bottom:2px solid var(--line);
