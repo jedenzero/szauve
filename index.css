@@ -160,7 +160,6 @@ blockquote{
     position:fixed;
     color:var(--point);
     opacity:60%;
-    font-size:24px;
     animation-name:fall,shake;
     animation-duration:20s,5s;
     animation-iteration-count:infinite;
@@ -316,7 +315,7 @@ blockquote{
 
 @keyframes fall{
     0% {
-        top:-10%;
+        top:-20%;
     }
     100% {
         top:100%;
