@@ -129,6 +129,7 @@ blockquote{
 
 .etymology{
     font-style:italic;
+    font-size:14px;
 }
 
 .etymology-marker{
@@ -152,6 +153,14 @@ blockquote{
     padding:10px;
     border-top:2px solid var(--line);
     border-bottom:2px solid var(--line);
+}
+
+.snow{
+    color:var(--line);
+    font-size:12px;
+    animation-name:fall,shake;
+    animation-duration:5s,1s;
+    animation-iteration-count:infinite;
 }
 
 #setting,#filter,#theme{
@@ -283,6 +292,7 @@ blockquote{
     border-bottom:2px solid var(--point);
     outline:none;
     background-color:#00000000;
+    caret-color:var(--point);
     color:var(--weak);
     font-family:inherit;
     font-size:24px;
@@ -297,4 +307,25 @@ blockquote{
     width:max(50%,300px);
     margin:0 auto;
     margin-top:50px;
+}
+
+@keyframe fall{
+    0% {
+        transform:translateY(0vh);
+    }
+    100% {
+        transform:translateY(110vh);
+    }
+}
+
+@keyframe shake{
+    0% {
+        transform:translateX(0px);
+    }
+    50% {
+        transform:translateX(50px);
+    }
+    100% {
+        transform:translateX(0px);
+    }
 }
