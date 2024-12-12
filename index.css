@@ -136,12 +136,13 @@ blockquote{
 }
 
 .part{
-    margin-right:10px;
+    display:inline-block;
     padding-left:10px;
     padding-right:10px;
     color:var(--point);
     outline:1px solid var(--point);
     border-radius:10px;
+    font-size:14px;
 }
 
 .description{
