@@ -316,7 +316,7 @@ blockquote{
 
 @keyframes fall{
     0% {
-        top:0;
+        top:-10%;
     }
     100% {
         top:100%;
