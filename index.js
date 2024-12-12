@@ -69,10 +69,10 @@ function search(target){
       	results.sort((a, b) => getSort(a, b, num));
 		results.slice(0,20).forEach(w => {
 			result.innerHTML += w[roles.indexOf('분류')] ? `<div class="category" data="${w[roles.indexOf('분류')]}"> </div>` : ``;
-	        result.innerHTML += `<h2>${w[roles.indexOf('단어')]}</h2>`;
+      result.innerHTML += `<h2>${w[roles.indexOf('단어')]}</h2>`;
 			result.innerHTML += w[roles.indexOf('보조 표기')] ? `<h3>${w[roles.indexOf('보조 표기')]}</h3>` : ``;
 			result.innerHTML += w[roles.indexOf('어원')] ? `<div class="etymology" data="${w[roles.indexOf('어원')]}"> </div>` : ``;
-	        result.innerHTML += `<div><span class="part">${w[roles.indexOf('품사')]}</span><span>${w[roles.indexOf('뜻')]}</span></div>`;
+      result.innerHTML += `<div class="part">${w[roles.indexOf('품사')]}</div><div>${w[roles.indexOf('뜻')]}</div>`;
 			result.innerHTML += w[roles.indexOf('설명')] ? `<div class="description">${w[roles.indexOf('설명')]}</div>` : ``;
 			result.innerHTML += `<div class="margin"></div>`;
 	    });
