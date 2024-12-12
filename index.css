@@ -156,6 +156,7 @@ blockquote{
 }
 
 .snow{
+    position:fixed;
     color:var(--line);
     font-size:12px;
     animation-name:fall,shake;
