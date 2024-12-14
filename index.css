@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Tangut&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Nushu&display=swap');
 @font-face {
     font-family:'Kpwd';
     font-style:normal;
@@ -41,7 +42,7 @@ body{
     margin:0;
     background-color:var(--bg);
     color:var(--weak);
-    font-family:'Inter','Pretendard','Noto Sans','Noto Sans TC','Noto Sans Arabic','Kpwd','Noto Sans Egyptian Hieroglyphs','Noto Serif Tangut';
+    font-family:'Inter','Pretendard','Noto Sans','Noto Sans TC','Noto Sans Arabic','Kpwd','Noto Sans Egyptian Hieroglyphs','Noto Serif Tangut', 'Noto Sans Nushu';
     font-weight:400;
     font-size:15px;
     word-break:keep-all;
