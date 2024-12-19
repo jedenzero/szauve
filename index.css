@@ -142,14 +142,14 @@ blockquote{
 
 .part{
     display:inline-block;
-    margin-right:10px;
+    margin-right:5px;
     color:var(--point);
     font-size:14px;
     font-weight:bold;
 }
 
 .description{
-    max-width:300px;
+    max-width:100%;
     width:max-content;
     margin-top:20px;
     padding:10px;
