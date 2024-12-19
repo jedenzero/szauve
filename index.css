@@ -142,12 +142,10 @@ blockquote{
 
 .part{
     display:inline-block;
-    padding-left:10px;
-    padding-right:10px;
+    margin-right:10px;
     color:var(--point);
-    outline:1px solid var(--point);
-    border-radius:10px;
     font-size:14px;
+    font-weight:bold;
 }
 
 .description{
