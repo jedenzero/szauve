@@ -96,7 +96,7 @@ async function getLangs(){
 
 // words 배열을 가져옴
 async function getWords(){
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${langA[2]}/values/${langA[0]}!A:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${langA[2]}/values/${langA[0]}?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
