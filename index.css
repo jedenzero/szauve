@@ -37,6 +37,7 @@
     --line:#E0E0E0;
     --strong:#141414;
     --weak:#3C3C3C;
+    --weaker:#505050;
     --point:#50A0F0;
 }
 
@@ -97,14 +98,14 @@ ul{
 
 blockquote{
     box-sizing:border-box;
-    max-width:100%;
+    max-width:300px;
     width:max-content;
     margin:0;
-    margin-bottom:20px;
-    padding:20px;
-    border:2px solid var(--weak);
-    border-left:6px solid var(--weak);
-    color:var(--weak);
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:10px;
+    border-left:5px solid var(--line);
+    color:var(--weaker);
 }
 
 .dark{
@@ -112,6 +113,7 @@ blockquote{
     --line:#282828;
     --strong:#F0F0F0;
     --weak:#F0F0F0;
+    --weaker:#A0A0A0;
     --point:#50A0F0;
 }
 
@@ -149,7 +151,8 @@ blockquote{
 }
 
 .description{
-    max-width:100%;
+    box-sizing:border-box;
+    max-width:300px;
     width:max-content;
     margin-top:20px;
     padding:10px;
