@@ -75,6 +75,7 @@ function search(target){
       result.innerHTML += w[roles.indexOf('품사')] ? `<span class="part">${w[roles.indexOf('품사')]}</span>` : ``;
       result.innerHTML += `<span>${w[roles.indexOf('뜻')]}</span>`;
 			result.innerHTML += w[roles.indexOf('설명')] ? `<div class="description">${w[roles.indexOf('설명')]}</div>` : ``;
+      result.innerHTML += w[roles.indexOf('예문')] ? `<blockquote>${w[roles.indexOf('예문')]}<br>${w[roles.indexOf('번역문')]}</blockquote>` : ``;
 			result.innerHTML += `<div class="margin"></div>`;
 	    });
 		document.querySelectorAll('.category').forEach(e => {
