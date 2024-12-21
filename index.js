@@ -75,7 +75,7 @@ function search(target){
       result.innerHTML += w[roles.indexOf('품사')] ? `<span class="part">${w[roles.indexOf('품사')]}</span>` : ``;
       if(w[roles.indexOf('뜻')].includes('; ')){
         w[roles.indexOf('뜻')].split('; ').forEach((el,index)=>{
-          result.innerHTML += `<div><b>${index}. </b><span>${el}</span></div>`;
+          result.innerHTML += `<div>${index+1}. ${el}</div>`;
         });
       }
       else{
