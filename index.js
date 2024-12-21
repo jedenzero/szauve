@@ -73,8 +73,8 @@ function search(target){
 			result.innerHTML += w[roles.indexOf('보조 표기')] ? `<h3>${w[roles.indexOf('보조 표기')]}</h3>` : ``;
 			result.innerHTML += w[roles.indexOf('어원')] ? `<div class="etymology" data="${w[roles.indexOf('어원')]}"> </div>` : ``;
       result.innerHTML += w[roles.indexOf('품사')] ? `<span class="part">${w[roles.indexOf('품사')]}</span>` : ``;
-      if(w[roles.indexOf('뜻').includes('; ')){
-        w[roles.indexOf('뜻').split('; ').forEach((el,index)=>{
+      if(w[roles.indexOf('뜻')].includes('; ')){
+        w[roles.indexOf('뜻')].split('; ').forEach((el,index)=>{
           result.innerHTML += `<div><b>${index}. </b><span>${el}</span></div>`;
         });
       }
