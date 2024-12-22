@@ -87,12 +87,15 @@ function search(target){
 			}
 		}
       	results.sort((a, b) => getSort(a, b, num));
-		results.slice(0,20).forEach(w => {
-			result.innerHTML += w[roles.indexOf('분류')] ? `<div class="category" data="${w[roles.indexOf('분류')]}"> </div>` : ``;
-      result.innerHTML += w[roles.indexOf('중요도')] ? `<div class="importance">${'★'.repeat(w[roles.indexOf('중요도')])}</div>` : ``;
-      result.innerHTML += `<h2>${w[roles.indexOf('단어')]}</h2>`;
-			result.innerHTML += w[roles.indexOf('보조 표기')] ? `<h3>${w[roles.indexOf('보조 표기')]}</h3>` : ``;
-			result.innerHTML += w[roles.indexOf('어원')] ? `<div class="etymology" data="${w[roles.indexOf('어원')]}"> </div>` : ``;
+		for(const [index,w] of results.slice(0,20).entries()){
+      const pre = results?.[index-1];
+      if(!pre||pre[roles.indexOf('단어')]!=w[roles.indexOf('단어')]||!roles.includes('품사')||pre[roles.indexOf('품사')]==w[roles.indexOf('품사')]){
+    		result.innerHTML += w[roles.indexOf('분류')] ? `<div class="category" data="${w[roles.indexOf('분류')]}"> </div>` : ``;
+        result.innerHTML += w[roles.indexOf('중요도')] ? `<div class="importance">${'★'.repeat(w[roles.indexOf('중요도')])}</div>` : ``;
+        result.innerHTML += `<h2>${w[roles.indexOf('단어')]}</h2>`;
+    		result.innerHTML += w[roles.indexOf('보조 표기')] ? `<h3>${w[roles.indexOf('보조 표기')]}</h3>` : ``;
+    		result.innerHTML += w[roles.indexOf('어원')] ? `<div class="etymology" data="${w[roles.indexOf('어원')]}"> </div>` : ``;
+      }
       result.innerHTML += w[roles.indexOf('품사')] ? `<span class="part">${w[roles.indexOf('품사')]}</span>` : ``;
       if(w[roles.indexOf('뜻')].includes('; ')){
         w[roles.indexOf('뜻')].split('; ').forEach((el,index)=>{
@@ -107,7 +110,7 @@ function search(target){
       });
 			result.innerHTML += w[roles.indexOf(/설명|비고/)] ? `<div class="description">${w[roles.indexOf(/설명|비고/)]}</div>` : ``;
 			result.innerHTML += `<div class="margin"></div>`;
-	    });
+	    }
 		document.querySelectorAll('.category').forEach(e => {
 	        e.innerHTML = getCategory(e.getAttribute('data'));
 	    });
