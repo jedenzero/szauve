@@ -138,18 +138,18 @@ function getSort(a, b, num){
     if (a[num].split(/, |; /).some(el => el.startsWith(t)) != b[num].split(/, |; /).some(el => el.startsWith(t))){
   		return a[num].split(/, |; /).some(el => el.startsWith(t)) ? -1 : 1;
   	}
-    else{
-      return 1;
-    }
   }
   else{
   	if (a[num].startsWith(t) != b[num].startsWith(t)){
   		return a[num].startsWith(t) ? -1 : 1;
-  	}
-    else{
-      return a.localCompare(b);
     }
-	}
+  }
+  if(roles[num] == '단어'){
+    return 1;
+  }
+  else{
+    return a.localeCompare(b);
+  }
 }
 
 // 분류의 HTML 코드
