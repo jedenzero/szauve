@@ -58,8 +58,6 @@ async function start(){
       roles.push('ID');
     }
     filtered = words;
-    result.innerHTML += `<div>${roles}</div>`;
-    result.innerHTML += `<div>${words}</div>`;
     if(word){
 		input.value = word;
       search(word);
