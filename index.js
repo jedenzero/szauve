@@ -53,6 +53,8 @@ async function start(){
       roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
       words = wordsTemp;
     }
+    result.innerHTML += `<div>${roles}</div>`;
+    result.innerHTML += `<div>${words}</div>`;
     if(word){
 		input.value = word;
       search(word);
