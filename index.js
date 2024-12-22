@@ -36,7 +36,7 @@ async function start(){
     title.style.display = 'block';
 	  input.style.display = 'block';
 	  title.innerHTML = `<b>${langA[1]}</b> <span>사전</span>`;
-	  filtered = words = await getWords();
+	  words = await getWords();
     roles = words.shift();
     if(!roles.includes('뜻')){
       wordsTemp = [];
@@ -46,7 +46,7 @@ async function start(){
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
         row.forEach((el,index)=>{
           if(el&&rolesParts.includes(roles[index])){
-            wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,rolesParts[index]]);
+            wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
           }
         });
       });
@@ -57,6 +57,7 @@ async function start(){
       words = words.map((row,index)=>[...row,index+1]);
       roles.push('ID');
     }
+    filtered = words;
     result.innerHTML += `<div>${roles}</div>`;
     result.innerHTML += `<div>${words}</div>`;
     if(word){
@@ -82,7 +83,7 @@ function search(target){
 	    const results = filtered.filter(row => row[roles.indexOf('단어')].includes(t) || row[roles.indexOf('뜻')].includes(t) || (roles.includes('보조 표기') && row?.[roles.indexOf('보조 표기')].includes(t)));
       	let num = roles.indexOf('단어');
 		for(const n of [roles.indexOf('단어'), roles.indexOf('뜻'), roles.indexOf('보조 표기')]){
-			if(n && results[0]?.[n].includes(t)){
+			if(n.length > 0 && results[0]?.[n].includes(t)){
 				num = n;
 				break;
 			}
