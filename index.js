@@ -44,15 +44,17 @@ async function start(){
       rolesParts = roles.filter(el=>!rolesAll.includes(el));
       words.forEach(row=>{
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
-        row.filter((el,index)=>el&&rolesParts.includes(roles[index])).forEach((el,index)=>{
+        row.forEach((el,index)=>{
+          if(el&&rolesParts.includes(roles[index])){
             wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,rolesParts[index]]);
+          }
         });
       });
       roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
       words = wordsTemp;
     }
     if(!roles.includes('ID')){
-      words = words.map((row,index)=>[...row,index]);
+      words = words.map((row,index)=>[...row,index+1]);
       roles.push('ID');
     }
     result.innerHTML += `<div>${roles}</div>`;
