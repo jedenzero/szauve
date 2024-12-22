@@ -105,8 +105,9 @@ function search(target){
       roles.filter(el=>el.includes('예문')).forEach(el=>{
         result.innerHTML += w[roles.indexOf(el)] ? `<blockquote>${w[roles.indexOf(el)]}<br>${w[roles.indexOf(el.replace('예문', '번역문'))]}</blockquote>` : ``;
       });
-			result.innerHTML += w[roles.indexOf(/설명|비고/)] ? `<div class="description">${w[roles.indexOf(/설명|비고/)]}</div>` : ``;
-			result.innerHTML += `<div class="margin"></div>`;
+			result.innerHTML += w[roles.indexOf('설명')] ? `<div class="description">${w[roles.indexOf('설명')]}</div>` : ``;
+			result.innerHTML += w[roles.indexOf('비고')] ? `<div class="description">${w[roles.indexOf('비고')]}</div>` : ``;
+      result.innerHTML += `<div class="margin"></div>`;
 	    }
 		document.querySelectorAll('.category').forEach(e => {
 	        e.innerHTML = getCategory(e.getAttribute('data'));
