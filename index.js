@@ -113,7 +113,7 @@ async function getWords(){
 // 배열
 function getSort(a, b, num){
   if(roles[num] == '뜻'){
-    if (a[num].split(', ').some(el => el.startsWith(t)) != b[num].split(', ').some(el => el.startsWith(t))){
+    if (a[num].split(/, |; /).some(el => el.startsWith(t)) != b[num].split(/, |; /).some(el => el.startsWith(t))){
   		return a[num].split(', ').some(el => el.startsWith(t)) ? -1 : 1;
   	}
   }
