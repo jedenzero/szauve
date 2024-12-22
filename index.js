@@ -46,16 +46,13 @@ async function start(){
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
         row.forEach((el,index)=>{
            if(rolesParts.includes(roles[index])){
-            wordsTemp.push(rowNotParts+[el,roles[index]]);
+            wordsTemp.push([...rowNotParts,el,roles[index]]);
           }
         });
       });
-      roles = roles.filter(el=>rolesAll.includes(el))+['뜻','품사'];
+      roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
       words = wordsTemp;
     }
-    // debug
-    result.innerHTML += `<div>${roles}</div>`;
-    result.innerHTML += `<div>${words}</div>`;
     if(word){
 		input.value = word;
       search(word);
