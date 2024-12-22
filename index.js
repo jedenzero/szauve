@@ -45,7 +45,7 @@ async function start(){
       words.forEach(row=>{
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
         row.filter((el,index)=>el&&rolesParts.includes(roles[index])).forEach((el,index)=>{
-            wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
+            wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,rolesParts[index]]);
         });
       });
       roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
