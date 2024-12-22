@@ -40,14 +40,12 @@ async function start(){
     roles = words.shift();
     if(!roles.includes('뜻')){
       wordsTemp = [];
-      rolesAll = ['분류','중요도', '단어', '보조표기', '어원', '품사', '뜻', '예문', '설명', '비고']
+      rolesAll = ['분류','중요도', '단어', '보조 표기', '어원', '품사', '뜻', '예문', '설명', '비고']
       rolesParts = roles.filter(el=>!rolesAll.includes(el));
       words.forEach(row=>{
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
-        row.forEach((el,index)=>{
-           if(rolesParts.includes(roles[index])){
+        row.filter(el=>el&&rolesParts.includes(roles[index])).forEach((el,index)=>{
             wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
-          }
         });
       });
       roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
