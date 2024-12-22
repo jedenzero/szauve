@@ -46,7 +46,7 @@ async function start(){
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
         row.forEach((el,index)=>{
            if(rolesParts.includes(roles[index])){
-            wordsTemp.push([...rowNotParts,el,roles[index]]);
+            wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
           }
         });
       });
