@@ -148,7 +148,7 @@ function getSort(a, b, num){
     return 1;
   }
   else{
-    return a.localeCompare(b);
+    return a[num].localeCompare(b[num]);
   }
 }
 
