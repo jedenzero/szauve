@@ -53,6 +53,10 @@ async function start(){
       roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
       words = wordsTemp;
     }
+    if(!roles.includes('ID')){
+      words = words.map((row,index)=>[...row,index]);
+      roles.push('ID');
+    }
     result.innerHTML += `<div>${roles}</div>`;
     result.innerHTML += `<div>${words}</div>`;
     if(word){
