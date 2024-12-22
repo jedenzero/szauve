@@ -38,6 +38,19 @@ async function start(){
 	  title.innerHTML = `<b>${langA[1]}</b> <span>사전</span>`;
 	  filtered = words = await getWords();
     roles = words.shift();
+    if(!roles.includes('뜻')){
+      wordsTemp = [];
+      rolesAll = ['분류','중요도', '단어', '보조표기', '어원', '품사', '뜻', '예문', '설명', '비고']
+      rolesParts = roles.filter(el=>!rolesAll.includes(el));
+      words.forEach(row=>{
+        row.forEach((el,index)=>{
+          if(el&&rolesPart.includes(roles[index])){
+            
+          }
+        });
+      });
+      words = wordsTemp;
+    }
     if(word){
 		input.value = word;
       search(word);
@@ -85,7 +98,7 @@ function search(target){
       roles.filter(el=>el.includes('예문')).forEach(el=>{
         result.innerHTML += w[roles.indexOf(el)] ? `<blockquote>${w[roles.indexOf(el)]}<br>${w[roles.indexOf(el.replace('예문', '번역문'))]}</blockquote>` : ``;
       });
-			result.innerHTML += w[roles.indexOf('설명')] ? `<div class="description">${w[roles.indexOf('설명')]}</div>` : ``;
+			result.innerHTML += w[roles.indexOf(/설명|비고/)] ? `<div class="description">${w[roles.indexOf(/설명|비고/)]}</div>` : ``;
 			result.innerHTML += `<div class="margin"></div>`;
 	    });
 		document.querySelectorAll('.category').forEach(e => {
