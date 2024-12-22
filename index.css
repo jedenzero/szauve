@@ -137,6 +137,7 @@ blockquote{
     margin-bottom:0;
     color:var(--point);
     filter:hue-rotate(120deg);
+    user-select:none;
 }
 
 .etymology{
