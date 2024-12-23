@@ -35,7 +35,7 @@ async function start(){
 	  langA = langs.find(l => l[0]==lang);
     title.style.display = 'block';
 	  input.style.display = 'block';
-	  title.innerHTML = `<b>${langA[1]}</b> <span>사전</span>`;
+	  title.innerHTML = `<b>${langA[2]}</b> <span>사전</span>`;
 	  words = await getWords();
     roles = words.shift();
     if(!roles.includes('뜻')){
@@ -127,7 +127,7 @@ async function getLangs(){
 
 // words 배열을 가져옴
 async function getWords(){
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${langA[2]}/values/${langA[0]}?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${langA[3]}/values/${langA[1]||langA[0]}?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
