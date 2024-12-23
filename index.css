@@ -180,13 +180,13 @@ blockquote{
     user-select:none;
 }
 
-#setting,#filter,#theme{
+#setting,#filter,#stats,#theme{
     position:fixed;
     top:0;
     right:0;
 }
 
-#setting,#filter,#theme,#light,#dark,.filter-cat{
+#setting,#filter,#stats,#theme,#light,#dark,.filter-cat{
     display:flex;
     justify-content:center;
     align-items:center;
@@ -221,7 +221,7 @@ blockquote{
     top:0;
     right:-200px;
     width:180px;
-    height:130px;
+    height:180px;
     padding:10px;
     background-color:var(--bg);
     color:var(--weak);
@@ -250,6 +250,21 @@ blockquote{
     color:var(--point);
 }
 
+#setting.expanded~#stats{
+    top:100px;
+}
+
+#stats-modal{
+    position:fixed;
+    top:0;
+    left:0;
+    display:none;
+}
+
+#setting.expanded~#stats.expanded+#stats-modal{
+    display:block;
+}
+
 #theme{
     overflow:hidden;
     background-color:var(--bg);
@@ -260,7 +275,7 @@ blockquote{
 }
 
 #setting.expanded~#theme{
-    top:100px;
+    top:150px;
 }
 
 #light{
