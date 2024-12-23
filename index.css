@@ -268,6 +268,12 @@ blockquote{
     top:0;
     left:0;
     display:none;
+    width:130px;
+    height:180px;
+    padding:10px;
+    background-color:var(--bg);
+    outline:1px solid var(--line);
+    overflow-y:auto;
 }
 
 #setting.expanded~#stats.expanded+#stats-modal{
