@@ -6,6 +6,8 @@ let langA;
 let words = [];
 let roles = [];
 let filtered = [];
+let orderLetters = [];
+let orderParts = [];
 
 const root = document.querySelector(':root');
 const setting = document.querySelector('#setting');
@@ -43,7 +45,7 @@ async function start(){
     if(!roles.includes('뜻')){
       wordsTemp = [];
       rolesAll = ['분류','중요도', '등급', '단어', '보조 표기', '어원', '품사', '뜻', '예문', '설명', '비고']
-      rolesParts = roles.filter(el=>!rolesAll.includes(el));
+      orderParts = rolesParts = roles.filter(el=>!rolesAll.includes(el));
       words.forEach(row=>{
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
         row.forEach((el,index)=>{
@@ -193,7 +195,10 @@ function setStatsModal(){
         parts[part] = 1;
       }
     });
-    Object.keys(parts).forEach(el=>{
+    if(orderParts.length == 0){
+      orderParts = Object.entries(parts).sort((a,b)=>{return b[1] - a[1]}).map(row=>row[0]);
+    }
+    orderParts.forEach(el=>{
       stats_modal.innerHTML += `<div>${el} : ${parts[el]}개(${Math.floor(parts[el]/words.length*1000)/10}%)</div>`;
     });
   }
