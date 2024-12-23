@@ -28,7 +28,7 @@ async function start(){
     theme.style.display = 'none';
   // 언어 목록 출력
       langs.forEach(l => {
-          list.innerHTML += `<div><a href="?lang=${l[0]}">${l[1]}</a></div>`;
+          list.innerHTML += `<div><a href="?lang=${l[0]}">${l[2]}</a></div>`;
       });
   }
   else{
