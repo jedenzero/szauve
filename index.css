@@ -238,16 +238,14 @@ blockquote{
     right:50px;
 }
 
-.filter-cat{
-    background-color:var(--bg);
+#filter-modal .category-item{
+    margin-bottom:10px;
+    margin-right:5px;
 }
 
-.filter-cat.selected{
-    background-color:var(--strong);
-}
-
-.filter-item.selected{
+#filter-modal .category-item.selected{
     color:var(--point);
+    outline-color:var(--point);
 }
 
 #stats{
