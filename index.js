@@ -11,6 +11,8 @@ const root = document.querySelector(':root');
 const setting = document.querySelector('#setting');
 const filter = document.querySelector('#filter');
 const filter_modal = document.querySelector('#filter-modal');
+const stats = document.querySelector('#stats');
+const stats_modal = document.querySelector('#stats-modal');
 const theme = document.querySelector('#theme');
 const list = document.querySelector('#list');
 const title = document.querySelector('#title');
@@ -64,9 +66,11 @@ async function start(){
     }
     setting.onclick = () => setting.classList.toggle('expanded');
 	  filter.onclick = () => filter.classList.toggle('expanded');
+    stats.onclick = () => stats.classList.toggle('expanded');
     theme.onclick = () => {theme.classList.toggle('darkened');root.classList.toggle('dark');}
 	  input.oninput = () => search(input.value);
 	  setFilterModal();
+    setStatsModal();
   }
 }
 
@@ -174,6 +178,25 @@ function getEtymology(s){
 
 function setFilterModal(){
   
+}
+
+function setStatsModal(){
+  stats_modal.innerHTML += `<div>총 단어 : ${words.length}개</div>`;
+  if(roles.includes('품사')){
+    let parts = {};
+    words.forEach(row=>{
+      const part = row[roles.indexOf('품사')];
+      if(parts.keys().includes(row[roles.indexOf('품사')])){
+        parts[part]++;
+      }
+      else{
+        parts[part] = 1;
+      }
+    });
+    parts.keys().forEach(el=>{
+      stats_modal.innerHTML += `<div>${el} : ${parts[el]}개(${parts[el]/words.length}%)</div>`;
+    });
+  }
 }
 
 // 필터링
