@@ -40,7 +40,7 @@ async function start(){
     roles = words.shift();
     if(!roles.includes('뜻')){
       wordsTemp = [];
-      rolesAll = ['분류','중요도', '단어', '보조 표기', '어원', '품사', '뜻', '예문', '설명', '비고']
+      rolesAll = ['분류','중요도', '등급', '단어', '보조 표기', '어원', '품사', '뜻', '예문', '설명', '비고']
       rolesParts = roles.filter(el=>!rolesAll.includes(el));
       words.forEach(row=>{
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
@@ -90,6 +90,7 @@ function search(target){
 		for(const [index,w] of results.slice(0,20).entries()){
       result.innerHTML += w[roles.indexOf('분류')] ? `<div class="category" data="${w[roles.indexOf('분류')]}"> </div>` : ``;
       result.innerHTML += w[roles.indexOf('중요도')] ? `<div class="importance">${'★'.repeat(w[roles.indexOf('중요도')])}</div>` : ``;
+      result.innerHTML += w[roles.indexOf('등급')] ? `<div class="importance">${'★'.repeat(w[roles.indexOf('등급')])}</div>` : ``;
       result.innerHTML += `<h2>${w[roles.indexOf('단어')]}</h2>`;
       result.innerHTML += w[roles.indexOf('보조 표기')] ? `<h3>${w[roles.indexOf('보조 표기')]}</h3>` : ``;
       result.innerHTML += w[roles.indexOf('어원')] ? `<div class="etymology" data="${w[roles.indexOf('어원')]}"> </div>` : ``;
