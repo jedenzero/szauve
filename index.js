@@ -5,9 +5,12 @@ let langs;
 let langA;
 let words = [];
 let roles = [];
+let filterParts = {};
+let filterCats = {};
 let filtered = [];
 let orderLetters = [];
 let orderParts = [];
+let parts = {};
 
 const root = document.querySelector(':root');
 const setting = document.querySelector('#setting');
@@ -179,13 +182,7 @@ function getEtymology(s){
 }
 
 function setFilterModal(){
-  
-}
-
-function setStatsModal(){
-  stats_modal.innerHTML += `<div>총 단어 : ${words.length}개</div>`;
   if(roles.includes('품사')){
-    let parts = {};
     words.forEach(row=>{
       const part = row[roles.indexOf('품사')];
       if(Object.keys(parts).includes(part)){
@@ -199,33 +196,24 @@ function setStatsModal(){
       orderParts = Object.entries(parts).sort((a,b)=>{return b[1] - a[1]}).map(row=>row[0]);
     }
     orderParts.forEach(el=>{
+      filter_modal.innerHTML += `<span class="category-item" onclick="this.classList.toggle('selected');setFilter(품사-${el});">${el}</span>`;
+      filterParts[el] = 1;
+    });
+  }
+}
+
+function setStatsModal(){
+  stats_modal.innerHTML += `<div>총 단어 : ${words.length}개</div>`;
+  if(roles.includes('품사')){
+    orderParts.forEach(el=>{
       stats_modal.innerHTML += `<div>${el} : ${parts[el]}개(${Math.floor(parts[el]/words.length*1000)/10}%)</div>`;
     });
   }
 }
 
 // 필터링
-function setFilter(s, num){
-  s_arr = s.split(':');
+function setFilter(s){
   
-  if(s_arr[0] == '품사'){
-    if(num){
-      filtered = words.filter(row => row[4] == s_arr[1] || filtered.includes(row));
-    }
-    else{
-      filtered = words.filter(row => row[4] != s_arr[1] && filtered.includes(row));
-    }
-  }
-  else{
-    if(num){
-      filtered = words.filter(row => (row[8] && row[8].split(', ').includes(s)) || filtered.includes(row));
-    }
-    else{
-      filtered = words.filter(row => (!row[8] || !row[8].split(', ').includes(s)) && filtered.includes(row));
-    }
-  }
-  console.log(filtered)
-  filtered = filtered.length == 0 ? words : filtered;
 }
 
 start();
