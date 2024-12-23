@@ -196,7 +196,7 @@ function setFilterModal(){
       orderParts = Object.entries(parts).sort((a,b)=>{return b[1] - a[1]}).map(row=>row[0]);
     }
     orderParts.forEach(el=>{
-      filter_modal.innerHTML += `<span class="category-item" onclick="this.classList.toggle('selected');setFilter(품사-${el});">${el}</span>`;
+      filter_modal.innerHTML += `<span class="category-item" onclick="this.classList.toggle('selected');setFilter(품사:${el});">${el}</span>`;
       filterParts[el] = 1;
     });
   }
@@ -213,7 +213,20 @@ function setStatsModal(){
 
 // 필터링
 function setFilter(s){
-  
+  const s_arr = s.split(':');
+  if(s_arr[0] == '품사'){
+    filterParts[s_arr[1]] = 1 - filterParts[s_arr[1]];
+  }
+  words.filter(row=>{
+    if(filterParts.length > 0 && filterParts[row[roles.indexOf('품사')]] == 0){
+      return 0;
+    }
+    // 카테고리 별 필터링
+    if(filterCats.length > 0){
+      // return 0;
+    }
+    return 1;
+  });
 }
 
 start();
