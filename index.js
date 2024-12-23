@@ -218,18 +218,19 @@ function setFilter(s){
     filterParts[s_arr[1]] = 1 - filterParts[s_arr[1]];
   }
   filtered = words.filter(row=>{
-    if(filterParts.length > 0 && filterParts[row[roles.indexOf('품사')]] == 0){
-      return 0;
+    if(Object.keys(filterParts).length > 0 && filterParts[row[roles.indexOf('품사')]] == 0){
+      return false;
     }
     // 카테고리 별 필터링
-    if(filterCats.length > 0){
-      // return 0;
+    if(Object.keys(filterCats).length > 0){
+      // return false;
     }
-    return 1;
+    return true;
   });
   if(filtered.length == 0){
     filtered = words.slice();
   }
+  search();
 }
 
 start();
