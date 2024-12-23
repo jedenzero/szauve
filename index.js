@@ -64,7 +64,7 @@ async function start(){
       words = words.map((row,index)=>[...row,index+1]);
       roles.push('ID');
     }
-    filtered = words;
+    filtered = words.slice();
     if(word){
 		input.value = word;
       search(word);
@@ -196,8 +196,8 @@ function setFilterModal(){
       orderParts = Object.entries(parts).sort((a,b)=>{return b[1] - a[1]}).map(row=>row[0]);
     }
     orderParts.forEach(el=>{
-      filter_modal.innerHTML += `<span class="category-item" onclick="this.classList.toggle('selected');setFilter(품사:${el});">${el}</span>`;
-      filterParts[el] = 1;
+      filter_modal.innerHTML += `<span class="category-item" onclick="this.classList.toggle('selected');setFilter('품사:${el}');">${el}</span>`;
+      filterParts[el] = 0;
     });
   }
 }
@@ -217,7 +217,7 @@ function setFilter(s){
   if(s_arr[0] == '품사'){
     filterParts[s_arr[1]] = 1 - filterParts[s_arr[1]];
   }
-  words.filter(row=>{
+  filtered = words.filter(row=>{
     if(filterParts.length > 0 && filterParts[row[roles.indexOf('품사')]] == 0){
       return 0;
     }
@@ -227,6 +227,9 @@ function setFilter(s){
     }
     return 1;
   });
+  if(filtered.length == 0){
+    filtered = words.slice();
+  }
 }
 
 start();
