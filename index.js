@@ -230,7 +230,7 @@ function setFilter(s){
   if(filtered.length == 0){
     filtered = words.slice();
   }
-  search();
+  search(t);
 }
 
 start();
