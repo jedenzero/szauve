@@ -186,15 +186,15 @@ function setStatsModal(){
     let parts = {};
     words.forEach(row=>{
       const part = row[roles.indexOf('품사')];
-      if(parts.keys().includes(row[roles.indexOf('품사')])){
+      if(Object.keys(parts).includes(part)){
         parts[part]++;
       }
       else{
         parts[part] = 1;
       }
     });
-    parts.keys().forEach(el=>{
-      stats_modal.innerHTML += `<div>${el} : ${parts[el]}개(${parts[el]/words.length}%)</div>`;
+    Object.keys(parts).forEach(el=>{
+      stats_modal.innerHTML += `<div>${el} : ${parts[el]}개(${Math.floor(parts[el]/words.length*1000)/10}%)</div>`;
     });
   }
 }
