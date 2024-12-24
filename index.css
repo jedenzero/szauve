@@ -109,6 +109,10 @@ blockquote{
     color:var(--weaker);
 }
 
+blockquote+div{
+    margin-top:20px;
+}
+
 .dark{
     --bg:#181818;
     --line:#282828;
