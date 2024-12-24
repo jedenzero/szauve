@@ -118,7 +118,7 @@ function search(target){
         });
       }
       else{
-        result.innerHTML += `<span>${w[roles.indexOf('뜻')]}</span>`;
+        result.innerHTML += `<span>${w[roles.indexOf('뜻')].split(' ¶')[0]}</span>`;
         if(w[roles.indexOf('뜻')].includes(' ¶')){
           w[roles.indexOf('뜻')].split(' ¶').slice(1).forEach(ex=>{
             result.innerHTML += `<blockquote>${ex.split('  ')[0]}<br>${ex.split('  ')[1]}</blockquote>`;
