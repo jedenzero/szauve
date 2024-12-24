@@ -112,7 +112,7 @@ function search(target){
           result.innerHTML += `<div>${index+1}. ${el.split(' ¶')[0]}</div>`;
           if(el.includes(' ¶')){
             el.split(' ¶').slice(1).forEach(ex=>{
-              result.innerHtML += `<blockquote>${ex.split('/')[0]}<br>${ex.split('/')[1]}</blockquote>`;
+              result.innerHTML += `<blockquote>${ex.split('  ')[0]}<br>${ex.split('  ')[1]}</blockquote>`;
             });
           }
         });
@@ -121,9 +121,9 @@ function search(target){
         result.innerHTML += `<span>${w[roles.indexOf('뜻')]}</span>`;
         if(w[roles.indexOf('뜻')].includes(' ¶')){
           w[roles.indexOf('뜻')].split(' ¶').slice(1).forEach(ex=>{
-            result.innerHTML += `<blockquote>${ex.split('/')[0]}<br>${ex.split('/')[1]}</blockquote>`;
+            result.innerHTML += `<blockquote>${ex.split('  ')[0]}<br>${ex.split('  ')[1]}</blockquote>`;
           });
-        }
+      }
       }
       roles.filter(el=>el.includes('예문')).forEach(el=>{
         result.innerHTML += w[roles.indexOf(el)] ? `<blockquote>${w[roles.indexOf(el)]}<br>${w[roles.indexOf(el.replace('예문', '번역문'))]}</blockquote>` : ``;
