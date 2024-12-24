@@ -90,7 +90,7 @@ function search(target){
 	result.innerHTML = '';
   	t = target;
 	if(t.length > 0){
-	    const results = filtered.filter(row => row[roles.indexOf('단어')].replace(/ ¶[^;]+;/g, '').includes(t) || row[roles.indexOf('뜻')].includes(t) || (roles.includes('보조 표기') && row?.[roles.indexOf('보조 표기')].includes(t)));
+	    const results = filtered.filter(row => row[roles.indexOf('단어')].replace(/ ¶[^;]+(?=[;$])/g, '').includes(t) || row[roles.indexOf('뜻')].includes(t) || (roles.includes('보조 표기') && row?.[roles.indexOf('보조 표기')].includes(t)));
       	let num = roles.indexOf('단어');
 		for(const n of [roles.indexOf('단어'), roles.indexOf('뜻'), roles.indexOf('보조 표기')]){
 			if(n > 0 && results[0]?.[n].includes(t)){
