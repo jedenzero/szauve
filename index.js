@@ -48,13 +48,19 @@ async function start(){
     if(!roles.includes('뜻')){
       wordsTemp = [];
       rolesAll = ['분류','중요도', '등급', '단어', '보조 표기', '어원', '품사', '뜻', '예문', '설명', '비고']
-      orderParts = rolesParts = roles.filter(el=>!rolesAll.includes(el));
+      rolesParts = roles.filter(el=>!rolesAll.includes(el));
+      orderParts = rolesParts.slice();
       words.forEach(row=>{
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
         row.forEach((el,index)=>{
           if(el&&rolesParts.includes(roles[index])){
             wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
           }
+          roles.filter(el=>el.includes('예문')).forEach(el=>{
+            if(!el.includes(wordsTemp[-1][-1])){
+              wordsTemp[-1][roles.indexOf(el)] = '';
+            }
+          });
         });
       });
       roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
