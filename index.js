@@ -64,7 +64,7 @@ async function start(){
           }
         });
       });
-      roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
+      roles = [...roles.filter(el=>!rolesParts.includes(el)),'뜻','품사'];
       words = wordsTemp;
     }
     if(!roles.includes('ID')){
