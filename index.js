@@ -50,17 +50,18 @@ async function start(){
       rolesAll = ['분류','중요도', '등급', '단어', '보조 표기', '어원', '품사', '뜻', '예문', '설명', '비고']
       rolesParts = roles.filter(el=>!rolesAll.includes(el));
       orderParts = rolesParts.slice();
+      rolesExamples = roles.filter(role=>/예문|번역문/.test(role));
       words.forEach(row=>{
         rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
         row.forEach((el,index)=>{
           if(el&&rolesParts.includes(roles[index])){
             wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
+            rolesExamples.forEach(role=>{
+              if(!role.includes(roles[index])){
+                wordsTemp[wordsTemp.length-1][roles.indexOf(role)] = '';
+              }
+            });
           }
-          roles.filter(role=>/예문|번역문/.test(role)).forEach(role=>{
-            if(!role.includes(wordsTemp[wordsTemp.length-1][roles.length-rolesParts.length+1])){
-              wordsTemp[wordsTemp.length-1][roles.indexOf(role)] = '';
-            }
-          });
         });
       });
       roles = [...roles.filter(el=>rolesAll.includes(el)),'뜻','품사'];
