@@ -57,7 +57,7 @@ async function start(){
             wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
           }
           roles.filter(role=>/예문|번역문/.test(role)).forEach(role=>{
-            if(!role.includes(wordsTemp[wordsTemp.length-1][-1])){
+            if(!role.includes(wordsTemp[wordsTemp.length-1][roles.length-rolesParts.length+2])){
               wordsTemp[wordsTemp.length-1][roles.indexOf(role)] = '';
             }
           });
