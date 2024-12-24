@@ -57,11 +57,6 @@ async function start(){
         row.forEach((el,index)=>{
           if(el&&rolesParts.includes(roles[index])){
             wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
-            rolesExamples.forEach(role=>{
-              if(!role.includes(roles[index])){
-                wordsTemp[wordsTemp.length-1][rolesNotParts.indexOf(role)] = '';
-              }
-            });
           }
         });
       });
@@ -114,11 +109,21 @@ function search(target){
       result.innerHTML += w[roles.indexOf('품사')] ? `<span class="part">${w[roles.indexOf('품사')]}</span>` : ``;
       if(w[roles.indexOf('뜻')].includes('; ')){
         w[roles.indexOf('뜻')].split('; ').forEach((el,index)=>{
-          result.innerHTML += `<div>${index+1}. ${el}</div>`;
+          result.innerHTML += `<div>${index+1}. ${el.split(' ¶')[0]}</div>`;
+          if(el.includes(' ¶')){
+            el.split(' ¶').slice(1).forEach(ex=>{
+              result.innerHtML += `<blockquote>${ex.split('/')[0]}<br>${ex.split('/')[1]}</blockquote>`;
+            });
+          }
         });
       }
       else{
         result.innerHTML += `<span>${w[roles.indexOf('뜻')]}</span>`;
+        if(w[roles.indexOf('뜻')].includes(' ¶')){
+          w[roles.indexOf('뜻')].split(' ¶').slice(1).forEach(ex=>{
+            result.innerHTML += `<blockquote>${ex.split('/')[0]}<br>${ex.split('/')[1]}</blockquote>`;
+          });
+        }
       }
       roles.filter(el=>el.includes('예문')).forEach(el=>{
         result.innerHTML += w[roles.indexOf(el)] ? `<blockquote>${w[roles.indexOf(el)]}<br>${w[roles.indexOf(el.replace('예문', '번역문'))]}</blockquote>` : ``;
