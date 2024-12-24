@@ -116,8 +116,8 @@ blockquote+div{
 .dark{
     --bg:#181818;
     --line:#282828;
-    --strong:#F0F0F0;
-    --weak:#F0F0F0;
+    --strong:#E0E0E0;
+    --weak:#E0E0E0;
     --weaker:#A0A0A0;
 }
 
@@ -135,6 +135,7 @@ blockquote+div{
     outline:1px solid var(--weak);
     border-radius:10px;
     font-size:14px;
+    user-select:none;
 }
 
 .importance{
