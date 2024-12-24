@@ -52,7 +52,7 @@ async function start(){
       orderParts = rolesParts.slice();
       rolesExamples = roles.filter(role=>/예문|번역문/.test(role));
       words.forEach(row=>{
-        rowNotParts = row.filter((el,index)=>rolesAll.includes(roles[index]));
+        rowNotParts = row.filter((el,index)=>!rolesParts.includes(roles[index]));
         row.forEach((el,index)=>{
           if(el&&rolesParts.includes(roles[index])){
             wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
