@@ -158,7 +158,7 @@ async function getWords(){
 // 배열
 function getSort(a, b, num){
   if(roles[num] == '뜻'){
-    if(a[num].split(/, |; /).some(el => el.split(' ¶')[0].match(/^${t}\s?\(/) || el.split(' ¶')[0].match(/\)\s?${t}$/) || el.split(' ¶')[0] == t)){
+    if(a[num].split(/, |; /).some(el => /^${t}\s?\(.+/.test(el.split(' ¶')[0]) || /.+\)\s?${t}/.test(el.split(' ¶')[0]) || el.split(' ¶')[0] == t)){
       return -1;
     }
     if(b[num].split(/, |; /).some(el => el.split(' ¶')[0].match(/^${t}\s?\(/) || el.split(' ¶')[0].match(/\)\s?${t}$/) || el.split(' ¶')[0] == t)){
