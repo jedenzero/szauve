@@ -161,6 +161,9 @@ function getSort(a, b, num){
     if(a[num].split(/, |; /).some(el => el.startsWith(t+' ¶') || el.startsWith(t+'(') || el == t)){
       return -1;
     }
+    if(b[num].split(/, |; /).some(el => el.startsWith(t+' ¶') || el.startsWith(t+'(') || el == t)){
+      return 1;
+    }
     if (a[num].split(/, |; /).some(el => el.startsWith(t)) != b[num].split(/, |; /).some(el => el.startsWith(t))){
   		return a[num].split(/, |; /).some(el => el.startsWith(t)) ? -1 : 1;
   	}
