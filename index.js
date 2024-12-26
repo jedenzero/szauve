@@ -170,7 +170,7 @@ function getSort(a, b, num){
   }
   else{
     if (a[num].startsWith(t) && b[num].startsWith(t)){
-  		return b[num].length - a[num].length;
+  		return a[num].length - b[num].length;
     }
   	if (a[num].startsWith(t)){
   		return -1;
