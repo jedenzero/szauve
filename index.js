@@ -169,8 +169,11 @@ function getSort(a, b, num){
   	}
   }
   else{
-  	if (a[num].startsWith(t) != b[num].startsWith(t)){
-  		return a[num].startsWith(t) ? -1 : 1;
+  	if (a[num].startsWith(t)){
+  		return -1;
+    }
+    if (b[num].startsWith(t)){
+  		return 1;
     }
   }
   if(roles[num] == '단어'){
