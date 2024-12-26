@@ -172,11 +172,8 @@ function getSort(a, b, num){
     if (a[num].startsWith(t) && b[num].startsWith(t)){
   		return a[num].length - b[num].length;
     }
-  	if (a[num].startsWith(t)){
-  		return -1;
-    }
-    if (b[num].startsWith(t)){
-  		return 1;
+  	if (a[num].startsWith(t) != b[num].startsWith(t)) {
+      return a[num].startsWith(t) ? -1 : 1;
     }
   }
   return a[num].localeCompare(b[num]);
