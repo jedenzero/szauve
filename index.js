@@ -177,7 +177,7 @@ function getSort(a, b, num){
     }
   }
   if(roles[num] == '단어'){
-    return 1;
+    return 0;
   }
   else{
     return a[num].localeCompare(b[num]);
