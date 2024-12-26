@@ -179,12 +179,7 @@ function getSort(a, b, num){
   		return 1;
     }
   }
-  if(roles[num] == '단어'){
-    return 0;
-  }
-  else{
-    return a[num].localeCompare(b[num]);
-  }
+  return a[num].localeCompare(b[num]);
 }
 
 // 분류의 HTML 코드
