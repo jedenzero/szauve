@@ -32,6 +32,7 @@ async function start(){
     setting.style.display = 'none';
     filter.style.display = 'none';
     filter_modal.style.display = 'none';
+    stats.style.display = 'none';
     theme.style.display = 'none';
   // 언어 목록 출력
       langs.forEach(l => {
