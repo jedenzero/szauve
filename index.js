@@ -65,7 +65,7 @@ async function start(){
       words = wordsTemp;
     }
     if(!roles.includes('ID')){
-      words = words.map((row,index)=>[...row,index+1]);
+      words = words.map((row,index)=>[...row,...new Array(roles.length-row.length),index+1]);
       roles.push('ID');
     }
     filtered = words.slice();
