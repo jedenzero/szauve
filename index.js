@@ -53,15 +53,15 @@ async function start(){
       rolesNotParts = roles.filter(el=>!rolesParts.includes(el));
       orderParts = rolesParts.slice();
       rolesExamples = roles.filter(role=>/예문|번역문/.test(role));
-      words.forEach(row=>{
+      words.forEach((row,indexWord)=>{
         rowNotParts = row.filter((el,index)=>!rolesParts.includes(roles[index]));
         row.forEach((el,index)=>{
           if(el&&rolesParts.includes(roles[index])){
-            wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index]]);
+            wordsTemp.push([...rowNotParts,...new Array(roles.length-rolesParts.length-rowNotParts.length),el,roles[index],indexWord+1]);
           }
         });
       });
-      roles = [...rolesNotParts,'뜻','품사'];
+      roles = [...rolesNotParts,'뜻','품사','ID'];
       words = wordsTemp;
     }
     if(!roles.includes('ID')){
