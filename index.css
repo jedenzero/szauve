@@ -110,7 +110,7 @@ blockquote{
 }
 
 blockquote+div{
-    margin-top:20px;
+    margin-top:10px;
 }
 
 .dark{
@@ -128,15 +128,11 @@ blockquote+div{
 
 .margin-small{
     height:15px;
-    margin-bottom:0;
+    margin:0;
 }
 
 div+.margin-small{
     height:5px;
-}
-
-blockquote+.margin-small{
-    height:0;
 }
 
 .category-item{
