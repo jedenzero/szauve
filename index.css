@@ -126,6 +126,11 @@ blockquote+div{
     margin-bottom:0;
 }
 
+.margin-small{
+    height:15px;
+    margin-bottom:0;
+}
+
 .category-item{
     display:inline-block;
     margin-bottom:0;
@@ -156,11 +161,14 @@ blockquote+div{
 
 .part{
     display:inline-block;
-    margin-bottom:10px;
     margin-right:5px;
     color:var(--point);
     font-size:14px;
     font-weight:bold;
+}
+
+.part+div{
+    margin-top:10px;
 }
 
 .description{
