@@ -131,6 +131,14 @@ blockquote+div{
     margin-bottom:0;
 }
 
+div+.margin-small{
+    height:5px;
+}
+
+blockquote+.margin-small{
+    height:0;
+}
+
 .category-item{
     display:inline-block;
     margin-bottom:0;
