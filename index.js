@@ -99,46 +99,64 @@ function search(target){
 				break;
 			}
 		}
-      	results.sort((a, b) => getSort(a, b, num));
-		for(const [index,w] of results.slice(0,20).entries()){
-      result.innerHTML += w[roles.indexOf('분류')] ? `<div class="category" data="${w[roles.indexOf('분류')]}"> </div>` : ``;
-      result.innerHTML += w[roles.indexOf('중요도')] ? `<div class="importance">${'★'.repeat(w[roles.indexOf('중요도')])}</div>` : ``;
-      result.innerHTML += w[roles.indexOf('등급')] ? `<div class="importance">${'★'.repeat(w[roles.indexOf('등급')])}</div>` : ``;
-      result.innerHTML += `<h2>${w[roles.indexOf('단어')]}</h2>`;
-      result.innerHTML += w[roles.indexOf('보조 표기')] ? `<h3>${w[roles.indexOf('보조 표기')]}</h3>` : ``;
-      result.innerHTML += w[roles.indexOf('어원')] ? `<div class="etymology" data="${w[roles.indexOf('어원')]}"> </div>` : ``;
-      result.innerHTML += w[roles.indexOf('품사')] ? `<span class="part">${w[roles.indexOf('품사')]}</span>` : ``;
-      if(w[roles.indexOf('뜻')].includes('; ')){
-        w[roles.indexOf('뜻')].split('; ').forEach((el,index)=>{
-          result.innerHTML += `<div>${index+1}. ${el.split(' ¶')[0]}</div>`;
-          if(el.includes(' ¶')){
-            el.split(' ¶').slice(1).forEach(ex=>{
-              result.innerHTML += `<blockquote>${ex.split('  ')[0]}<br>${ex.split('  ')[1]}</blockquote>`;
+    results.sort((a, b) => getSort(a, b, num));
+    let ids = [];
+    for(const wort of results){
+      if(!ids.includes(wort[roles.indexOf('ID')])){
+        ids.push(wort[roles.indexOf('ID')]);
+        let synonyms = filtered.filter(word=>word[roles.indexOf('ID')]==wort[roles.indexOf('ID')]);
+        synonyms.sort((a,b)=>roles.includes('품사') ? parts[b[roles.indexOf('품사')]]-parts[a[roles.indexOf('품사')]] : 0)
+        .forEach((w,index)=>{
+          if(index==0){
+            result.innerHTML += w[roles.indexOf('분류')] ? `<div class="category" data="${w[roles.indexOf('분류')]}"> </div>` : ``;
+            result.innerHTML += w[roles.indexOf('중요도')] ? `<div class="importance">${'★'.repeat(w[roles.indexOf('중요도')])}</div>` : ``;
+            result.innerHTML += w[roles.indexOf('등급')] ? `<div class="importance">${'★'.repeat(w[roles.indexOf('등급')])}</div>` : ``;
+            result.innerHTML += `<h2>${w[roles.indexOf('단어')]}</h2>`;
+            result.innerHTML += w[roles.indexOf('보조 표기')] ? `<h3>${w[roles.indexOf('보조 표기')]}</h3>` : ``;
+            result.innerHTML += w[roles.indexOf('어원')] ? `<div class="etymology" data="${w[roles.indexOf('어원')]}"> </div>` : ``;
+          }
+          result.innerHTML += w[roles.indexOf('품사')] ? `<span class="part">${w[roles.indexOf('품사')]}</span>` : ``;
+          if(w[roles.indexOf('뜻')].includes('; ')){
+            w[roles.indexOf('뜻')].split('; ').forEach((el,index)=>{
+              result.innerHTML += `<div>${index+1}. ${el.split(' ¶')[0]}</div>`;
+              if(el.includes(' ¶')){
+                el.split(' ¶').slice(1).forEach(ex=>{
+                  result.innerHTML += `<blockquote>${ex.split('  ')[0]}<br>${ex.split('  ')[1]}</blockquote>`;
+                });
+              }
             });
+          }
+          else{
+            result.innerHTML += `<span>${w[roles.indexOf('뜻')].split(' ¶')[0]}</span>`;
+            if(w[roles.indexOf('뜻')].includes(' ¶')){
+              w[roles.indexOf('뜻')].split(' ¶').slice(1).forEach(ex=>{
+                result.innerHTML += `<blockquote>${ex.split('  ')[0]}<br>${ex.split('  ')[1]}</blockquote>`;
+              });
+          }
+          }
+          roles.filter(el=>el.includes('예문')).forEach(el=>{
+            result.innerHTML += w[roles.indexOf(el)] ? `<blockquote>${w[roles.indexOf(el)]}<br>${w[roles.indexOf(el.replace('예문', '번역문'))]}</blockquote>` : ``;
+          });
+          if(index==synonyms.length-1){
+            result.innerHTML += w[roles.indexOf('설명')] ? `<div class="description">${w[roles.indexOf('설명')]}</div>` : ``;
+            result.innerHTML += w[roles.indexOf('비고')] ? `<div class="description">${w[roles.indexOf('비고')]}</div>` : ``;
+            result.innerHTML += `<div class="margin"></div>`;
+          }
+          else{
+            result.innerHTML += `<div></div>`;
           }
         });
       }
-      else{
-        result.innerHTML += `<span>${w[roles.indexOf('뜻')].split(' ¶')[0]}</span>`;
-        if(w[roles.indexOf('뜻')].includes(' ¶')){
-          w[roles.indexOf('뜻')].split(' ¶').slice(1).forEach(ex=>{
-            result.innerHTML += `<blockquote>${ex.split('  ')[0]}<br>${ex.split('  ')[1]}</blockquote>`;
-          });
+      if(ids.length == 20){
+        break;
       }
-      }
-      roles.filter(el=>el.includes('예문')).forEach(el=>{
-        result.innerHTML += w[roles.indexOf(el)] ? `<blockquote>${w[roles.indexOf(el)]}<br>${w[roles.indexOf(el.replace('예문', '번역문'))]}</blockquote>` : ``;
-      });
-			result.innerHTML += w[roles.indexOf('설명')] ? `<div class="description">${w[roles.indexOf('설명')]}</div>` : ``;
-			result.innerHTML += w[roles.indexOf('비고')] ? `<div class="description">${w[roles.indexOf('비고')]}</div>` : ``;
-      result.innerHTML += `<div class="margin"></div>`;
-	    }
-		document.querySelectorAll('.category').forEach(e => {
-	        e.innerHTML = getCategory(e.getAttribute('data'));
-	    });
+    }
+    document.querySelectorAll('.category').forEach(e => {
+      e.innerHTML = getCategory(e.getAttribute('data'));
+    });
 		document.querySelectorAll('.etymology').forEach(e => {
-	        e.innerHTML = `<span class="etymology-marker">&lt;</span> <span>${getEtymology(e.getAttribute('data'))}</span>`;
-	    });
+      e.innerHTML = `<span class="etymology-marker">&lt;</span> <span>${getEtymology(e.getAttribute('data'))}</span>`;
+    });
 	}
 }
 
