@@ -147,7 +147,7 @@ function search(target){
             result.innerHTML += `<div class="margin"></div>`;
           }
           else{
-            result.innerHTML += `<div></div>`;
+            result.innerHTML += `<div class="margin-small"></div>`;
           }
         });
       }
