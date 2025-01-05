@@ -45,6 +45,9 @@ async function start(){
     title.style.display = 'block';
 	  input.style.display = 'block';
 	  title.innerHTML = `<b>${langA[2]}</b> <span>사전</span>`;
+    if(!langA[3]){
+      document.documentElement.style.setProperty('--point', langA[3]);
+    }
 	  words = await getWords();
     roles = words.shift();
     if(!roles.includes('뜻')){
@@ -166,14 +169,14 @@ function search(target){
 
 // langs 배열을 가져옴
 async function getLangs(){
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:D?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/17ZVfLP8WImY1S--yA7gojHLiVjQO8InAYk3g28NAEfU/values/codes!A:E?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
 
 // words 배열을 가져옴
 async function getWords(){
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${langA[3]}/values/${langA[1]||langA[0]}?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${langA[4]}/values/${langA[1]||langA[0]}?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk`)
     const data = await response.json();
     return data.values;
 }
