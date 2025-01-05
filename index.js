@@ -45,7 +45,7 @@ async function start(){
     title.style.display = 'block';
 	  input.style.display = 'block';
 	  title.innerHTML = `<b>${langA[2]}</b> <span>사전</span>`;
-    if(!langA[3]){
+    if(langA[3]){
       document.documentElement.style.setProperty('--point', langA[3]);
     }
 	  words = await getWords();
