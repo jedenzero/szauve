@@ -35,15 +35,14 @@ async function start(){
     filter_modal.style.display = 'none';
     stats.style.display = 'none';
     theme.style.display = 'none';
-  // 언어 목록 출력
-      langs.forEach(l => {
-          list.innerHTML += `<div><a href="?lang=${l[0]}">${l[2]}</a></div>`;
-      });
+		title.innerHTML = `언어 선택`;
+		input.placeholder = '찾고 싶은 언어를 입력하세요';
+		input.oninput = () => searchLang(input.value);
+		searchLang('');
   }
   else{
-	  langA = langs.find(l => l[0]==lang);
-    title.style.display = 'block';
-	  input.style.display = 'block';
+		langA = langs.find(l => l[0]==lang);
+		input.style.display = 'block';
 	  title.innerHTML = `<b>${langA[2]}</b> <span>사전</span>`;
     if(langA[3]){
       document.documentElement.style.setProperty('--point', langA[3]);
@@ -280,6 +279,16 @@ function setFilter(s){
     filtered = words.slice();
   }
   search(t);
+}
+
+function searchLang(target){
+	list.innerHTML = '';
+	langs.forEach(l => {
+		if(l[0].toLowerCase().startsWith(target.toLowerCase()) || l[2].startsWith(target)){
+			list.innerHTML += `<div><a href="?lang=${l[0]}"><span style="font-size:18px;">${l[2]}</span><span style="color:var(--weaker);"> (${l[0]})</span></a></div>`;
+			list.innerHTML += `<div class="margin-small"></div>`;
+		}
+	});
 }
 
 start();
