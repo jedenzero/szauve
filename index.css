@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Korean:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Tangut&display=swap');
@@ -46,7 +47,7 @@ body{
     margin:0;
     background-color:var(--bg);
     color:var(--weak);
-    font-family:'Inter','Pretendard','Noto Sans','Noto Sans Korean', 'Noto Sans TC', 'Noto Sans Arabic','Kpwd','Noto Sans Egyptian Hieroglyphs','Noto Sans Mongolian','Noto Serif Tangut', 'Noto Sans Nushu', 'Noto Serif Khitan Small Script';
+    font-family:'Inter','Pretendard','Noto Sans','Noto Sans Korean', 'Noto Sans TC','Noto Sans Arabic','Noto Sans Georgian','Kpwd','Noto Sans Egyptian Hieroglyphs','Noto Sans Mongolian','Noto Serif Tangut', 'Noto Sans Nushu', 'Noto Serif Khitan Small Script';
     font-weight:400;
     font-size:15px;
     word-break:keep-all;
