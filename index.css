@@ -373,6 +373,11 @@ div+.margin-small{
     margin-top:50px;
 }
 
+#list{
+    width:300px;
+    margin:0 auto;
+}
+
 @keyframes fall{
     0% {
         top:-20%;
