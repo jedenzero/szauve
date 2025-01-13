@@ -336,7 +336,6 @@ div+.margin-small{
 }
 
 #title{
-    display:none;
     margin-bottom:40px;
     color:var(--strong);
     font-size:32px;
