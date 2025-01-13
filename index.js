@@ -42,7 +42,6 @@ async function start(){
   }
   else{
 		langA = langs.find(l => l[0]==lang);
-		input.style.display = 'block';
 	  title.innerHTML = `<b>${langA[2]}</b> <span>사전</span>`;
     if(langA[3]){
       document.documentElement.style.setProperty('--point', langA[3]);
