@@ -107,9 +107,9 @@ function search(target){
     results.sort((a, b) => getSort(a, b, num));
     let ids = [];
     for(const wort of results){
-      if(!ids.includes(wort[rolesIndexes['ID']])){
-        ids.push(wort[rolesIndexes['ID']]);
-        let synonyms = filtered.filter(word=>word[rolesIndexes['ID']]==wort[rolesIndexes['ID']]);
+      if(!ids.includes(wort[rolesIndexes['단어']])){
+        ids.push(wort[rolesIndexes['단어']]);
+        let synonyms = filtered.filter(word=>word[rolesIndexes['단어']]==wort[rolesIndexes['단어']]);
         synonyms.sort((a,b)=>roles.includes('품사') ? parts[b[rolesIndexes['품사']]]-parts[a[rolesIndexes['품사']]] : 0)
         .forEach((w,index)=>{
           if(index==0){
