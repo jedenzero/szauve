@@ -88,8 +88,8 @@ async function start(){
     filtered = words.slice();
 		
     if(word){
-		input.value = word;
-      search(word);
+	input.value = word;
+      searchS(word);
     }
 		
 	  setFilterModal();
