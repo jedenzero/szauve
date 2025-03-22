@@ -252,7 +252,10 @@ function searchS(){
 				<th>접속형</th><td>${stem}kaja</td><td>${stem}poja</td><td>${stem}hoja</td><td>${stem}yokaja</td><td>${stem}yopoja</td><td>${stem}yohoja</td>
 			</tr>
 			<tr>
-				<th>명령형</th><td colspan='3'>${stem}pya</td><td colspan='3'>${stem}yopya</td>
+				<th>명령형</th><td colspan='3'>${stem}pya</td><td colspan='3'></td>
+			</tr>
+			<tr>
+				<th>금지형</th><td colspan='3'>${stem}ko</td><td colspan='3'></td>
 			</tr>
 			<tr>
 				<th>청유형</th><td colspan='3'>${stem}ha</td><td colspan='3'>${stem}yoha</td>
