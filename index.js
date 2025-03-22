@@ -189,8 +189,8 @@ function beforeSearch(){
 function searchS(){
 	let resultedWords;
 	if(filtered.some(w => w[ior['단어']].includes(t))){
-		const resultedWords1 = filtered.filter(w => w[ior['단어']].startsWith(t)).sort((a,b) => a[ior['단어']].localeCompare(b[ior['단어']]));
-		const resultedWords2 = filtered.filter(w => w[ior['단어']].includes(t) && !resultedWords1.includes(w)).sort((a,b) => a[ior['단어']].localeCompare(b[ior['단어']]));
+		const resultedWords1 = filtered.filter(w => w[ior['단어']].startsWith(t)).sort((a,b) => a[ior['단어']].length - b[ior['단어']].length);
+		const resultedWords2 = filtered.filter(w => w[ior['단어']].includes(t) && !resultedWords1.includes(w)).sort((a,b) => a[ior['단어']].length - b[ior['단어']].length);
 		resultedWords = [...resultedWords1, ...resultedWords2];
 	}
 	else{
