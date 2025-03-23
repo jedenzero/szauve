@@ -227,9 +227,9 @@ function searchS(){
 			}
 		});
 		//임시 2호기의 처리를 위한 임시 조치
-		if(lang == 'im' && w[ior['동사']]){
+		if(lang == 'im' && (w[ior['동사']] || w[ior['형용사']])){
 			const stem = w[ior['단어']].slice(0,-2);
-			result.innerHTML += `<details><summary><b>동사 변형</b></summary><table>
+			result.innerHTML += `<details><summary><b>활용 표</b></summary><table>
 			<tr>
 				<th rowspan="2"></th><th colspan='3'>긍정</th><th colspan='3'>부정</th>
 			</tr>
