@@ -231,7 +231,7 @@ function searchS(){
 			}
 		});
 		
-		result.innerHTML += w[ior['설명']] ? `<blockquote>${w[ior['설명']]}</blockquote>` : ``;
+		result.innerHTML += w[ior['설명']] ? `<div class="description">${w[ior['설명']]}</div>` : ``;
 		
 		//임시 2호기의 처리를 위한 임시 조치
 		if(lang == 'im' && (w[ior['동사']] || w[ior['형용사']])){
