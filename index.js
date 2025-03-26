@@ -79,9 +79,13 @@ async function start(){
 		}
 		
     roles.forEach((el,index)=>{
-			ior[el] = index;
-			if(partNames.includes(el)){
-				parts.push(el);
+					let role = el;
+					
+					role = role == '비고' ? '설명' : role;
+					
+			ior[role] = index;
+			if(partNames.includes(role)){
+				parts.push(role);
 			}
     });
 		
@@ -226,6 +230,9 @@ function searchS(){
 				}
 			}
 		});
+		
+		result.innerHTML += w[ior['설명']] ? `<blockquote>${w[ior['설명']]}</blockquote>` : ``;
+		
 		//임시 2호기의 처리를 위한 임시 조치
 		if(lang == 'im' && (w[ior['동사']] || w[ior['형용사']])){
 			const stem = w[ior['단어']].slice(0,-2);
