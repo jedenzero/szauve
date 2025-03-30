@@ -276,7 +276,7 @@ function searchS(){
 
 //get Array of Meaning
 function getAOM(m){
-	return m.includes(','||';') ? m.split(', '||'; ').map(el => el.replace(/¶.+|\[[^\[\]]+\]\s?|\([^\(\)]+\)\s?/g, '')) : [m];
+	return m.split(/,\s?|;\s?/).map(el => el.replace(/\s¶.+|\s?\[[^\[\]]+\]\s?|\s?\([^\(\)]+\)\s?/g, ''));
 }
 
 // 분류의 HTML 코드
