@@ -201,7 +201,8 @@ function searchS(){
 		const resultedWords1 = filtered.filter(w => parts.some(part => w[ior[part]] && getAOM(w[ior[part]]).some(m => m == t)));
 		const resultedWords2 = filtered.filter(w => parts.some(part => w[ior[part]] && getAOM(w[ior[part]]).some(m => m.startsWith(t)) && !resultedWords1.includes(w)));
 		const resultedWords3 = filtered.filter(w => parts.some(part => w[ior[part]] && getAOM(w[ior[part]]).some(m => m.endsWith(t)) && !resultedWords1.includes(w) && !resultedWords2.includes(w)));
-		resultedWords = [...resultedWords1, ...resultedWords2, ...resultedWords3];
+		const resultedWords4 = filtered.filter(w => parts.some(part => w[ior[part]] && getAOM(w[ior[part]]).some(m => m.includes(t)) && !resultedWords1.includes(w) && !resultedWords2.includes(w) && !resultedWords3.includes(w)));
+		resultedWords = [...resultedWords1, ...resultedWords2, ...resultedWords3, ...resultedWords4];
 	}
 	
 	resultedWords.slice(0,20).forEach(w => {
@@ -275,7 +276,7 @@ function searchS(){
 
 //get Array of Meaning
 function getAOM(m){
-	return m.includes(','||';') ? m.split(', '||'; ').map(el => el.replace(/¶.+|\[[^\[\]]+\]|\([^\(\)]+\)/, '')) : [m];
+	return m.includes(','||';') ? m.split(', '||'; ').map(el => el.replace(/¶.+|\[[^\[\]]+\]\s?|\([^\(\)]+\)\s?/g, '')) : [m];
 }
 
 // 분류의 HTML 코드
